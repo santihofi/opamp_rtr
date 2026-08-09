@@ -8,15 +8,12 @@ V2 vdd GND {vdd}
 Vc netc GND {vdd*0.5}
 V4 vdin GND dc 0 sin(0 {vamp} 1e3)
 E1 inp netc vdin GND 1
-Vbp vdd vbias_p {v_bias_p}
-Vbn vbias_n GND {v_bias_n}
-* constant-gm switch references (see opamp_rtr.spice): rail-referenced
-Vrp vdd nrefp {v_ref_p}
-Vrn nrefn GND {v_ref_n}
+* Single reference current into the ibias pin (see opamp_rtr.spice)
+Ib vdd nib {i_ref}
 * mid-supply node: return for the application load only
 Vmid nmid GND {vdd*0.5}
 * inn tied directly to out (same node) = unity-gain follower
-x1 vdd GND vbias_p vbias_n nrefp nrefn inp out out opamp
+x1 vdd GND nib inp out out opamp
 * application load: diff-amp feedback network (~10k) to mid-supply + parasitics
 RL out nmid 10e3
 .param cl=5e-12

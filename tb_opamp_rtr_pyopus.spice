@@ -2,15 +2,13 @@ E1 inp net1 vdin GND 1
 V1 net1 GND {vincm}
 V2 vdd GND {vdd}
 V4 vdin GND ac=1
-Vbp vdd vbias_p {v_bias_p}
-Vbn vbias_n GND {v_bias_n}
-* constant-gm switch references: rail-referenced, near the ENDS of the input
-* range (not mid-supply) so each switch only acts where its pair runs dry
-Vrp vdd nrefp {v_ref_p}
-Vrn nrefn GND {v_ref_n}
+* Single reference current into the ibias pin - stands in for bandgap+resistor
+* (or a beta-multiplier). All four gate-bias rails are generated inside the
+* opamp. Ib draws from vdd, so V2 still sees the total supply current.
+Ib vdd nib {i_ref}
 * mid-supply node: return for the application load only
 Vmid nmid GND {vdd*0.5}
-x1 vdd GND vbias_p vbias_n nrefp nrefn inp inn out opamp
+x1 vdd GND nib inp inn out opamp
 * DC-closed / AC-open feedback: at DC the amp is a unity-gain follower, so the
 * operating point is well-defined (out tracks vincm, offset bounded by loop).
 * Above ~1e-19 Hz the loop is broken (Cfb shorts inn to GND), so ac and noise

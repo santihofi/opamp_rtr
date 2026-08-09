@@ -16,12 +16,38 @@
 *=======================================================================================
 
 
-* Ports: vref_p / vref_n are the constant-gm switch references. They must sit
-* near the ENDS of the input range, NOT at mid-supply: each switch turns on
-* only once its own input pair runs out of headroom. Referenced from the rails
-* (vref_p ~ vdd-0.95, vref_n ~ vss+0.95) so the crossover tracks the supply.
+* CURRENT-MODE BIASING. The block takes ONE external reference current into
+* the ibias pin (bandgap + resistor, or a beta-multiplier) and generates all
+* four internal gate-bias rails locally. No bias voltages are distributed:
+* each rail is a diode-connected replica of the devices it drives, so it
+* tracks its own rail and its own device family across process/temperature.
+* ibias is both the current input and the NMOS gate-bias rail (XB1 is
+* diode-connected on it), which is why the NMOS sources gate from 'ibias'.
+* No startup circuit is needed - the reference current is supplied externally.
 
-.subckt opamp vdd vss vbias_p vbias_n vref_p vref_n inp inn out
+.subckt opamp vdd vss ibias inp inn out
+
+*=======================================================================================
+
+* Bias generator
+*
+*   ibias  -> XB1 NMOS master diode          -> NMOS gate rail (= ibias node)
+*   XB2/XB3 mirror I_ref up to a PMOS diode  -> vbias_p (vdd-referenced)
+*   XB4/XB5 set the low  constant-gm switch reference -> vref_n
+*   XB6/XB7 set the high constant-gm switch reference -> vref_p
+*
+* Branch currents are all I_ref; the W ratio to each biased device sets that
+* device's current (all share l_bias, so it is a clean width ratio).
+
+XB1 ibias ibias vss vss sg13_hv_nmos w={w_bias_n} l={l_bias} ng=1 m=1 mm_ok=1
+XB2 vbias_p ibias vss vss sg13_hv_nmos w={w_bias_n} l={l_bias} ng=1 m=1 mm_ok=1
+XB3 vbias_p vbias_p vdd vdd sg13_hv_pmos w={w_bias_p} l={l_bias} ng=1 m=1 mm_ok=1
+
+XB4 vref_n vbias_p vdd vdd sg13_hv_pmos w={w_bias_p} l={l_bias} ng=1 m=1 mm_ok=1
+XB5 vref_n vref_n vss vss sg13_hv_nmos w={w_ref_n} l={l_bias} ng=1 m=1 mm_ok=1
+
+XB6 vref_p ibias vss vss sg13_hv_nmos w={w_bias_n} l={l_bias} ng=1 m=1 mm_ok=1
+XB7 vref_p vref_p vdd vdd sg13_hv_pmos w={w_ref_p} l={l_bias} ng=1 m=1 mm_ok=1
 
 *=======================================================================================
 
@@ -52,7 +78,7 @@ XM7 n2 inn ncmdiff_n vss sg13_hv_nmos w={w_diff_n} l={l_diff_n} ng=1 m=1 mm_ok=1
 
 * Tail current source (NMOS)
 
-XM8 ncmdiff_n vbias_n vss vss sg13_hv_nmos w={w_tail_n} l={l_bias} ng=1 m=1 mm_ok=1
+XM8 ncmdiff_n ibias vss vss sg13_hv_nmos w={w_tail_n} l={l_bias} ng=1 m=1 mm_ok=1
 
 * Load Current Mirror (PMOS)
 
