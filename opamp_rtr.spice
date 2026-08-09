@@ -1,0 +1,141 @@
+*=======================================================================================
+
+* opamp_rtr.spice
+* created by Santiago Hofwimmer
+* JKU IICQC
+*
+* A simple Rail-to-Rail opamp in the IHP-sg13CMOS5l PDK
+* Two-stage: complementary input pairs, Monticelli class-AB output stage
+* 3.3 V supply, thick-oxide HV devices (sg13_hv_*, min L 0.45u, min W 0.3u)
+*
+* NOTE: all {w_*}/{l_*}/{c_*} parameters are injected by PyOPUS as .param lines.
+* Do NOT .include opamp_rtr_params.spice here: PyOPUS writes its .param lines
+* BEFORE the module includes and ngspice takes the last definition, so an
+* include here would silently override the optimizer. opamp_rtr_params.spice
+* records seed/frozen values for standalone simulation only.
+*=======================================================================================
+
+
+* Ports: vref_p / vref_n are the constant-gm switch references. They must sit
+* near the ENDS of the input range, NOT at mid-supply: each switch turns on
+* only once its own input pair runs out of headroom. Referenced from the rails
+* (vref_p ~ vdd-0.95, vref_n ~ vss+0.95) so the crossover tracks the supply.
+
+.subckt opamp vdd vss vbias_p vbias_n vref_p vref_n inp inn out
+
+*=======================================================================================
+
+* PMOS input stage
+
+*Differential pair (PMOS)
+
+XM1 out1_p inp ncmdiff_p vdd sg13_hv_pmos w={w_diff_p} l={l_diff_p} ng=1 m=1 mm_ok=1
+XM2 n1 inn ncmdiff_p vdd sg13_hv_pmos w={w_diff_p} l={l_diff_p} ng=1 m=1 mm_ok=1
+
+* Tail current source (PMOS)
+
+XM3 ncmdiff_p vbias_p vdd vdd sg13_hv_pmos w={w_tail_p} l={l_bias} ng=1 m=1 mm_ok=1
+
+* Load Current Mirror (NMOS)
+
+XM4 out1_p n1 vss vss sg13_hv_nmos w={w_load_n} l={l_load_n} ng=1 m=1 mm_ok=1
+XM5 n1 n1 vss vss sg13_hv_nmos w={w_load_n} l={l_load_n} ng=1 m=1 mm_ok=1
+
+*=======================================================================================
+
+* NMOS input stage
+
+* Differential pair (NMOS)
+
+XM6 out1_n inp ncmdiff_n vss sg13_hv_nmos w={w_diff_n} l={l_diff_n} ng=1 m=1 mm_ok=1
+XM7 n2 inn ncmdiff_n vss sg13_hv_nmos w={w_diff_n} l={l_diff_n} ng=1 m=1 mm_ok=1
+
+* Tail current source (NMOS)
+
+XM8 ncmdiff_n vbias_n vss vss sg13_hv_nmos w={w_tail_n} l={l_bias} ng=1 m=1 mm_ok=1
+
+* Load Current Mirror (PMOS)
+
+XM9 out1_n n2 vdd vdd sg13_hv_pmos w={w_load_p} l={l_load_p} ng=1 m=1 mm_ok=1
+XM10 n2 n2 vdd vdd sg13_hv_pmos w={w_load_p} l={l_load_p} ng=1 m=1 mm_ok=1
+
+*=======================================================================================
+
+* Constant-gm input biasing (tail-current switches, referenced to the rails)
+*
+* XM25 conducts only once vincm > vref_p - Vov, i.e. when the PMOS pair is
+* running out of headroom near the top rail. It diverts the PMOS tail current
+* and mirrors it (XM26/XM27, ratio w_gmn2/w_gmn1) into the NMOS tail node, so
+* the NMOS pair gains exactly what the PMOS pair lost. XM28/XM29/XM30 do the
+* mirror image near the bottom rail. Both switches must be OFF in mid-range or
+* they starve both pairs at once (gain collapse). Keeps total input gm - and
+* thus follower loop gain - flat across the range, which is what suppresses
+* input-stage distortion for audio.
+
+XM25 nswa vref_p ncmdiff_p vdd sg13_hv_pmos w={w_sw_p} l=1e-6 ng=1 m=1 mm_ok=1
+XM26 nswa nswa vss vss sg13_hv_nmos w={w_gmn1} l={l_bias} ng=1 m=1 mm_ok=1
+XM27 ncmdiff_n nswa vss vss sg13_hv_nmos w={w_gmn2} l={l_bias} ng=1 m=1 mm_ok=1
+
+XM28 nswb vref_n ncmdiff_n vss sg13_hv_nmos w={w_sw_n} l=1e-6 ng=1 m=1 mm_ok=1
+XM29 nswb nswb vdd vdd sg13_hv_pmos w={w_gmp1} l={l_bias} ng=1 m=1 mm_ok=1
+XM30 ncmdiff_p nswb vdd vdd sg13_hv_pmos w={w_gmp2} l={l_bias} ng=1 m=1 mm_ok=1
+
+*=======================================================================================
+
+* Class-AB quiescent-current control (Monticelli floating current source)
+*
+* Floating pair sits between out1_n (high node, gate of XM11) and out1_p (low
+* node, gate of XM12). XM15 pushes I_ab into out1_n, XM16 pulls I_ab out of
+* out1_p, so both first-stage mirrors stay balanced and I_ab flows through the
+* floating pair from out1_n to out1_p.
+*
+* Translinear loop, NMOS side:  Vgs(XM19)+Vgs(XM18) = Vgs(XM13)+Vgs(XM12)
+* Translinear loop, PMOS side:  Vsg(XM22)+Vsg(XM21) = Vsg(XM14)+Vsg(XM11)
+
+* Floating pair
+
+XM13 out1_n nab_n out1_p vss sg13_hv_nmos w={w_ab_n} l={l_ab_n} ng=1 m=1 mm_ok=1
+XM14 out1_p nab_p out1_n vdd sg13_hv_pmos w={w_ab_p} l={l_ab_p} ng=1 m=1 mm_ok=1
+
+* I_ab feed: PMOS source into out1_n, NMOS sink out of out1_p.
+* The sink gate is NOT vbias_n: XM23/XM24 derive it by mirroring the PMOS
+* source current, so I(XM16)=I(XM15) tracks across process/temperature.
+* (With independent P/N biases the mismatch current had to be absorbed by the
+* high-impedance out1_n/out1_p nodes, railing the output stage.)
+
+XM15 out1_n vbias_p vdd vdd sg13_hv_pmos w={w_ab_src} l={l_bias} ng=1 m=1 mm_ok=1
+XM16 out1_p nab_ref vss vss sg13_hv_nmos w={w_ab_snk} l={l_bias} ng=1 m=1 mm_ok=1
+
+* I_ab tracking reference (PMOS copy of XM15 into diode NMOS)
+
+XM23 nab_ref vbias_p vdd vdd sg13_hv_pmos w={w_ab_src} l={l_bias} ng=1 m=1 mm_ok=1
+XM24 nab_ref nab_ref vss vss sg13_hv_nmos w={w_ab_snk} l={l_bias} ng=1 m=1 mm_ok=1
+
+* Translinear bias stack, NMOS side (PMOS feed + two diode-connected NMOS)
+
+XM17 nab_n vbias_p vdd vdd sg13_hv_pmos w={w_ab_src} l={l_bias} ng=1 m=1 mm_ok=1
+XM18 nab_n nab_n nstack_n vss sg13_hv_nmos w={w_ab_n} l={l_ab_n} ng=1 m=1 mm_ok=1
+XM19 nstack_n nstack_n vss vss sg13_hv_nmos w={w_ab_n} l={l_ab_n} ng=1 m=1 mm_ok=1
+
+* Translinear bias stack, PMOS side (NMOS sink + two diode-connected PMOS)
+
+XM20 nab_p nab_ref vss vss sg13_hv_nmos w={w_ab_snk} l={l_bias} ng=1 m=1 mm_ok=1
+XM21 nab_p nab_p nstack_p vdd sg13_hv_pmos w={w_ab_p} l={l_ab_p} ng=1 m=1 mm_ok=1
+XM22 nstack_p nstack_p vdd vdd sg13_hv_pmos w={w_ab_p} l={l_ab_p} ng=1 m=1 mm_ok=1
+
+*=======================================================================================
+
+* second stage
+* class AB output stage
+
+XM11 out out1_n vdd vdd sg13_hv_pmos w={w_out_p} l={l_out_p} ng=1 m=1 mm_ok=1
+XM12 out out1_p vss vss sg13_hv_nmos w={w_out_n} l={l_out_n} ng=1 m=1 mm_ok=1
+
+* Miller compensation (one cap per signal path; Rz nulling resistors = future option)
+
+Cc1 out out1_n {c_miller_p}
+Cc2 out out1_p {c_miller_n}
+
+*=======================================================================================
+
+.ends

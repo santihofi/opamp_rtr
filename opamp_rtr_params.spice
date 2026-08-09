@@ -1,0 +1,65 @@
+*=======================================================================================
+* opamp_rtr_params.spice
+* Seed / frozen design parameters for opamp_rtr.spice (PyOPUS designpar mirror)
+*
+* NOT included by opamp_rtr.spice during PyOPUS optimization (see note there).
+* Standalone use: .include this file BEFORE opamp_rtr.spice in a manual deck.
+* After optimization: paste the optimized values here to freeze the design.
+*=======================================================================================
+* PMOS input pair: predecessor optimum, identical role
+.param w_diff_p=9.4e-06
+.param l_diff_p=1.6e-06
+* NMOS input pair: ~2.5x narrower for similar gm at equal current
+.param w_diff_n=3.8e-06
+.param l_diff_n=1.6e-06
+* PMOS tail: predecessor tail ~/2 (two stages + AB branches share the 100uA budget)
+.param w_tail_p=2e-05
+* NMOS tail: ~w_tail_p/3 for equal tail current at equal |Vgs|=0.9 V (HV Vth ~0.7 V)
+.param w_tail_n=7e-06
+* Shared L of every vbias-driven current source (predecessor op_l_mirror)
+.param l_bias=9.13e-06
+* NMOS mirror load: predecessor values, identical role
+.param w_load_n=4.6e-06
+.param l_load_n=2.33e-06
+* PMOS mirror load: ~2.5x wider for matched Vsg at same current
+.param w_load_p=1.15e-05
+.param l_load_p=2.33e-06
+* Output PMOS: ~2.5x the output NMOS for symmetric drive
+.param w_out_p=1.8e-05
+.param l_out_p=2.6e-06
+* Output NMOS: predecessor op_w_out/op_l_out
+.param w_out_n=7.4e-06
+.param l_out_n=2.6e-06
+* Floating NMOS + N-stack diodes: L matched to l_out_n, wide for low overdrive (stack headroom)
+.param w_ab_n=6e-06
+.param l_ab_n=2.6e-06
+* Floating PMOS + P-stack diodes: 2.5x NMOS counterpart
+.param w_ab_p=1.5e-05
+.param l_ab_p=2.6e-06
+* I_ab feed (PMOS XM15/XM17): ~w_tail_p/4 -> I_ab ~ I_tail/4
+.param w_ab_src=5e-06
+* I_ab sink (NMOS XM16/XM20): ~w_ab_src/3 for equal current
+.param w_ab_snk=1.8e-06
+* Miller caps: predecessor 1.05p split into one per path
+.param c_miller_p=1e-12
+.param c_miller_n=1e-12
+* Tail/AB bias voltages, referenced FROM each rail (|Vgs| of the current sources;
+* HV Vth ~0.7 V -> ~0.2 V overdrive at seed). Used by the testbench, not the subckt.
+.param v_bias_p=0.9
+.param v_bias_n=0.9
+* Constant-gm switch references, offsets FROM each rail. Must sit near the ends
+* of the input range: XM25 fires at vincm > vdd-v_ref_p-Vov, XM28 at
+* vincm < v_ref_n+Vov. Mid-supply values turn both switches on at once and
+* collapse the gain - that is what broke the 18:37 optimize run.
+.param v_ref_p=0.95
+.param v_ref_n=0.95
+* Constant-gm current switches: sized to carry a full
+* tail current when the corresponding input pair is out of range
+.param w_sw_p=1.5e-05
+.param w_sw_n=5e-06
+* gm-switch mirrors: diode (1) and output (2) devices; ratio w2/w1 sets how much
+* the surviving pair is boosted (1x for weak inversion .. 3x for strong)
+.param w_gmn1=3e-06
+.param w_gmn2=4.5e-06
+.param w_gmp1=8e-06
+.param w_gmp2=1.2e-05

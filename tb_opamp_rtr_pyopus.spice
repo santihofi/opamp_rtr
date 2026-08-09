@@ -1,0 +1,27 @@
+E1 inp net1 vdin GND 1
+V1 net1 GND {vincm}
+V2 vdd GND {vdd}
+V4 vdin GND ac=1
+Vbp vdd vbias_p {v_bias_p}
+Vbn vbias_n GND {v_bias_n}
+* constant-gm switch references: rail-referenced, near the ENDS of the input
+* range (not mid-supply) so each switch only acts where its pair runs dry
+Vrp vdd nrefp {v_ref_p}
+Vrn nrefn GND {v_ref_n}
+* mid-supply node: return for the application load only
+Vmid nmid GND {vdd*0.5}
+x1 vdd GND vbias_p vbias_n nrefp nrefn inp inn out opamp
+* DC-closed / AC-open feedback: at DC the amp is a unity-gain follower, so the
+* operating point is well-defined (out tracks vincm, offset bounded by loop).
+* Above ~1e-19 Hz the loop is broken (Cfb shorts inn to GND), so ac and noise
+* analyses see the open-loop amplifier: pm = phase margin of the follower loop.
+* E1 gain is 1 so noise referred to v4 is true input-referred noise.
+Rfb out inn 1e9
+Cfb inn GND 1e9
+* application load: diff-amp feedback network (~10k) to mid-supply + parasitics
+RL out nmid 10e3
+.param cl=5e-12
+CL out GND {cl}
+
+.GLOBAL GND
+.end
