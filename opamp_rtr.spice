@@ -25,6 +25,9 @@
 * diode-connected on it), which is why the NMOS sources gate from 'ibias'.
 * No startup circuit is needed - the reference current is supplied externally.
 
+.include opamp_rtr_params.spice
+
+
 .subckt opamp vdd vss ibias inp inn out
 
 *=======================================================================================
