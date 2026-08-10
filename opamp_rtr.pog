@@ -144,7 +144,16 @@
         ],
         "options": [],
         "params": [],
-        "saves": [],
+        "saves": [
+          [
+            "default",
+            ""
+          ],
+          [
+            "devvar",
+            "n.x1.xb3.nsg13_hv_pmos n.x1.xb4.nsg13_hv_pmos n.x1.xb7.nsg13_hv_pmos n.x1.xm1.nsg13_hv_pmos n.x1.xm10.nsg13_hv_pmos n.x1.xm11.nsg13_hv_pmos n.x1.xm14.nsg13_hv_pmos n.x1.xm15.nsg13_hv_pmos n.x1.xm17.nsg13_hv_pmos n.x1.xm2.nsg13_hv_pmos n.x1.xm21.nsg13_hv_pmos n.x1.xm22.nsg13_hv_pmos n.x1.xm23.nsg13_hv_pmos n.x1.xm25.nsg13_hv_pmos n.x1.xm29.nsg13_hv_pmos n.x1.xm3.nsg13_hv_pmos n.x1.xm30.nsg13_hv_pmos n.x1.xm9.nsg13_hv_pmos n.x1.xb1.nsg13_hv_nmos n.x1.xb2.nsg13_hv_nmos n.x1.xb5.nsg13_hv_nmos n.x1.xb6.nsg13_hv_nmos n.x1.xm12.nsg13_hv_nmos n.x1.xm13.nsg13_hv_nmos n.x1.xm16.nsg13_hv_nmos n.x1.xm18.nsg13_hv_nmos n.x1.xm19.nsg13_hv_nmos n.x1.xm20.nsg13_hv_nmos n.x1.xm24.nsg13_hv_nmos n.x1.xm26.nsg13_hv_nmos n.x1.xm27.nsg13_hv_nmos n.x1.xm28.nsg13_hv_nmos n.x1.xm4.nsg13_hv_nmos n.x1.xm5.nsg13_hv_nmos n.x1.xm6.nsg13_hv_nmos n.x1.xm7.nsg13_hv_nmos n.x1.xm8.nsg13_hv_nmos ; vds vdss ids"
+          ]
+        ],
         "command": "op()"
       }
     ],
@@ -341,6 +350,19 @@
         "lower": "",
         "upper": "1e-3",
         "norm": "1e-3"
+      }
+    ],
+    [
+      "sat_margin",
+      {
+        "analysis": "op",
+        "depends": [],
+        "expression": "# Saturation check over every MOSFET in the opamp.\n# Vector names confirmed from a saved op run:\n#   @n.x1.<inst>.nsg13_hv_<type>[vds] and [vdss]   (bare)\n#   i(@n.x1.<inst>.nsg13_hv_<type>[ids])            (current, i()-wrapped)\n# IHP sg13g2 devices are OSDI/PSP103 -> ngspice instance letter 'n', inner\n# instance named n<model>; PSP calls the saturation voltage 'vdss', not 'vdsat'.\n#\n# Two traps, both hit once already:\n#  1) p() returns a 1-ELEMENT VECTOR. float() on an ndim>0 array is deprecated\n#     since NumPy 1.25 and raises on NumPy 2.x -> take .ravel()[0] first.\n#  2) PyOPUS runs this via exec(expr, globals(), locals) with np/p in LOCALS,\n#     so a helper \"def\" here would NOT see np or p. Keep it inline.\nPMOS = ['xb3', 'xb4', 'xb7', 'xm1', 'xm10', 'xm11', 'xm14', 'xm15', 'xm17', 'xm2', 'xm21', 'xm22', 'xm23', 'xm25', 'xm29', 'xm3', 'xm30', 'xm9']\nNMOS = ['xb1', 'xb2', 'xb5', 'xb6', 'xm12', 'xm13', 'xm16', 'xm18', 'xm19', 'xm20', 'xm24', 'xm26', 'xm27', 'xm28', 'xm4', 'xm5', 'xm6', 'xm7', 'xm8']\nIOFF = 1e-9          # A; below this the device counts as off\n\nworst, worst_dev, worst_vds, worst_vdss = 1e9, \"none\", 0.0, 0.0\nchecked, skipped, err = 0, 0, None\nfor dev, mdl in [(d, \"nsg13_hv_pmos\") for d in PMOS] + [(d, \"nsg13_hv_nmos\") for d in NMOS]:\n    path = \"n.x1.\" + dev + \".\" + mdl\n    try:\n        vds  = float(np.asarray(p(path, \"vds\")).ravel()[0])\n        vdss = float(np.asarray(p(path, \"vdss\")).ravel()[0])\n    except Exception as e:\n        if err is None:\n            err = path + \" -> \" + type(e).__name__ + \": \" + str(e)\n        continue\n    # Devices carrying no current are skipped: the rail-to-rail input pairs and\n    # the constant-gm switches are OFF by design over part of the input range.\n    try:\n        if abs(float(np.asarray(p(path, \"ids\")).ravel()[0])) < IOFF:\n            skipped += 1\n            continue\n    except Exception:\n        pass                          # current unavailable -> do not gate\n    checked += 1\n    margin = abs(vds) - abs(vdss)\n    if margin < worst:\n        worst, worst_dev, worst_vds, worst_vdss = margin, dev, vds, vdss\n\nif checked == 0:\n    print(\"SAT: no devices evaluated (%d off). First error: %s\" % (skipped, err))\n    __result = -1.0\nelse:\n    if worst < 0:\n        print(\"SAT: %s out of saturation by %.4f V (vds=%.4f vdss=%.4f); \"\n              \"%d checked, %d off\" % (worst_dev, -worst, worst_vds, worst_vdss,\n                                       checked, skipped))\n    __result = float(worst)\n",
+        "vector": false,
+        "components": "",
+        "lower": "0",
+        "upper": "",
+        "norm": "0.05"
       }
     ]
   ],
@@ -640,6 +662,14 @@
             "",
             "1e-3",
             "",
+            ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
             ""
           ]
         ],
@@ -981,6 +1011,14 @@
             "",
             "1e-3",
             "",
+            ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
             ""
           ]
         ],
@@ -1555,6 +1593,14 @@
             "1e-3",
             "",
             ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
+            ""
           ]
         ],
         "designpar": [
@@ -2127,6 +2173,14 @@
             "",
             "1e-3",
             "",
+            ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
             ""
           ]
         ],
@@ -3394,6 +3448,14 @@
             "",
             "1e-3",
             "",
+            ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
             ""
           ]
         ],
