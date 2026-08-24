@@ -10,12 +10,16 @@
 * vincm (not on mid-supply) keeps the step inside the rails at every corner,
 * including vincm=3.1 with vdd=3.2.
 *
-* Timing: rising edge at 1 us, falling at 7 us, period 12 us, stop at 13 us.
+* Timing: rising edge at 1 us, falling at 22 us, period 42 us, stop at 43 us.
 * The transient starts from the dc operating point, so t=0 is already settled
-* and the pre-edge level can be averaged from 0.1 us. Measured 0.1 percent
-* settling over corners is 0.70 to 2.62 us, and the level-averaging window
-* opens 5 us after the edge, so the measurement stays clean well past the
-* 3 us tsettle bound.
+* and the pre-edge level can be averaged from 0.1 us.
+*
+* The long half period is not about the amp being slow. A pole-zero doublet
+* leaves a tail that decays over tens of microseconds, so the settled level
+* has to be sampled late or every measurement taken from it is biased. The
+* window opens 21 us after the edge, where the residual is under 0.12 percent
+* of the step at every corner measured. Sampling it at 5 us instead reported
+* 3.07 us of settling for a corner that actually takes 8.61 us.
 
 V2 vdd GND {vdd}
 
@@ -27,7 +31,7 @@ Ib vdd nib {i_ref}
 
 .param vstep=100e-3
 V1 net1 GND {vincm}
-V4 vdin GND dc 0 pulse({-vstep/2} {vstep/2} 1e-6 1e-9 1e-9 6e-6 12e-6)
+V4 vdin GND dc 0 pulse({-vstep/2} {vstep/2} 1e-6 1e-9 1e-9 21e-6 42e-6)
 
 * E1 gain is 1, so v(inp) is the ideal follower target and v(out)-v(inp) is the
 * closed-loop tracking error at both settled levels.
