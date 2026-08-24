@@ -52,13 +52,6 @@
         "external": true,
         "content": ""
       }
-    ],
-    [
-      "tb_opamp_rtr_pulse.spice",
-      {
-        "external": true,
-        "content": ""
-      }
     ]
   ],
   "heads": [
@@ -123,11 +116,6 @@
           [
             "tb_cl",
             "tb_opamp_rtr_closed.spice",
-            ""
-          ],
-          [
-            "tb_pulse",
-            "tb_opamp_rtr_pulse.spice",
             ""
           ]
         ]
@@ -257,47 +245,6 @@
         "saves": [],
         "command": "tran(500e-9, 4e-3, 0, 500e-9)"
       }
-    ],
-    [
-      "tran_pulse",
-      {
-        "head": "ngspice",
-        "modules": [
-          [
-            "def"
-          ],
-          [
-            "tb_pulse"
-          ],
-          [
-            "lib_res"
-          ],
-          [
-            "lib_cap"
-          ]
-        ],
-        "options": [
-          [
-            "reltol",
-            "1e-5"
-          ],
-          [
-            "abstol",
-            "1e-14"
-          ],
-          [
-            "vntol",
-            "1e-7"
-          ],
-          [
-            "chgtol",
-            "1e-16"
-          ]
-        ],
-        "params": [],
-        "saves": [],
-        "command": "tran(20e-9, 13e-6, 0, 20e-9)"
-      }
     ]
   ],
   "measures": [
@@ -309,7 +256,7 @@
         "expression": "ndx=m.IatXval(np.abs(scale()), 10.0)[0]\n__result=m.XatI(m.ACmag(m.ACtf(v('out'), v('inp', 'inn'))), ndx)",
         "vector": false,
         "components": "",
-        "lower": "60",
+        "lower": "40",
         "upper": "",
         "norm": ""
       }
@@ -374,9 +321,9 @@
         "expression": "__result = v('out') - v('net1')",
         "vector": false,
         "components": "",
-        "lower": "-2e-3",
-        "upper": "2e-3",
-        "norm": "2e-3"
+        "lower": "-0.05",
+        "upper": "0.05",
+        "norm": "0.05"
       }
     ],
     [
@@ -410,268 +357,217 @@
       {
         "analysis": "op",
         "depends": [],
-        "expression": "# Saturation check over every MOSFET in the opamp.\n# Vector names confirmed from a saved op run:\n#   @n.x1.<inst>.nsg13_hv_<type>[vds] and [vdss]   (bare)\n#   i(@n.x1.<inst>.nsg13_hv_<type>[ids])            (current, i()-wrapped)\n# IHP sg13g2 devices are OSDI/PSP103 -> ngspice instance letter 'n', inner\n# instance named n<model>. PSP calls the saturation voltage 'vdss', not 'vdsat'.\n#\n# Two traps, both hit once already:\n#  1) p() returns a 1-ELEMENT VECTOR. float() on an ndim>0 array is deprecated\n#     since NumPy 1.25 and raises on NumPy 2.x -> take .ravel()[0] first.\n#  2) PyOPUS runs this via exec(expr, globals(), locals) with np/p in LOCALS,\n#     so a helper \"def\" here would NOT see np or p. Keep it inline.\n# XM11 / XM12, the class-AB output pair, are deliberately NOT in these\n# lists. A rail-to-rail output stage has to enter triode at the extremes\n# of its own range: at vincm=3.1, vdd=3.2 the output PMOS carries the load\n# current with |Vds|=0.099 V while it needs |Vdss|=0.141 V, and that is the\n# stage working as intended, not a sizing error. Requiring saturation there\n# would make the requirement set infeasible. The consequence of triode is\n# lost gain, and the gain and terr_cl requirements already police that.\nPMOS = ['xb3', 'xb4', 'xb7', 'xm1', 'xm10', 'xm14', 'xm15', 'xm17', 'xm2', 'xm21', 'xm22', 'xm23', 'xm25', 'xm29', 'xm3', 'xm30', 'xm9']\nNMOS = ['xb1', 'xb2', 'xb5', 'xb6', 'xm13', 'xm16', 'xm18', 'xm19', 'xm20', 'xm24', 'xm26', 'xm27', 'xm28', 'xm4', 'xm5', 'xm6', 'xm7', 'xm8']\nIOFF = 1e-9          # A; below this the device counts as off\n\nworst, worst_dev, worst_vds, worst_vdss = 1e9, \"none\", 0.0, 0.0\nchecked, skipped, err = 0, 0, None\nfor dev, mdl in [(d, \"nsg13_hv_pmos\") for d in PMOS] + [(d, \"nsg13_hv_nmos\") for d in NMOS]:\n    path = \"n.x1.\" + dev + \".\" + mdl\n    try:\n        vds  = float(np.asarray(p(path, \"vds\")).ravel()[0])\n        vdss = float(np.asarray(p(path, \"vdss\")).ravel()[0])\n    except Exception as e:\n        if err is None:\n            err = path + \" -> \" + type(e).__name__ + \": \" + str(e)\n        continue\n    # Devices carrying no current are skipped: the rail-to-rail input pairs and\n    # the constant-gm switches are OFF by design over part of the input range.\n    try:\n        if abs(float(np.asarray(p(path, \"ids\")).ravel()[0])) < IOFF:\n            skipped += 1\n            continue\n    except Exception:\n        pass                          # current unavailable -> do not gate\n    checked += 1\n    margin = abs(vds) - abs(vdss)\n    if margin < worst:\n        worst, worst_dev, worst_vds, worst_vdss = margin, dev, vds, vdss\n\nif checked == 0:\n    print(\"SAT: no devices evaluated (%d off). First error: %s\" % (skipped, err))\n    __result = -1.0\nelse:\n    if worst < 0:\n        print(\"SAT: %s out of saturation by %.4f V (vds=%.4f vdss=%.4f); \"\n              \"%d checked, %d off\" % (worst_dev, -worst, worst_vds, worst_vdss,\n                                       checked, skipped))\n    __result = float(worst)\n",
+        "expression": "# Saturation check over every MOSFET in the opamp.\n# Vector names confirmed from a saved op run:\n#   @n.x1.<inst>.nsg13_hv_<type>[vds] and [vdss]   (bare)\n#   i(@n.x1.<inst>.nsg13_hv_<type>[ids])            (current, i()-wrapped)\n# IHP sg13g2 devices are OSDI/PSP103 -> ngspice instance letter 'n', inner\n# instance named n<model>; PSP calls the saturation voltage 'vdss', not 'vdsat'.\n#\n# Two traps, both hit once already:\n#  1) p() returns a 1-ELEMENT VECTOR. float() on an ndim>0 array is deprecated\n#     since NumPy 1.25 and raises on NumPy 2.x -> take .ravel()[0] first.\n#  2) PyOPUS runs this via exec(expr, globals(), locals) with np/p in LOCALS,\n#     so a helper \"def\" here would NOT see np or p. Keep it inline.\nPMOS = ['xb3', 'xb4', 'xb7', 'xm1', 'xm10', 'xm11', 'xm14', 'xm15', 'xm17', 'xm2', 'xm21', 'xm22', 'xm23', 'xm25', 'xm29', 'xm3', 'xm30', 'xm9']\nNMOS = ['xb1', 'xb2', 'xb5', 'xb6', 'xm12', 'xm13', 'xm16', 'xm18', 'xm19', 'xm20', 'xm24', 'xm26', 'xm27', 'xm28', 'xm4', 'xm5', 'xm6', 'xm7', 'xm8']\nIOFF = 1e-9          # A; below this the device counts as off\n\nworst, worst_dev, worst_vds, worst_vdss = 1e9, \"none\", 0.0, 0.0\nchecked, skipped, err = 0, 0, None\nfor dev, mdl in [(d, \"nsg13_hv_pmos\") for d in PMOS] + [(d, \"nsg13_hv_nmos\") for d in NMOS]:\n    path = \"n.x1.\" + dev + \".\" + mdl\n    try:\n        vds  = float(np.asarray(p(path, \"vds\")).ravel()[0])\n        vdss = float(np.asarray(p(path, \"vdss\")).ravel()[0])\n    except Exception as e:\n        if err is None:\n            err = path + \" -> \" + type(e).__name__ + \": \" + str(e)\n        continue\n    # Devices carrying no current are skipped: the rail-to-rail input pairs and\n    # the constant-gm switches are OFF by design over part of the input range.\n    try:\n        if abs(float(np.asarray(p(path, \"ids\")).ravel()[0])) < IOFF:\n            skipped += 1\n            continue\n    except Exception:\n        pass                          # current unavailable -> do not gate\n    checked += 1\n    margin = abs(vds) - abs(vdss)\n    if margin < worst:\n        worst, worst_dev, worst_vds, worst_vdss = margin, dev, vds, vdss\n\nif checked == 0:\n    print(\"SAT: no devices evaluated (%d off). First error: %s\" % (skipped, err))\n    __result = -1.0\nelse:\n    if worst < 0:\n        print(\"SAT: %s out of saturation by %.4f V (vds=%.4f vdss=%.4f); \"\n              \"%d checked, %d off\" % (worst_dev, -worst, worst_vds, worst_vdss,\n                                       checked, skipped))\n    __result = float(worst)\n",
         "vector": false,
         "components": "",
         "lower": "0",
         "upper": "",
         "norm": "0.05"
       }
-    ],
-    [
-      "overshoot",
-      {
-        "analysis": "tran_pulse",
-        "depends": [],
-        "expression": "# Small-signal step response on tb_opamp_rtr_pulse.spice (unity-gain follower).\n# Rising edge at 1 us, falling at 6 us, 100 mV peak to peak centred on vincm.\n# The transient starts from the dc operating point, so t=0 is already settled.\n# Each settled level is averaged over a window ending 0.1 us before the next\n# edge, so it is taken on a settled waveform and never includes an edge itself.\n# The post window opens 5 us after the edge, which is also the ceiling on a\n# meaningful tsettle: slower than that and the level average is contaminated,\n# which is a fail either way. Measured settling over corners is 0.70 to 2.62 us.\nt = np.asarray(scale())\ny = np.asarray(v('out'))\nT0, T1 = 1e-6, 7e-6\npre  = (t > 0.1e-6) & (t < 0.9e-6)\npost = (t > 6.0e-6) & (t < 6.9e-6)\nlo = float(np.mean(y[pre]))\nhi = float(np.mean(y[post]))\nstep = hi - lo\n\n# Percent of the step by which the response passes its own settled level.\n# A dead amp gives step ~ 0, which would divide by zero: report a large\n# failing number instead so the cost stays finite and keeps a gradient.\nif abs(step) < 1e-4:\n    print('OVERSHOOT: step collapsed to %.3e V, amp not following' % step)\n    __result = 1e3\nelse:\n    seg = (t >= T0) & (t <= T1)\n    __result = float((np.max(y[seg]) - hi) / abs(step) * 100.0)\n",
-        "vector": false,
-        "components": "",
-        "lower": "",
-        "upper": "20",
-        "norm": "20"
-      }
-    ],
-    [
-      "tsettle",
-      {
-        "analysis": "tran_pulse",
-        "depends": [],
-        "expression": "# Small-signal step response on tb_opamp_rtr_pulse.spice (unity-gain follower).\n# Rising edge at 1 us, falling at 6 us, 100 mV peak to peak centred on vincm.\n# The transient starts from the dc operating point, so t=0 is already settled.\n# Each settled level is averaged over a window ending 0.1 us before the next\n# edge, so it is taken on a settled waveform and never includes an edge itself.\n# The post window opens 5 us after the edge, which is also the ceiling on a\n# meaningful tsettle: slower than that and the level average is contaminated,\n# which is a fail either way. Measured settling over corners is 0.70 to 2.62 us.\nt = np.asarray(scale())\ny = np.asarray(v('out'))\nT0, T1 = 1e-6, 7e-6\npre  = (t > 0.1e-6) & (t < 0.9e-6)\npost = (t > 6.0e-6) & (t < 6.9e-6)\nlo = float(np.mean(y[pre]))\nhi = float(np.mean(y[post]))\nstep = hi - lo\n\n# Time from the rising edge until |out - settled| stays inside 0.1 percent of\n# the step. Taken as the LAST excursion outside the band, not the first entry,\n# so ringing that re-crosses the band later is still counted.\nif abs(step) < 1e-4:\n    __result = 1.0\nelse:\n    seg = (t >= T0) & (t <= T1)\n    ts, ys = t[seg], y[seg]\n    bad = np.where(np.abs(ys - hi) > 1e-3 * abs(step))[0]\n    __result = float(ts[bad[-1]] - T0) if len(bad) else 0.0\n",
-        "vector": false,
-        "components": "",
-        "lower": "",
-        "upper": "3e-6",
-        "norm": "3e-6"
-      }
-    ],
-    [
-      "terr_cl",
-      {
-        "analysis": "tran_pulse",
-        "depends": [],
-        "expression": "# Small-signal step response on tb_opamp_rtr_pulse.spice (unity-gain follower).\n# Rising edge at 1 us, falling at 6 us, 100 mV peak to peak centred on vincm.\n# The transient starts from the dc operating point, so t=0 is already settled.\n# Each settled level is averaged over a window ending 0.1 us before the next\n# edge, so it is taken on a settled waveform and never includes an edge itself.\n# The post window opens 5 us after the edge, which is also the ceiling on a\n# meaningful tsettle: slower than that and the level average is contaminated,\n# which is a fail either way. Measured settling over corners is 0.70 to 2.62 us.\nt = np.asarray(scale())\ny = np.asarray(v('out'))\nT0, T1 = 1e-6, 7e-6\npre  = (t > 0.1e-6) & (t < 0.9e-6)\npost = (t > 6.0e-6) & (t < 6.9e-6)\nlo = float(np.mean(y[pre]))\nhi = float(np.mean(y[post]))\nstep = hi - lo\n\n# Closed-loop tracking error: |out - inp| at both settled levels, worst of the\n# two. E1 has gain 1, so v('inp') is the ideal follower target. This is the\n# requirement itself, measured on a real follower with no loop-break network.\nu = np.asarray(v('inp'))\n__result = float(max(abs(lo - float(np.mean(u[pre]))),\n                     abs(hi - float(np.mean(u[post])))))\n",
-        "vector": false,
-        "components": "",
-        "lower": "",
-        "upper": "2e-3",
-        "norm": "2e-3"
-      }
     ]
   ],
   "designpar": [
     [
       "w_diff_p",
-      "6.5e-6",
+      "1.53348e-05",
       "1e-6",
       "60e-6"
     ],
     [
       "l_diff_p",
-      "2.93e-6",
+      "2.994e-06",
       "0.45e-6",
       "10e-6"
     ],
     [
       "w_diff_n",
-      "1.65e-5",
+      "3.84696e-05",
       "1e-6",
       "60e-6"
     ],
     [
       "l_diff_n",
-      "3.5e-6",
+      "9.82978e-06",
       "0.45e-6",
       "10e-6"
     ],
     [
       "w_tail_p",
-      "2.1e-5",
+      "6.46134e-06",
       "2e-6",
       "100e-6"
     ],
     [
       "w_tail_n",
-      "7.6e-6",
+      "4.18012e-05",
       "1e-6",
       "100e-6"
     ],
     [
       "l_bias",
-      "3.6e-6",
+      "3.64566e-06",
       "2e-6",
       "10e-6"
     ],
     [
       "w_load_n",
-      "4.12e-5",
+      "2.1507e-06",
       "1e-6",
       "50e-6"
     ],
     [
       "l_load_n",
-      "9.7e-6",
+      "4.95993e-06",
       "0.5e-6",
       "10e-6"
     ],
     [
       "w_load_p",
-      "1.94e-6",
+      "2.45988e-05",
       "1e-6",
       "50e-6"
     ],
     [
       "l_load_p",
-      "1.9e-6",
+      "1.37747e-06",
       "0.5e-6",
       "10e-6"
     ],
     [
       "w_out_p",
-      "1.2e-4",
+      "1.49991e-04",
       "2e-6",
-      "400e-6"
+      "150e-6"
     ],
     [
       "l_out_p",
-      "5.65e-7",
+      "6.25787e-07",
       "0.45e-6",
       "10e-6"
     ],
     [
       "w_out_n",
-      "7.97e-5",
+      "5.809e-05",
       "1e-6",
-      "300e-6"
+      "100e-6"
     ],
     [
       "l_out_n",
-      "1.9e-6",
+      "1.11464e-06",
       "0.45e-6",
       "10e-6"
     ],
     [
       "w_ab_n",
-      "3.47e-5",
+      "6.44967e-06",
       "0.5e-6",
       "40e-6"
     ],
     [
       "l_ab_n",
-      "2.55e-6",
+      "1.17371e-06",
       "0.13e-6",
       "10e-6"
     ],
     [
       "w_ab_p",
-      "3.93e-6",
+      "1.35911e-06",
       "0.5e-6",
       "40e-6"
     ],
     [
       "l_ab_p",
-      "4.54e-6",
+      "9.48156e-07",
       "0.13e-6",
       "10e-6"
     ],
     [
       "w_ab_src",
-      "1.47e-6",
+      "6.51943e-06",
       "0.5e-6",
       "50e-6"
     ],
     [
       "w_ab_snk",
-      "6.85e-7",
+      "1.11079e-05",
       "0.3e-6",
       "20e-6"
     ],
     [
       "c_miller_p",
-      "3e-13",
+      "3.32491e-12",
       "2e-13",
       "5e-12"
     ],
     [
       "c_miller_n",
-      "3.3e-13",
+      "8.8936e-13",
       "2e-13",
       "5e-12"
     ],
     [
-      "r_null_p",
-      "1e3",
-      "1e1",
-      "5e4"
-    ],
-    [
-      "r_null_n",
-      "1e3",
-      "1e1",
-      "5e4"
-    ],
-    [
       "w_sw_p",
-      "5.87e-5",
+      "5e-06",
       "5e-6",
       "60e-6"
     ],
     [
       "w_sw_n",
-      "1e-5",
+      "5e-06",
       "5e-6",
       "60e-6"
     ],
     [
       "w_gmn1",
-      "4.1e-6",
+      "2.86919e-06",
       "0.45e-6",
       "20e-6"
     ],
     [
       "w_gmn2",
-      "1.45e-5",
+      "1.37553e-06",
       "0.45e-6",
       "60e-6"
     ],
     [
       "w_gmp1",
-      "8.5e-7",
+      "9.34374e-07",
       "0.45e-6",
       "20e-6"
     ],
     [
       "w_gmp2",
-      "1.1e-6",
+      "1.87399e-06",
       "0.45e-6",
       "60e-6"
     ],
     [
       "i_ref",
-      "5.3e-7",
+      "5e-06",
       "0.5e-6",
       "50e-6"
     ],
     [
       "w_bias_n",
-      "3.46e-6",
+      "2.09e-05",
       "0.5e-6",
       "100e-6"
     ],
     [
       "w_bias_p",
-      "9.87e-5",
+      "3.23e-06",
       "0.5e-6",
       "100e-6"
     ],
     [
       "w_ref_n",
-      "2.81e-5",
+      "8.36e-06",
       "0.5e-6",
       "100e-6"
     ],
     [
       "w_ref_p",
-      "1.12e-5",
+      "1.29e-06",
       "0.5e-6",
       "100e-6"
     ]
@@ -707,7 +603,7 @@
           [
             true,
             "gain",
-            "60",
+            "40",
             "",
             "",
             ""
@@ -747,9 +643,9 @@
           [
             true,
             "out_op",
-            "-2e-3",
-            "2e-3",
-            "2e-3",
+            "-0.05",
+            "0.05",
+            "0.05",
             ""
           ],
           [
@@ -765,7 +661,7 @@
             "thd",
             "",
             "1e-3",
-            "1e-3",
+            "",
             ""
           ],
           [
@@ -775,246 +671,210 @@
             "",
             "0.05",
             ""
-          ],
-          [
-            true,
-            "overshoot",
-            "",
-            "20",
-            "20",
-            ""
-          ],
-          [
-            true,
-            "tsettle",
-            "",
-            "3e-6",
-            "3e-6",
-            ""
-          ],
-          [
-            true,
-            "terr_cl",
-            "",
-            "2e-3",
-            "2e-3",
-            ""
           ]
         ],
         "designpar": [
           [
             "w_diff_p",
-            "6.5e-6",
+            "1.53348e-05",
             "1e-6",
             "60e-6"
           ],
           [
             "l_diff_p",
-            "2.93e-6",
+            "2.994e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_diff_n",
-            "1.65e-5",
+            "3.84696e-05",
             "1e-6",
             "60e-6"
           ],
           [
             "l_diff_n",
-            "3.5e-6",
+            "9.82978e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_tail_p",
-            "2.1e-5",
+            "6.46134e-06",
             "2e-6",
             "100e-6"
           ],
           [
             "w_tail_n",
-            "7.6e-6",
+            "4.18012e-05",
             "1e-6",
             "100e-6"
           ],
           [
             "l_bias",
-            "3.6e-6",
+            "3.64566e-06",
             "2e-6",
             "10e-6"
           ],
           [
             "w_load_n",
-            "4.12e-5",
+            "2.1507e-06",
             "1e-6",
             "50e-6"
           ],
           [
             "l_load_n",
-            "9.7e-6",
+            "4.95993e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_load_p",
-            "1.94e-6",
+            "2.45988e-05",
             "1e-6",
             "50e-6"
           ],
           [
             "l_load_p",
-            "1.9e-6",
+            "1.37747e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_out_p",
-            "1.2e-4",
+            "1.49991e-04",
             "2e-6",
-            "400e-6"
+            "150e-6"
           ],
           [
             "l_out_p",
-            "5.65e-7",
+            "6.25787e-07",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_out_n",
-            "7.97e-5",
+            "5.809e-05",
             "1e-6",
-            "300e-6"
+            "100e-6"
           ],
           [
             "l_out_n",
-            "1.9e-6",
+            "1.11464e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_n",
-            "3.47e-5",
+            "6.44967e-06",
             "0.5e-6",
             "40e-6"
           ],
           [
             "l_ab_n",
-            "2.55e-6",
-            "0.13e-6",
+            "1.17371e-06",
+            "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_p",
-            "3.93e-6",
+            "1.35911e-06",
             "0.5e-6",
             "40e-6"
           ],
           [
             "l_ab_p",
-            "4.54e-6",
-            "0.13e-6",
+            "9.48156e-07",
+            "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_src",
-            "1.47e-6",
+            "6.51943e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_ab_snk",
-            "6.85e-7",
+            "1.11079e-05",
             "0.3e-6",
             "20e-6"
           ],
           [
             "c_miller_p",
-            "3e-13",
+            "3.32491e-12",
             "2e-13",
             "5e-12"
           ],
           [
             "c_miller_n",
-            "3.3e-13",
+            "8.8936e-13",
             "2e-13",
             "5e-12"
           ],
           [
-            "r_null_p",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
-            "r_null_n",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
             "w_sw_p",
-            "5.87e-5",
-            "5e-6",
+            "3.59708e-05",
+            "1e-6",
             "60e-6"
           ],
           [
             "w_sw_n",
-            "1e-5",
-            "5e-6",
+            "1.43106e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "w_gmn1",
-            "4.1e-6",
-            "0.45e-6",
+            "2.86919e-06",
+            "0.5e-6",
             "20e-6"
           ],
           [
             "w_gmn2",
-            "1.45e-5",
-            "0.45e-6",
+            "1.37553e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "w_gmp1",
-            "8.5e-7",
-            "0.45e-6",
+            "9.34374e-07",
+            "0.5e-6",
             "20e-6"
           ],
           [
             "w_gmp2",
-            "1.1e-6",
-            "0.45e-6",
+            "1.87399e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "i_ref",
-            "5.3e-7",
+            "5e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_bias_n",
-            "3.46e-6",
+            "2.09e-05",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_bias_p",
-            "9.87e-5",
+            "3.23e-06",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_ref_n",
-            "2.81e-5",
+            "8.36e-06",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_ref_p",
-            "1.12e-5",
+            "1.29e-06",
             "0.5e-6",
             "100e-6"
           ]
@@ -1092,7 +952,7 @@
           [
             true,
             "gain",
-            "60",
+            "40",
             "",
             "",
             ""
@@ -1108,7 +968,7 @@
           [
             true,
             "ugbw",
-            "",
+            "1e6",
             "",
             "",
             ""
@@ -1125,23 +985,23 @@
             true,
             "idd",
             "",
-            "1e-4",
+            "5e-3",
             "",
             ""
           ],
           [
             true,
             "out_op",
-            "-2e-3",
-            "2e-3",
-            "2e-3",
+            "-0.05",
+            "0.05",
+            "0.001",
             ""
           ],
           [
             true,
             "noise",
             "",
-            "1e-3",
+            "2e-3",
             "",
             ""
           ],
@@ -1150,7 +1010,7 @@
             "thd",
             "",
             "1e-3",
-            "1e-3",
+            "",
             ""
           ],
           [
@@ -1160,248 +1020,212 @@
             "",
             "0.05",
             ""
-          ],
-          [
-            true,
-            "overshoot",
-            "",
-            "20",
-            "20",
-            ""
-          ],
-          [
-            true,
-            "tsettle",
-            "",
-            "3e-6",
-            "3e-6",
-            ""
-          ],
-          [
-            true,
-            "terr_cl",
-            "",
-            "2e-3",
-            "2e-3",
-            ""
           ]
         ],
         "designpar": [
           [
             "w_diff_p",
-            "6.5e-6",
+            "1.53348e-05",
             "1e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "l_diff_p",
-            "2.93e-6",
+            "2.994e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_diff_n",
-            "1.65e-5",
+            "2e-05",
             "1e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "l_diff_n",
-            "3.5e-6",
+            "9.82978e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_tail_p",
-            "2.1e-5",
+            "6.46134e-06",
             "2e-6",
-            "100e-6"
+            "40e-6"
           ],
           [
             "w_tail_n",
-            "7.6e-6",
+            "4e-05",
             "1e-6",
-            "100e-6"
+            "40e-6"
           ],
           [
             "l_bias",
-            "3.6e-6",
+            "3.64566e-06",
             "2e-6",
             "10e-6"
           ],
           [
             "w_load_n",
-            "4.12e-5",
+            "2.1507e-06",
             "1e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "l_load_n",
-            "9.7e-6",
+            "4.95993e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_load_p",
-            "1.94e-6",
+            "1e-05",
             "1e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "l_load_p",
-            "1.9e-6",
+            "1.37747e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_out_p",
-            "1.2e-4",
+            "5e-05",
             "2e-6",
-            "400e-6"
+            "50e-6"
           ],
           [
             "l_out_p",
-            "5.65e-7",
+            "6.25787e-07",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_out_n",
-            "7.97e-5",
+            "2e-05",
             "1e-6",
-            "300e-6"
+            "20e-6"
           ],
           [
             "l_out_n",
-            "1.9e-6",
+            "1.11464e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_n",
-            "3.47e-5",
+            "6.44967e-06",
             "0.5e-6",
-            "40e-6"
+            "10e-6"
           ],
           [
             "l_ab_n",
-            "2.55e-6",
-            "0.13e-6",
+            "1.17371e-06",
+            "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_p",
-            "3.93e-6",
+            "1.35911e-06",
             "0.5e-6",
-            "40e-6"
+            "10e-6"
           ],
           [
             "l_ab_p",
-            "4.54e-6",
-            "0.13e-6",
+            "9.48156e-07",
+            "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_src",
-            "1.47e-6",
+            "6.51943e-06",
             "0.5e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "w_ab_snk",
-            "6.85e-7",
+            "1e-05",
             "0.3e-6",
-            "20e-6"
+            "10e-6"
           ],
           [
             "c_miller_p",
-            "3e-13",
+            "1e-12",
             "2e-13",
-            "5e-12"
+            "1e-12"
           ],
           [
             "c_miller_n",
-            "3.3e-13",
+            "8.8936e-13",
             "2e-13",
-            "5e-12"
-          ],
-          [
-            "r_null_p",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
-            "r_null_n",
-            "1e3",
-            "1e1",
-            "5e4"
+            "1e-12"
           ],
           [
             "w_sw_p",
-            "5.87e-5",
-            "5e-6",
-            "60e-6"
+            "1e-05",
+            "1e-6",
+            "10e-6"
           ],
           [
             "w_sw_n",
-            "1e-5",
-            "5e-6",
-            "60e-6"
+            "1.43106e-06",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "w_gmn1",
-            "4.1e-6",
-            "0.45e-6",
-            "20e-6"
+            "2.86919e-06",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "w_gmn2",
-            "1.45e-5",
-            "0.45e-6",
-            "60e-6"
+            "1.37553e-06",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "w_gmp1",
-            "8.5e-7",
-            "0.45e-6",
-            "20e-6"
+            "9.34374e-07",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "w_gmp2",
-            "1.1e-6",
-            "0.45e-6",
-            "60e-6"
+            "1.87399e-06",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "i_ref",
-            "5.3e-7",
+            "5e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_bias_n",
-            "3.46e-6",
+            "1e-05",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_bias_p",
-            "9.87e-5",
+            "3.23e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_ref_n",
-            "2.81e-5",
+            "8.36e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_ref_p",
-            "1.12e-5",
+            "1.29e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ]
         ],
         "corners": [
@@ -1709,7 +1533,7 @@
           [
             true,
             "gain",
-            "60",
+            "40",
             "",
             "",
             ""
@@ -1725,7 +1549,7 @@
           [
             true,
             "ugbw",
-            "",
+            "40e3",
             "",
             "",
             ""
@@ -1742,23 +1566,23 @@
             true,
             "idd",
             "",
-            "1e-4",
+            "5e-3",
             "",
             ""
           ],
           [
             true,
             "out_op",
-            "-2e-3",
-            "2e-3",
-            "2e-3",
+            "-0.05",
+            "0.05",
+            "0.001",
             ""
           ],
           [
             true,
             "noise",
             "",
-            "1e-3",
+            "2e-3",
             "",
             ""
           ],
@@ -1767,7 +1591,7 @@
             "thd",
             "",
             "1e-3",
-            "1e-3",
+            "",
             ""
           ],
           [
@@ -1777,246 +1601,210 @@
             "",
             "0.05",
             ""
-          ],
-          [
-            true,
-            "overshoot",
-            "",
-            "20",
-            "20",
-            ""
-          ],
-          [
-            true,
-            "tsettle",
-            "",
-            "3e-6",
-            "3e-6",
-            ""
-          ],
-          [
-            true,
-            "terr_cl",
-            "",
-            "2e-3",
-            "2e-3",
-            ""
           ]
         ],
         "designpar": [
           [
             "w_diff_p",
-            "6.5e-6",
+            "1.53348e-05",
             "1e-6",
             "60e-6"
           ],
           [
             "l_diff_p",
-            "2.93e-6",
+            "4e-6",
             "",
             ""
           ],
           [
             "w_diff_n",
-            "1.65e-5",
+            "3.84696e-05",
             "1e-6",
             "60e-6"
           ],
           [
             "l_diff_n",
-            "3.5e-6",
+            "4e-6",
             "",
             ""
           ],
           [
             "w_tail_p",
-            "2.1e-5",
+            "6.46134e-06",
             "2e-6",
             "100e-6"
           ],
           [
             "w_tail_n",
-            "7.6e-6",
+            "4.18012e-05",
             "1e-6",
             "100e-6"
           ],
           [
             "l_bias",
-            "3.6e-6",
+            "4e-6",
             "",
             ""
           ],
           [
             "w_load_n",
-            "4.12e-5",
+            "2.1507e-06",
             "1e-6",
             "50e-6"
           ],
           [
             "l_load_n",
-            "9.7e-6",
+            "8e-6",
             "",
             ""
           ],
           [
             "w_load_p",
-            "1.94e-6",
+            "2.45988e-05",
             "1e-6",
             "50e-6"
           ],
           [
             "l_load_p",
-            "1.9e-6",
+            "8e-6",
             "",
             ""
           ],
           [
             "w_out_p",
-            "1.2e-4",
+            "1.49991e-04",
             "2e-6",
-            "400e-6"
+            "150e-6"
           ],
           [
             "l_out_p",
-            "5.65e-7",
+            "1e-6",
             "",
             ""
           ],
           [
             "w_out_n",
-            "7.97e-5",
+            "5.809e-05",
             "1e-6",
-            "300e-6"
+            "100e-6"
           ],
           [
             "l_out_n",
-            "1.9e-6",
+            "1e-6",
             "",
             ""
           ],
           [
             "w_ab_n",
-            "3.47e-5",
+            "6.44967e-06",
             "0.5e-6",
             "40e-6"
           ],
           [
             "l_ab_n",
-            "2.55e-6",
+            "4e-6",
             "",
             ""
           ],
           [
             "w_ab_p",
-            "3.93e-6",
+            "1.35911e-06",
             "0.5e-6",
             "40e-6"
           ],
           [
             "l_ab_p",
-            "4.54e-6",
+            "4e-6",
             "",
             ""
           ],
           [
             "w_ab_src",
-            "1.47e-6",
+            "6.51943e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_ab_snk",
-            "6.85e-7",
+            "1.11079e-05",
             "0.3e-6",
             "20e-6"
           ],
           [
             "c_miller_p",
-            "3e-13",
+            "3.32491e-12",
             "2e-13",
             "5e-12"
           ],
           [
             "c_miller_n",
-            "3.3e-13",
+            "8.8936e-13",
             "2e-13",
             "5e-12"
           ],
           [
-            "r_null_p",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
-            "r_null_n",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
             "w_sw_p",
-            "5.87e-5",
-            "5e-6",
+            "3.59708e-05",
+            "1e-6",
             "60e-6"
           ],
           [
             "w_sw_n",
-            "1e-5",
-            "5e-6",
+            "1.43106e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "w_gmn1",
-            "4.1e-6",
-            "0.45e-6",
+            "2.86919e-06",
+            "0.5e-6",
             "20e-6"
           ],
           [
             "w_gmn2",
-            "1.45e-5",
-            "0.45e-6",
+            "1.37553e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "w_gmp1",
-            "8.5e-7",
-            "0.45e-6",
+            "9.34374e-07",
+            "0.5e-6",
             "20e-6"
           ],
           [
             "w_gmp2",
-            "1.1e-6",
-            "0.45e-6",
+            "1.87399e-06",
+            "0.5e-6",
             "60e-6"
           ],
           [
             "i_ref",
-            "5.3e-7",
+            "5e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_bias_n",
-            "3.46e-6",
+            "2.09e-05",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_bias_p",
-            "9.87e-5",
+            "3.23e-06",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_ref_n",
-            "2.81e-5",
+            "8.36e-06",
             "0.5e-6",
             "100e-6"
           ],
           [
             "w_ref_p",
-            "1.12e-5",
+            "1.29e-06",
             "0.5e-6",
             "100e-6"
           ]
@@ -2326,7 +2114,7 @@
           [
             true,
             "gain",
-            "60",
+            "40",
             "",
             "",
             ""
@@ -2342,7 +2130,7 @@
           [
             true,
             "ugbw",
-            "",
+            "40e3",
             "",
             "",
             ""
@@ -2359,23 +2147,23 @@
             true,
             "idd",
             "",
-            "1e-4",
+            "5e-3",
             "",
             ""
           ],
           [
             true,
             "out_op",
-            "-2e-3",
-            "2e-3",
-            "2e-3",
+            "-0.05",
+            "0.05",
+            "0.001",
             ""
           ],
           [
             true,
             "noise",
             "",
-            "1e-3",
+            "2e-3",
             "",
             ""
           ],
@@ -2384,7 +2172,7 @@
             "thd",
             "",
             "1e-3",
-            "1e-3",
+            "",
             ""
           ],
           [
@@ -2393,30 +2181,6 @@
             "0",
             "",
             "0.05",
-            ""
-          ],
-          [
-            true,
-            "overshoot",
-            "",
-            "20",
-            "20",
-            ""
-          ],
-          [
-            true,
-            "tsettle",
-            "",
-            "3e-6",
-            "3e-6",
-            ""
-          ],
-          [
-            true,
-            "terr_cl",
-            "",
-            "2e-3",
-            "2e-3",
             ""
           ]
         ],
@@ -4205,7 +3969,7 @@
           [
             true,
             "gain",
-            "60",
+            "40",
             "",
             "",
             ""
@@ -4221,7 +3985,7 @@
           [
             true,
             "ugbw",
-            "",
+            "1e5",
             "",
             "",
             ""
@@ -4238,23 +4002,23 @@
             true,
             "idd",
             "",
-            "1e-4",
+            "5e-3",
             "",
             ""
           ],
           [
             true,
             "out_op",
-            "-2e-3",
-            "2e-3",
-            "2e-3",
+            "-0.05",
+            "0.05",
+            "0.001",
             ""
           ],
           [
             true,
             "noise",
             "",
-            "1e-3",
+            "5e-3",
             "",
             ""
           ],
@@ -4262,259 +4026,223 @@
             true,
             "thd",
             "",
-            "1e-3",
-            "1e-3",
+            "2e-3",
+            "",
             ""
           ],
           [
-            true,
+            false,
             "sat_margin",
-            "0",
             "",
-            "0.05",
-            ""
-          ],
-          [
-            true,
-            "overshoot",
             "",
-            "20",
-            "20",
-            ""
-          ],
-          [
-            true,
-            "tsettle",
             "",
-            "3e-6",
-            "3e-6",
-            ""
-          ],
-          [
-            true,
-            "terr_cl",
-            "",
-            "2e-3",
-            "2e-3",
             ""
           ]
         ],
         "designpar": [
           [
             "w_diff_p",
-            "6.5e-6",
+            "1.53348e-05",
             "1e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "l_diff_p",
-            "2.93e-6",
+            "2.994e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_diff_n",
-            "1.65e-5",
+            "2e-05",
             "1e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "l_diff_n",
-            "3.5e-6",
+            "9.82978e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_tail_p",
-            "2.1e-5",
+            "6.46134e-06",
             "2e-6",
-            "100e-6"
+            "40e-6"
           ],
           [
             "w_tail_n",
-            "7.6e-6",
+            "4e-05",
             "1e-6",
-            "100e-6"
+            "40e-6"
           ],
           [
             "l_bias",
-            "3.6e-6",
+            "3.64566e-06",
             "2e-6",
             "10e-6"
           ],
           [
             "w_load_n",
-            "4.12e-5",
+            "2.1507e-06",
             "1e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "l_load_n",
-            "9.7e-6",
+            "4.95993e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_load_p",
-            "1.94e-6",
+            "1e-05",
             "1e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "l_load_p",
-            "1.9e-6",
+            "1.37747e-06",
             "0.5e-6",
             "10e-6"
           ],
           [
             "w_out_p",
-            "1.2e-4",
+            "6e-05",
             "2e-6",
-            "400e-6"
+            "60e-6"
           ],
           [
             "l_out_p",
-            "5.65e-7",
+            "6.25787e-07",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_out_n",
-            "7.97e-5",
+            "2e-05",
             "1e-6",
-            "300e-6"
+            "20e-6"
           ],
           [
             "l_out_n",
-            "1.9e-6",
+            "1.11464e-06",
             "0.45e-6",
             "10e-6"
           ],
           [
             "w_ab_n",
-            "3.47e-5",
+            "6.44967e-06",
             "0.5e-6",
-            "40e-6"
+            "10e-6"
           ],
           [
             "l_ab_n",
-            "2.55e-6",
+            "1.17371e-06",
             "0.13e-6",
             "10e-6"
           ],
           [
             "w_ab_p",
-            "3.93e-6",
+            "1.35911e-06",
             "0.5e-6",
-            "40e-6"
+            "10e-6"
           ],
           [
             "l_ab_p",
-            "4.54e-6",
+            "9.48156e-07",
             "0.13e-6",
             "10e-6"
           ],
           [
             "w_ab_src",
-            "1.47e-6",
+            "6.51943e-06",
             "0.5e-6",
-            "50e-6"
+            "10e-6"
           ],
           [
             "w_ab_snk",
-            "6.85e-7",
-            "0.3e-6",
-            "20e-6"
+            "1e-05",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "c_miller_p",
-            "3e-13",
+            "2e-12",
             "2e-13",
-            "5e-12"
+            "2e-12"
           ],
           [
             "c_miller_n",
-            "3.3e-13",
+            "8.8936e-13",
             "2e-13",
-            "5e-12"
-          ],
-          [
-            "r_null_p",
-            "1e3",
-            "1e1",
-            "5e4"
-          ],
-          [
-            "r_null_n",
-            "1e3",
-            "1e1",
-            "5e4"
+            "2e-12"
           ],
           [
             "w_sw_p",
-            "5.87e-5",
+            "2e-05",
             "5e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "w_sw_n",
-            "1e-5",
+            "5e-06",
             "5e-6",
-            "60e-6"
+            "20e-6"
           ],
           [
             "w_gmn1",
-            "4.1e-6",
+            "2.86919e-06",
             "0.45e-6",
-            "20e-6"
+            "10e-6"
           ],
           [
             "w_gmn2",
-            "1.45e-5",
+            "1.37553e-06",
             "0.45e-6",
-            "60e-6"
+            "10e-6"
           ],
           [
             "w_gmp1",
-            "8.5e-7",
-            "0.45e-6",
-            "20e-6"
+            "9.34374e-07",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "w_gmp2",
-            "1.1e-6",
-            "0.45e-6",
-            "60e-6"
+            "1.87399e-06",
+            "0.5e-6",
+            "10e-6"
           ],
           [
             "i_ref",
-            "5.3e-7",
+            "5e-06",
             "0.5e-6",
             "50e-6"
           ],
           [
             "w_bias_n",
-            "3.46e-6",
+            "1e-05",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_bias_p",
-            "9.87e-5",
+            "3.23e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_ref_n",
-            "2.81e-5",
+            "8.36e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ],
           [
             "w_ref_p",
-            "1.12e-5",
+            "1.29e-06",
             "0.5e-6",
-            "100e-6"
+            "10e-6"
           ]
         ],
         "corners": [

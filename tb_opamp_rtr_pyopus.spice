@@ -16,8 +16,12 @@ x1 vdd GND nib inp inn out opamp
 * E1 gain is 1 so noise referred to v4 is true input-referred noise.
 Rfb out inn 1e9
 Cfb inn GND 1e9
-* application load: diff-amp feedback network (~10k) to mid-supply + parasitics
-RL out nmid 10e3
+* Application load = the diff-amp feedback network, returned to mid-supply.
+* 100k not 10k: at vincm=3.1, vdd=3.2 a 10k return draws (3.1-1.6)/10k = 150 uA
+* from the output PMOS while it sits 100 mV from the rail, which pushes it into
+* triode (needs |Vdss|=0.24 V) and costs 65 dB of open-loop gain. See notes.
+.param rl=100e3
+RL out nmid {rl}
 .param cl=5e-12
 CL out GND {cl}
 

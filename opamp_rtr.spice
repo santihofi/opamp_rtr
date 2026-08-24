@@ -8,8 +8,8 @@
 * Two-stage: complementary input pairs, Monticelli class-AB output stage
 * 3.3 V supply, thick-oxide HV devices (sg13_hv_*, min L 0.45u, min W 0.3u)
 *
-* NOTE: all {w_*}/{l_*}/{c_*} parameters are injected by PyOPUS as .param lines.
-* Do NOT .include opamp_rtr_params.spice here: PyOPUS writes its .param lines
+* NOTE: all {w_*}/{l_*}/{c_*}/{r_*} parameters are injected by PyOPUS as .param
+* lines. Do NOT .include opamp_rtr_params.spice here: PyOPUS writes its .param
 * BEFORE the module includes and ngspice takes the last definition, so an
 * include here would silently override the optimizer. opamp_rtr_params.spice
 * records seed/frozen values for standalone simulation only.
@@ -39,7 +39,7 @@
 *   XB4/XB5 set the low  constant-gm switch reference -> vref_n
 *   XB6/XB7 set the high constant-gm switch reference -> vref_p
 *
-* Branch currents are all I_ref; the W ratio to each biased device sets that
+* Branch currents are all I_ref. The W ratio to each biased device sets that
 * device's current (all share l_bias, so it is a clean width ratio).
 
 XB1 ibias ibias vss vss sg13_hv_nmos w={w_bias_n} l={l_bias} ng=1 m=1 mm_ok=1
@@ -160,10 +160,30 @@ XM22 nstack_p nstack_p vdd vdd sg13_hv_pmos w={w_ab_p} l={l_ab_p} ng=1 m=1 mm_ok
 XM11 out out1_n vdd vdd sg13_hv_pmos w={w_out_p} l={l_out_p} ng=1 m=1 mm_ok=1
 XM12 out out1_p vss vss sg13_hv_nmos w={w_out_n} l={l_out_n} ng=1 m=1 mm_ok=1
 
-* Miller compensation (one cap per signal path; Rz nulling resistors = future option)
+* Miller compensation, one branch per signal path, each with a nulling resistor.
+*
+* A bare Miller cap feeds the output forward as well as back, which puts a
+* right-half-plane zero at gm_out/Cc. That zero adds gain while subtracting
+* phase, right where the loop crosses unity, so the only way to keep phase
+* margin is to grow Cc until the crossover sits well below it. That is what
+* costs bandwidth and settling time.
+*
+* Rz cancels the feedforward: the zero moves to 1/(Cc*(1/gm_out - Rz)). At
+* Rz = 1/gm_out it is at infinity, and above that it folds into the left half
+* plane where it can be placed on the first non-dominant pole and cancel it.
+* This gives the optimizer a way to buy phase margin without buying it with a
+* bigger Cc. Seeded at 1 kohm, which is small against 1/gm_out and so starts
+* the search from the plain-Miller behaviour.
+*
+* Ideal R here, matching the ideal Cc above. On silicon these become poly
+* resistors or triode MOS devices, and a triode MOS tracks 1/gm_out over
+* process and temperature, which a poly resistor does not.
 
-Cc1 out out1_n {c_miller_p}
-Cc2 out out1_p {c_miller_n}
+Rz1 out nz_p {r_null_p}
+Cc1 nz_p out1_n {c_miller_p}
+
+Rz2 out nz_n {r_null_n}
+Cc2 nz_n out1_p {c_miller_n}
 
 *=======================================================================================
 

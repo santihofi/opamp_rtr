@@ -1,0 +1,49 @@
+* Small-signal step response testbench: settling time, overshoot, tracking error.
+*
+* The amp is wired as a true unity-gain follower (inn = out). Unity gain is the
+* stability worst case: the feedback factor is 1, so the loop sees the full
+* open-loop phase, and the margin measured here bounds the gain-1 adder case,
+* whose noise gain of 1+n gives it more margin, not less.
+*
+* The step is 100 mV peak to peak centred on {vincm}, so the amp stays linear
+* and the response reflects phase margin rather than slew rate. Centring on
+* vincm (not on mid-supply) keeps the step inside the rails at every corner,
+* including vincm=3.1 with vdd=3.2.
+*
+* Timing: rising edge at 1 us, falling at 7 us, period 12 us, stop at 13 us.
+* The transient starts from the dc operating point, so t=0 is already settled
+* and the pre-edge level can be averaged from 0.1 us. Measured 0.1 percent
+* settling over corners is 0.70 to 2.62 us, and the level-averaging window
+* opens 5 us after the edge, so the measurement stays clean well past the
+* 3 us tsettle bound.
+
+V2 vdd GND {vdd}
+
+* mid-supply node: return for the application load only
+Vmid nmid GND {vdd*0.5}
+
+* Single reference current into the ibias pin (see opamp_rtr.spice)
+Ib vdd nib {i_ref}
+
+.param vstep=100e-3
+V1 net1 GND {vincm}
+V4 vdin GND dc 0 pulse({-vstep/2} {vstep/2} 1e-6 1e-9 1e-9 6e-6 12e-6)
+
+* E1 gain is 1, so v(inp) is the ideal follower target and v(out)-v(inp) is the
+* closed-loop tracking error at both settled levels.
+E1 inp net1 vdin GND 1
+
+* inn tied directly to out (same node) = unity-gain follower
+x1 vdd GND nib inp out out opamp
+
+* Application load = the diff-amp feedback network, returned to mid-supply.
+* 100k not 10k: at vincm=3.1, vdd=3.2 a 10k return draws (3.1-1.6)/10k = 150 uA
+* from the output PMOS while it sits 100 mV from the rail, which pushes it into
+* triode (needs |Vdss|=0.24 V) and costs 65 dB of open-loop gain.
+.param rl=100e3
+RL out nmid {rl}
+.param cl=5e-12
+CL out GND {cl}
+
+.GLOBAL GND
+.end

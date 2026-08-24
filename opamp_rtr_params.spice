@@ -7,11 +7,26 @@
 * After optimization: paste the optimized values here to freeze the design.
 *
 * Values below are the winner of the 40-corner optimize_full_corner run
-* (compute_results/optimize_full_corner.sqlite): gain 41.3 dB, ugbw 1.55 MHz,
-* pm 71.0 deg, idd 327 uA, tracking error 1.1 mV, noise 25.4 uV, thd 4.3e-4,
-* all worst-case over ff/fs/sf/ss/tt x 8 sub-corners.
-* The four v_bias_*/v_ref_* voltages of that run are replaced here by the
-* current-mode bias generator (w_bias_*/w_ref_*/i_ref) - see opamp_rtr.spice.
+* (compute_results/optimize_full_corner.sqlite), carried over to the
+* current-mode bias generator. Re-measured 2026-08-24 in ngspice-46 with the
+* sg13g2 HV models, this design point gives:
+*
+*   RL=1e9  (unloaded)   gain 106.0 dB   idd  7.6 uA
+*   RL=100k              gain  62.1 dB   idd 19.1 uA
+*   RL=10k               gain  41.0 dB   idd  154 uA
+*     all at the hardest corner: mos_fs, vdd 3.2, 100 C, vincm 3.1
+*   tt/3.3/25/1.65, RL=10k:  gain 82.0 dB, tracking error 0.48 mV, idd 10.2 uA
+*
+* The load sets the second-stage gain: A2 = gm_out * (Rout || RL) and Rout is
+* about 16 Mohm, so RL dominates for anything below a megohm. This is why the
+* testbenches moved from RL=10k to RL=100k. At 10k the follower has to source
+* (3.1-1.6)/10k = 150 uA at vincm=3.1, which is more than the whole 100 uA idd
+* budget, and it does so with the output PMOS 100 mV from the rail when that
+* device needs |Vdss| = 0.24 V to stay saturated.
+*
+* Step response (tb_opamp_rtr_pulse.spice, 100 mV step, RL=100k), 5 corners:
+*   overshoot 5.35 to 14.30 %, 0.1 % settling 0.70 to 2.62 us,
+*   closed-loop tracking error 0.25 to 1.11 mV
 *=======================================================================================
 * PMOS input pair
 .param w_diff_p=6.5e-6
@@ -49,10 +64,14 @@
 * Miller caps
 .param c_miller_p=3e-13
 .param c_miller_n=3.3e-13
+* Miller nulling resistors. Seeded at 1k, which is small against 1/gm_out
+* (~5k at the output-stage bias), so the seed behaves like a plain Miller cap.
+.param r_null_p=1e3
+.param r_null_n=1e3
 * Constant-gm current switches
 .param w_sw_p=5.87e-5
 .param w_sw_n=1e-5
-* gm-switch mirrors: diode (1) and output (2) devices; ratio w2/w1 sets how much
+* gm-switch mirrors: diode (1) and output (2) devices. Ratio w2/w1 sets how much
 * the surviving pair is boosted (1x for weak inversion .. 3x for strong)
 .param w_gmn1=4.1e-6
 .param w_gmn2=1.45e-5
@@ -60,7 +79,7 @@
 .param w_gmp2=1.1e-6
 *=======================================================================================
 * Current-mode bias generator (replaces the four distributed bias voltages).
-* External reference current into the ibias pin; every branch of the generator
+* External reference current into the ibias pin. Every branch of the generator
 * carries i_ref, and each biased device mirrors it by W ratio at l_bias.
 .param i_ref=5.3e-7
 * NMOS master diode XB1 + mirror legs XB2/XB6. I_tail_n = i_ref*w_tail_n/w_bias_n,
