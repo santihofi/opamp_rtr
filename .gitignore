@@ -1,3 +1,5 @@
 /evaluate_result
 /optimize_full_corner
 *.sqlite
+/evaluate_full_corner
+/evaluate

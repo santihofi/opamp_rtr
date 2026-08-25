@@ -81,6 +81,11 @@
             ""
           ],
           [
+            "param",
+            "opamp_rtr_params.spice",
+            ""
+          ],
+          [
             "tb",
             "tb_opamp_rtr_pyopus.spice",
             ""
@@ -152,6 +157,9 @@
           ],
           [
             "lib_cap"
+          ],
+          [
+            "param"
           ]
         ],
         "options": [],
@@ -185,6 +193,9 @@
           ],
           [
             "lib_cap"
+          ],
+          [
+            "param"
           ]
         ],
         "options": [],
@@ -209,6 +220,9 @@
           ],
           [
             "lib_cap"
+          ],
+          [
+            "param"
           ]
         ],
         "options": [],
@@ -233,6 +247,9 @@
           ],
           [
             "lib_cap"
+          ],
+          [
+            "param"
           ]
         ],
         "options": [
@@ -274,6 +291,9 @@
           ],
           [
             "lib_cap"
+          ],
+          [
+            "param"
           ]
         ],
         "options": [
@@ -7615,6 +7635,2465 @@
           "saveallresults": false,
           "savewaveforms": "verification",
           "simulatordebug": "0",
+          "taskdebug": "1"
+        },
+        "mpi": {
+          "processors": "",
+          "mirror": true,
+          "persistent": true,
+          "vmdebug": "0",
+          "cosdebug": "0"
+        }
+      }
+    ],
+    [
+      "evaluate_full_corner",
+      {
+        "type": "cbd",
+        "description": "",
+        "requirements": [
+          [
+            true,
+            "gain",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "bw",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            false,
+            "ugbw",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "pm",
+            "60",
+            "",
+            "",
+            ""
+          ],
+          [
+            true,
+            "idd",
+            "",
+            "1e-4",
+            "",
+            ""
+          ],
+          [
+            true,
+            "out_op",
+            "-2e-3",
+            "2e-3",
+            "2e-3",
+            ""
+          ],
+          [
+            true,
+            "noise",
+            "",
+            "1e-3",
+            "",
+            ""
+          ],
+          [
+            true,
+            "thd",
+            "",
+            "1e-3",
+            "1e-3",
+            ""
+          ],
+          [
+            true,
+            "sat_margin",
+            "0",
+            "",
+            "0.05",
+            ""
+          ],
+          [
+            true,
+            "overshoot",
+            "",
+            "15",
+            "15",
+            ""
+          ],
+          [
+            true,
+            "tsettle",
+            "",
+            "5e-6",
+            "5e-6",
+            ""
+          ],
+          [
+            true,
+            "terr_cl",
+            "",
+            "2e-3",
+            "2e-3",
+            ""
+          ]
+        ],
+        "designpar": [],
+        "corners": [
+          [
+            "c1_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c2_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c3_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c4_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c5_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c6_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c7_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c8_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c9_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c10_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c11_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c12_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c13_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c14_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c15_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c16_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c17_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c18_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c19_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c20_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c21_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c22_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c23_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c24_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c25_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c26_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c27_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c28_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c29_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c30_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c31_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c32_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c33_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c34_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c35_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c36_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c37_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c38_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c39_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "0.2"
+                ]
+              ]
+            }
+          ],
+          [
+            "c40_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "3.1"
+                ]
+              ]
+            }
+          ],
+          [
+            "c41_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c42_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c43_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c44_mosff",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c45_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c46_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c47_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c48_mosfs",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c49_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c50_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c51_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c52_mossf",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c53_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c54_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c55_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c56_mosss",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c57_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c58_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c59_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c60_mostt",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "1.65"
+                ]
+              ]
+            }
+          ],
+          [
+            "c61_ff_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c62_ff_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c63_ff_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c64_ff_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ff"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c65_fs_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c66_fs_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c67_fs_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c68_fs_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_fs"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c69_sf_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c70_sf_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c71_sf_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c72_sf_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_sf"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c73_ss_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c74_ss_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c75_ss_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c76_ss_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_ss"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c77_tt_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c78_tt_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.2"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c79_tt_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "-40"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ],
+          [
+            "c80_tt_vcm2p6",
+            {
+              "heads": [
+                [
+                  "ngspice"
+                ]
+              ],
+              "modules": [
+                [
+                  "mos_tt"
+                ]
+              ],
+              "params": [
+                [
+                  "vdd",
+                  "3.4"
+                ],
+                [
+                  "temperature",
+                  "100"
+                ],
+                [
+                  "vincm",
+                  "2.6"
+                ]
+              ]
+            }
+          ]
+        ],
+        "settings": {
+          "aggregatorsettings": [],
+          "evaluatorsettings": [],
+          "failurepenalty": "1e6",
+          "forwardsolution": true,
+          "maxiter": "",
+          "stoptol": "1e-5",
+          "initialstep": "0.25",
+          "method": "noneFull",
+          "optimizersettings": [],
+          "relevantcorners": true,
+          "stopsatisfied": true,
+          "tradeoffmultiplier": "0"
+        },
+        "output": {
+          "aggregatordebug": "2",
+          "evaluatordebug": "2",
+          "optimizerdebug": "2",
+          "keepfiles": false,
+          "saveallresults": false,
+          "savewaveforms": "verification",
+          "simulatordebug": "2",
           "taskdebug": "1"
         },
         "mpi": {
