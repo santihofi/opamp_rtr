@@ -42,66 +42,64 @@
 * (3.1-1.6)/10k = 150 uA at vincm=3.1, more than the whole 100 uA idd budget.
 *=======================================================================================
 * PMOS input pair
-.param w_diff_p=10e-6
+.param w_diff_p=16e-6
 .param l_diff_p=4e-6
 * NMOS input pair
-.param w_diff_n=7e-6
-.param l_diff_n=8e-6
+.param w_diff_n=6.5e-6
+.param l_diff_n=4e-6
 * Input tails
-.param w_tail_p=14e-6
-.param w_tail_n=5.5e-6
+.param w_tail_p=17e-6
+.param w_tail_n=7e-6
 * Shared L of every current-source / mirror device (bias generator included):
 * the mirror ratios are pure width ratios only because L is common
-.param l_bias=3e-6
+.param l_bias=5e-6
 * NMOS mirror load
-.param w_load_n=2.4e-6
-.param l_load_n=7.7e-6
+.param w_load_n=1e-6
+.param l_load_n=4e-6
 * PMOS mirror load
-.param w_load_p=5.6e-6
-.param l_load_p=3.3e-6
+.param w_load_p=6e-6
+.param l_load_p=4e-6
 * Output PMOS (was pinned at its 150u upper bound in the winning run)
-.param w_out_p=16e-6
+.param w_out_p=11e-6
 .param l_out_p=5e-7
 * Output NMOS
-.param w_out_n=7e-6
-.param l_out_n=6e-7
+.param w_out_n=5.5e-6
+.param l_out_n=5e-7
 * Monticelli floating NMOS + N-stack diodes
-.param w_ab_n=5.8e-6
-.param l_ab_n=2.6e-6
+.param w_ab_n=8e-6
+.param l_ab_n=1e-6
 * Monticelli floating PMOS + P-stack diodes
-.param w_ab_p=4e-6
-.param l_ab_p=8.3e-6
+.param w_ab_p=8e-6
+.param l_ab_p=1e-6
 * I_ab feed (PMOS XM15/XM17/XM23) and sink (NMOS XM16/XM20/XM24)
-.param w_ab_src=1.8e-6
-.param w_ab_snk=2e-6
+.param w_ab_src=5.5e-6
+.param w_ab_snk=2.7e-6
 * Miller caps
-.param c_miller_p=9.4e-13
-.param c_miller_n=2.2e-13
+.param c_miller_p=3e-13
+.param c_miller_n=3e-13
 * Miller nulling resistors. Seeded at 1k, which is small against 1/gm_out
 * (~5k at the output-stage bias), so the seed behaves like a plain Miller cap.
-.param r_null_p=1e3
-.param r_null_n=1e2
+.param r_null_p=16
+.param r_null_n=16
 * Constant-gm current switches
 .param w_sw_p=15e-6
-.param w_sw_n=8e-6
+.param w_sw_n=7e-6
 * gm-switch mirrors: diode (1) and output (2) devices. Ratio w2/w1 sets how much
 * the surviving pair is boosted (1x for weak inversion .. 3x for strong)
-.param w_gmn1=4e-6
-.param w_gmn2=1e-6
-.param w_gmp1=6.5e-6
-.param w_gmp2=4.5e-6
+.param w_gmn=1.25e-6
+.param w_gmp=11e-6
 *=======================================================================================
 * Current-mode bias generator (replaces the four distributed bias voltages).
 * External reference current into the ibias pin. Every branch of the generator
 * carries i_ref, and each biased device mirrors it by W ratio at l_bias.
-.param i_ref=6.3e-7
+.param i_ref=1.2e-6
 * NMOS master diode XB1 + mirror legs XB2/XB6. I_tail_n = i_ref*w_tail_n/w_bias_n,
 * so w_bias_n = w_tail_n/2 seeds the NMOS tail at 2*i_ref.
-.param w_bias_n=6.6e-6
+.param w_bias_n=5.5e-6
 * PMOS master diode XB3 + mirror leg XB4. Same 1:2 seed for the PMOS side.
-.param w_bias_p=16e-6
+.param w_bias_p=11e-6
 * Constant-gm reference diodes XB5 (low) / XB7 (high). NARROWER than the master
 * diodes at the same current => higher |Vgs| => the switch reference sits further
 * from its rail, which is where the crossover has to be.
-.param w_ref_n=5.5e-6
-.param w_ref_p=18.5e-6
+.param w_ref_n=2.6e-6
+.param w_ref_p=8e-6
