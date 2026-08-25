@@ -25,7 +25,7 @@
 * diode-connected on it), which is why the NMOS sources gate from 'ibias'.
 * No startup circuit is needed - the reference current is supplied externally.
 
-.include opamp_rtr_params.spice
+*.include opamp_rtr_params.spice
 
 
 .subckt opamp vdd vss ibias inp inn out
@@ -102,12 +102,12 @@ XM10 n2 n2 vdd vdd sg13_hv_pmos w={w_load_p} l={l_load_p} ng=1 m=1 mm_ok=1
 * input-stage distortion for audio.
 
 XM25 nswa vref_p ncmdiff_p vdd sg13_hv_pmos w={w_sw_p} l=1e-6 ng=1 m=1 mm_ok=1
-XM26 nswa nswa vss vss sg13_hv_nmos w={w_gmn1} l={l_bias} ng=1 m=1 mm_ok=1
-XM27 ncmdiff_n nswa vss vss sg13_hv_nmos w={w_gmn2} l={l_bias} ng=1 m=1 mm_ok=1
+XM26 nswa nswa vss vss sg13_hv_nmos w={w_gmn} l={l_bias} ng=1 m=1 mm_ok=1
+XM27 ncmdiff_n nswa vss vss sg13_hv_nmos w={w_gmn} l={l_bias} ng=1 m=1 mm_ok=1
 
 XM28 nswb vref_n ncmdiff_n vss sg13_hv_nmos w={w_sw_n} l=1e-6 ng=1 m=1 mm_ok=1
-XM29 nswb nswb vdd vdd sg13_hv_pmos w={w_gmp1} l={l_bias} ng=1 m=1 mm_ok=1
-XM30 ncmdiff_p nswb vdd vdd sg13_hv_pmos w={w_gmp2} l={l_bias} ng=1 m=1 mm_ok=1
+XM29 nswb nswb vdd vdd sg13_hv_pmos w={w_gmp} l={l_bias} ng=1 m=1 mm_ok=1
+XM30 ncmdiff_p nswb vdd vdd sg13_hv_pmos w={w_gmp} l={l_bias} ng=1 m=1 mm_ok=1
 
 *=======================================================================================
 
