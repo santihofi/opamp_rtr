@@ -45,11 +45,11 @@
 .param w_diff_p=16e-6
 .param l_diff_p=4e-6
 * NMOS input pair
-.param w_diff_n=6.5e-6
+.param w_diff_n=6.35e-6
 .param l_diff_n=4e-6
 * Input tails
 .param w_tail_p=17e-6
-.param w_tail_n=7e-6
+.param w_tail_n=6.8e-6
 * Shared L of every current-source / mirror device (bias generator included):
 * the mirror ratios are pure width ratios only because L is common
 .param l_bias=5e-6
@@ -57,26 +57,26 @@
 .param w_load_n=1e-6
 .param l_load_n=4e-6
 * PMOS mirror load
-.param w_load_p=6e-6
+.param w_load_p=5.8e-6
 .param l_load_p=4e-6
 * Output PMOS (was pinned at its 150u upper bound in the winning run)
 .param w_out_p=11e-6
 .param l_out_p=5e-7
 * Output NMOS
-.param w_out_n=5.5e-6
+.param w_out_n=5.45e-6
 .param l_out_n=5e-7
 * Monticelli floating NMOS + N-stack diodes
-.param w_ab_n=8e-6
+.param w_ab_n=7.9e-6
 .param l_ab_n=1e-6
 * Monticelli floating PMOS + P-stack diodes
-.param w_ab_p=8e-6
+.param w_ab_p=7.9e-6
 .param l_ab_p=1e-6
 * I_ab feed (PMOS XM15/XM17/XM23) and sink (NMOS XM16/XM20/XM24)
 .param w_ab_src=5.5e-6
 .param w_ab_snk=2.7e-6
 * Miller caps
 .param c_miller_p=3e-13
-.param c_miller_n=3e-13
+.param c_miller_n=2.7e-13
 * Miller nulling resistors. Seeded at 1k, which is small against 1/gm_out
 * (~5k at the output-stage bias), so the seed behaves like a plain Miller cap.
 .param r_null_p=16
