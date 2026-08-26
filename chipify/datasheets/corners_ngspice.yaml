@@ -1,0 +1,28 @@
+parameters:
+  temp: [-40, 27, 100]
+  seed: range(1)
+  vdd: [3.3]
+  vincm: [1.65, 0.2, 3.1]
+  sigma: [1]
+  corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
+  ibias: ['5u']
+  c_load: ['500f', '0', '100f']
+tests:
+  tb_opamp_rtr_op:
+    engine: ngspice
+    out:
+      unit: 'V'
+  tb_opamp_rtr_gain:
+    gain:
+      unit: 'dB'
+    UGF:
+      unit: 'Hz'
+    phase_margin:
+      unit: "\xB0"
+    ac_signals: [out]
+  tb_opamp_rtr_tran:
+    transient_signals: [out, x1.out1_p, x1.out1_n]
+equations:
+  vd_tr: outp-outn
+transient_equations:
+  out_d: outp-outn
