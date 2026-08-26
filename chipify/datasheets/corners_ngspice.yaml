@@ -6,19 +6,25 @@ parameters:
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['5u']
-  c_load: ['500f', '0', '100f']
+  c_load: ['500f', 0, '100f']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
-    out:
+    vos:
       unit: 'V'
+      min: -0.01
+      max: 0.01
+      typ: 0.0
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'
+      min: 40.0
     UGF:
       unit: 'Hz'
+      min: 100000.0
     phase_margin:
       unit: "\xB0"
+      min: 50.0
     ac_signals: [out]
   tb_opamp_rtr_tran:
     transient_signals: [out, x1.out1_p, x1.out1_n]
