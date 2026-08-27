@@ -1,0 +1,22 @@
+parameters:
+  temp: [-40, 27, 100]
+  seed: range(1)
+  vdd: [3.3]
+  vincm: [1.65]
+  sigma: [1]
+  corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
+  ibias: ['5u']
+  c_load: ['500f', 0, '100f']
+tests:
+  tb_opamp_rtr_dc:
+    engine: ngspice
+    dc_signals: [in, out]
+    op1.vos:
+      min: -0.01
+      max: 0.01
+      typ: 0.0
+      unit: 'V'
+equations:
+  vd_tr: outp-outn
+transient_equations:
+  out_d: outp-outn

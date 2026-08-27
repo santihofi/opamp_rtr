@@ -733,7 +733,7 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param w_ref_p=10u
 .param n_ref_p=4
 *first stage
-.param l_diff=1u
+.param l_diff=2u
 .param l_load=4u
 
 .param w_diff_n=5u

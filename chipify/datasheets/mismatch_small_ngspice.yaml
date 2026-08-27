@@ -1,12 +1,12 @@
 parameters:
-  temp: [-40, 27, 100]
-  seed: range(1)
+  temp: [27]
+  seed: range(100)
   vdd: [3.3]
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]
-  corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
+  corner_mos: ['tt_mismatch']
   ibias: ['5u']
-  c_load: ['500f', 0, '100f']
+  c_load: ['100f']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
@@ -15,8 +15,6 @@ tests:
       min: -0.01
       max: 0.01
       typ: 0.0
-    idd:
-      unit: 'A'
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'
