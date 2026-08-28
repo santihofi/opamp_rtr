@@ -5,8 +5,10 @@ parameters:
   vincm: [1.65]
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
-  ibias: ['5u']
+  ibias: ['1u']
   c_load: ['500f', 0, '100f']
+  corner_cap: ['typ', 'wcs', 'bcs']
+  corner_res: ['typ', 'wcs', 'bcs']
 tests:
   tb_opamp_rtr_dc:
     engine: ngspice
@@ -16,6 +18,9 @@ tests:
       max: 0.01
       typ: 0.0
       unit: 'V'
+  tb_opamp_rtr_tran_rect:
+    transient_signals: [vdin, out]
+    engine: ngspice
 equations:
   vd_tr: outp-outn
 transient_equations:

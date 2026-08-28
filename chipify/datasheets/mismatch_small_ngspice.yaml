@@ -5,16 +5,20 @@ parameters:
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]
   corner_mos: ['tt_mismatch']
-  ibias: ['5u']
+  ibias: ['2u']
   c_load: ['100f']
+  corner_cap: ['typ', 'wcs', 'bcs']
+  corner_res: ['typ', 'wcs', 'bcs']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
-    vos:
+    op1.vos:
       unit: 'V'
       min: -0.01
       max: 0.01
       typ: 0.0
+    op1.idd: {}
+    noise2.onoise_total: {}
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'

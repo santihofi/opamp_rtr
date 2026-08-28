@@ -5,18 +5,21 @@ parameters:
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
-  ibias: ['5u']
-  c_load: ['500f', 0, '100f']
+  ibias: ['1u']
+  c_load: ['50f', '500f', '20p']
+  corner_cap: ['typ', 'wcs', 'bcs']
+  corner_res: ['typ', 'wcs', 'bcs']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
-    vos:
+    op1.vos:
       unit: 'V'
       min: -0.01
       max: 0.01
       typ: 0.0
-    idd:
+    op1.idd:
       unit: 'A'
+    noise2.onoise_total: {}
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'
@@ -30,6 +33,10 @@ tests:
     ac_signals: [out]
   tb_opamp_rtr_tran:
     transient_signals: [out, x1.out1_p, x1.out1_n]
+    engine: ngspice
+  tb_opamp_rtr_tran_psr:
+    transient_signals: [out_psr]
+    engine: ngspice
 equations:
   vd_tr: outp-outn
 transient_equations:

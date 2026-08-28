@@ -611,26 +611,18 @@ C {lab_pin.sym} 520 0 3 0 {name=p41 sig_type=std_logic lab=vss}
 C {lab_pin.sym} 560 -120 2 0 {name=p42 sig_type=std_logic lab=out}
 C {lab_pin.sym} 460 -170 0 0 {name=p43 sig_type=std_logic lab=out1_n}
 C {lab_pin.sym} 460 -70 0 0 {name=p44 sig_type=std_logic lab=out1_p}
-C {res.sym} 710 -180 0 0 {name=R1
+C {res.sym} 1240 -70 0 0 {name=R1
 value=\{r_null\}
 footprint=1206
 device=resistor
-m=1}
-C {capa.sym} 710 -80 0 0 {name=C1
+m=1
+spice_ignore=true}
+C {capa.sym} 1160 10 0 0 {name=C1
 m=1
 value=\{c_null\}
 footprint=1206
-device="ceramic capacitor"}
-C {res.sym} 830 -180 0 0 {name=R2
-value=\{r_null\}
-footprint=1206
-device=resistor
-m=1}
-C {capa.sym} 830 -80 0 0 {name=C2
-m=1
-value=\{c_null\}
-footprint=1206
-device="ceramic capacitor"}
+device="ceramic capacitor"
+spice_ignore=true}
 C {lab_pin.sym} 710 -230 1 0 {name=p45 sig_type=std_logic lab=out}
 C {lab_pin.sym} 830 -230 1 0 {name=p46 sig_type=std_logic lab=out}
 C {lab_pin.sym} 710 -30 3 0 {name=p47 sig_type=std_logic lab=out1_n}
@@ -780,13 +772,59 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 
 .param l_ab=1u
 
-.param w_out_p=20u
+.param w_out_p=40u
 .param n_out_p=4
-.param w_out_n=10u
+.param w_out_n=20u
 .param n_out_n=4
-.param l_out=0.5u
+.param l_out=1u
 
-.param r_null=2k
-.param c_null=200f
+.param r_null=50k
+.param c_null=500f
 
 "}
+C {sg13g2_pr/cap_cmomi.sym} 710 -80 0 0 {name=C4
+model=cap_cmomi
+w=20e-6
+l=20e-6
+mmin=1
+mmax=5
+feed=double
+subblock=0
+m=1
+mm_ok=1
+spiceprefix=X
+}
+C {sg13g2_pr/cap_cmomi.sym} 830 -80 0 0 {name=C2
+model=cap_cmomi
+w=20e-6
+l=20e-6
+mmin=1
+mmax=5
+feed=double
+subblock=0
+m=1
+mm_ok=1
+spiceprefix=X
+}
+C {sg13g2_pr/rppd.sym} 710 -180 0 0 {name=R3
+w=0.5e-6
+l=100e-6
+model=rppd
+body=vss
+spiceprefix=X
+b=0
+ m=1
+  mm_ok=1
+value="expr_eng(  ( 70.0e-6 / @w + 260.0 * ( (@b + 1)* @l + ( 1.081*( @w + 6.0e-9 ) + 0.18e-6 )*@b ) / ( @w + 6.0e-9 ) ) / @m  )"
+}
+C {sg13g2_pr/rppd.sym} 830 -180 0 0 {name=R2
+w=0.5e-6
+l=100e-6
+model=rppd
+body=vss
+spiceprefix=X
+b=0
+ m=1
+  mm_ok=1
+value="expr_eng(  ( 70.0e-6 / @w + 260.0 * ( (@b + 1)* @l + ( 1.081*( @w + 6.0e-9 ) + 0.18e-6 )*@b ) / ( @w + 6.0e-9 ) ) / @m  )"
+}

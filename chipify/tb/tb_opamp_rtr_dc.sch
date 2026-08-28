@@ -43,6 +43,8 @@ only_toplevel=false
 value="
 .lib cornerMOSlv.lib mos_\{\{ corner_mos \}\}
 .lib cornerMOShv.lib mos_\{\{ corner_mos \}\}
+.lib cornerRES.lib res_\{\{ corner_res \}\}
+.lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
 C {gnd.sym} 510 -20 0 0 {name=l4 lab=GND}

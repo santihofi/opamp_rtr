@@ -5,8 +5,10 @@ parameters:
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]
   corner_mos: ['tt_mismatch', 'ss_mismatch', 'ff_mismatch', 'sf_mismatch', 'fs_mismatch']
-  ibias: ['5u']
+  ibias: ['1u']
   c_load: ['500f', 0, '100f']
+  corner_cap: ['typ', 'wcs', 'bcs']
+  corner_res: ['typ', 'wcs', 'bcs']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
