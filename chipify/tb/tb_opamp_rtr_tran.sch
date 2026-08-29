@@ -45,7 +45,6 @@ C {vsource_arith.sym} 280 -70 0 0 {name=E3 VOL=0.1*sin(2*pi*time*1k)}
 C {gnd.sym} 430 -10 0 0 {name=l4 lab=GND}
 C {lab_pin.sym} 540 -80 2 0 {name=p28 sig_type=std_logic lab=out}
 C {lab_pin.sym} 430 -150 3 1 {name=p1 sig_type=std_logic lab=vdd}
-C {heichip/opamp_rtr/chipify/sch/opamp_rtr.sym} 400 -40 0 0 {name=x1}
 C {lab_pin.sym} 450 -270 3 1 {name=p2 sig_type=std_logic lab=vdd}
 C {vsource.sym} 280 10 0 0 {name=V1 value=\{\{vincm\}\} savecurrent=false}
 C {isource.sym} 450 -220 0 0 {name=I0 value=\{\{ibias\}\}}
@@ -67,3 +66,4 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
+C {opamp_rtr/chipify/sch/opamp_rtr.sym} 400 -40 0 0 {name=x2}

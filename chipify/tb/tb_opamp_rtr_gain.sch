@@ -68,7 +68,6 @@ C {vsource.sym} -290 -110 0 0 {name=V2 value=\{\{vdd\}\} savecurrent=false}
 C {gnd.sym} -290 -60 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} -290 -160 3 1 {name=p6 sig_type=std_logic lab=vdd}
 C {vsource.sym} -60 -90 0 0 {name=VIN value=ac 1 savecurrent=true}
-C {heichip/opamp_rtr/chipify/sch/opamp_rtr.sym} 90 -80 0 0 {name=x1}
 C {lab_pin.sym} 140 -310 3 1 {name=p2 sig_type=std_logic lab=vdd}
 C {ind.sym} 130 0 1 0 {name=L2
 m=1
@@ -119,3 +118,4 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
+C {opamp_rtr/chipify/sch/opamp_rtr.sym} 90 -80 0 0 {name=x2}

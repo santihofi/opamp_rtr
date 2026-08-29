@@ -6,17 +6,19 @@ parameters:
   sigma: [1]
   corner_mos: ['tt_mismatch', 'ss_mismatch', 'ff_mismatch', 'sf_mismatch', 'fs_mismatch']
   ibias: ['1u']
-  c_load: ['500f', 0, '100f']
+  c_load: ['20p', '50f', '100f']
   corner_cap: ['typ', 'wcs', 'bcs']
   corner_res: ['typ', 'wcs', 'bcs']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
-    vos:
-      unit: 'V'
+    op1.vos:
       min: -0.01
       max: 0.01
       typ: 0.0
+      unit: 'V'
+    op1.@n.x1.xxm1.nsg13_hv_pmos[gm]: {}
+    op1.@n.x1.xxm6.nsg13_hv_nmos[gm]: {}
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'
@@ -27,9 +29,6 @@ tests:
     phase_margin:
       unit: "\xB0"
       min: 50.0
-    ac_signals: [out]
-  tb_opamp_rtr_tran:
-    transient_signals: [out, x1.out1_p, x1.out1_n]
 equations:
   vd_tr: outp-outn
 transient_equations:

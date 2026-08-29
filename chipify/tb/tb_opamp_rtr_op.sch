@@ -24,7 +24,7 @@ N 460 -190 460 -170 {lab=#net3}
 N 330 -150 330 -130 {lab=in}
 C {vsource.sym} 330 -20 0 0 {name=V1 value=\{\{vincm\}\} savecurrent=true}
 C {gnd.sym} 330 10 0 0 {name=l19 lab=GND}
-C {devices/code_shown.sym} 680 -200 0 0 {name=NGSPICE only_toplevel=true 
+C {devices/code_shown.sym} 670 -210 0 0 {name=NGSPICE only_toplevel=true 
 value="
 .temp \{\{ temp \}\}
 .param mc_ok = \{\{ sigma \}\}
@@ -33,6 +33,8 @@ value="
 
 .control
 save all
+save @n.x1.xxm1.nsg13_hv_pmos[gm]
+save @n.x1.xxm6.nsg13_hv_nmos[gm]
 op  
 let vos = v(out)-v(in)
 let idd = i(V3)
@@ -47,7 +49,6 @@ C {vsource.sym} 650 120 0 0 {name=V2 value=\{\{vdd\}\} savecurrent=false}
 C {gnd.sym} 650 170 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} 650 70 3 1 {name=p6 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 460 -250 3 1 {name=p1 sig_type=std_logic lab=vdd}
-C {heichip/opamp_rtr/chipify/sch/opamp_rtr.sym} 480 -50 0 0 {name=x1}
 C {isource.sym} 530 -230 0 0 {name=I0 value=\{\{ibias\}\}}
 C {lab_pin.sym} 530 -280 3 1 {name=p2 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 330 -150 1 0 {name=p3 sig_type=std_logic lab=in}
@@ -64,3 +65,4 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
+C {opamp_rtr/chipify/sch/opamp_rtr.sym} 480 -50 0 0 {name=x1}

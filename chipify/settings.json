@@ -26,6 +26,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -42,6 +43,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -58,6 +60,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -74,6 +77,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -90,6 +94,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -106,6 +111,7 @@
       "y_col": "temp",
       "target": "op1.vos",
       "all_params": false,
+      "kind": "Transient",
       "tran_signals": "All Signals",
       "tran_run_mode": "All Valid",
       "tran_n": "10"
@@ -113,8 +119,8 @@
   ],
   "theme": "night",
   "font_size": 13,
-  "in_dir": null,
-  "out_dir": null,
-  "work_dir": null,
-  "tb_dir": null
+  "in_dir": "",
+  "out_dir": "",
+  "work_dir": "",
+  "tb_dir": ""
 }
