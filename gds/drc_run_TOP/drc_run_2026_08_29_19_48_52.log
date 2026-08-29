@@ -1,0 +1,11 @@
+29-Aug-2026 21:48:52 | INFO    | KLayout version detected: 0.30.11 (required >= 0.30.5)
+29-Aug-2026 21:48:52 | INFO    | Using DRC JSON file: /foss/pdks/ihp-sg13g2/libs.tech/klayout/python/sg13g2_pycell_lib/sg13g2_tech_mod.json
+29-Aug-2026 21:48:52 | INFO    | Running IHP-SG13G2 main checks on design /foss/designs/heichip/opamp_rtr/gds/opamp_rtr_parts.gds, topcell: TOP
+29-Aug-2026 21:48:59 | INFO    | Running IHP-SG13G2 sg13g2_maximal checks on design /foss/designs/heichip/opamp_rtr/gds/opamp_rtr_parts.gds, topcell: TOP
+29-Aug-2026 21:49:07 | INFO    | Completed running Sg13g2_maximal checks.
+29-Aug-2026 21:49:07 | ERROR   | ==================================================================================
+29-Aug-2026 21:49:07 | ERROR   | ❌ --- KLayout DRC Check Failed: Violations were detected in the layout. --- ❌
+29-Aug-2026 21:49:07 | ERROR   | ==================================================================================
+29-Aug-2026 21:49:07 | ERROR   | Violated rules are : {'LU.a', 'TGO.b'}
+
+29-Aug-2026 21:49:07 | INFO    | Total DRC Run time: 15.10 seconds (including execution, analysis, and reporting)
