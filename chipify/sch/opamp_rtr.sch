@@ -302,7 +302,7 @@ l=\{l_diff\}
 w=\{w_diff_n\}
  ng=\{n_diff_n\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -311,7 +311,7 @@ l=\{l_diff\}
 w=\{w_diff_p\}
  ng=\{n_diff_p\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -320,7 +320,7 @@ l=\{l_diff\}
 w=\{w_diff_p\}
  ng=\{n_diff_p\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -339,7 +339,7 @@ l=\{l_load\}
 w=\{w_load_n\}
  ng=\{n_load_n\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -348,7 +348,7 @@ l=\{l_load\}
 w=\{w_load_n\}
  ng=\{n_load_n\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -363,7 +363,7 @@ l=\{l_diff\}
 w=\{w_diff_n\}
  ng=\{n_diff_n\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -382,7 +382,7 @@ l=\{l_load\}
 w=\{w_load_p\}
  ng=\{n_load_p\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -391,7 +391,7 @@ l=\{l_load\}
 w=\{w_load_p\}
  ng=\{n_load_p\}
  m=1
-  mm_ok=1
+  mm_ok=\{\{mm_ok_stg1\}\}
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -715,14 +715,14 @@ C {lab_pin.sym} -1040 -70 0 0 {name=p70 sig_type=std_logic lab=ibias}
 C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 "
 *bias network
-.param l_bias=2u
-.param w_bias_p=10u
+.param l_bias=4u
+.param w_bias_p=15u
 .param n_bias_p=4
 .param w_bias_n=5u
 .param n_bias_n=5
 .param w_ref_n=5u
 .param n_ref_n=4
-.param w_ref_p=10u
+.param w_ref_p=15u
 .param n_ref_p=4
 *first stage
 .param l_diff=2u
@@ -731,23 +731,23 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param w_diff_n=5u
 .param n_diff_n=4
 
-.param w_diff_p=10u
+.param w_diff_p=15u
 .param n_diff_p=4
 
 .param w_load_n=5u
 .param n_load_n=4
 
-.param w_load_p=10u
+.param w_load_p=15u
 .param n_load_p=4
 
 .param w_tail_n=5u
 .param n_tail_n=4
 
-.param w_tail_p=10u
+.param w_tail_p=15u
 .param n_tail_p=4
 
 .param l_sw=1u
-.param w_sw_p=10u
+.param w_sw_p=15u
 .param n_sw_p=4
 
 .param w_sw_n=5u
@@ -756,23 +756,23 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param w_gmn=5u
 .param n_gmn=4
 
-.param w_gmp=10u
+.param w_gmp=15u
 .param n_gmp=4
 
 *output control circuit
-.param w_ab_src=10u
+.param w_ab_src=15u
 .param n_ab_src=4
 .param w_ab_snk=5u
 .param n_ab_snk=4
 
 .param w_ab_n=5u
 .param n_ab_n=4
-.param w_ab_p=10u
+.param w_ab_p=15u
 .param n_ab_p=4
 
 .param l_ab=1u
 
-.param w_out_p=40u
+.param w_out_p=60u
 .param n_out_p=4
 .param w_out_n=20u
 .param n_out_n=4

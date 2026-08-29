@@ -5,10 +5,11 @@ parameters:
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]
   corner_mos: ['tt_mismatch']
-  ibias: ['2u']
+  ibias: ['1u']
   c_load: ['100f']
-  corner_cap: ['typ', 'wcs', 'bcs']
-  corner_res: ['typ', 'wcs', 'bcs']
+  corner_cap: ['typ_mismatch']
+  corner_res: ['typ_mismatch']
+  mm_ok_stg1: [0, 1]
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
@@ -30,8 +31,7 @@ tests:
       unit: "\xB0"
       min: 50.0
     ac_signals: [out]
-  tb_opamp_rtr_tran:
-    transient_signals: [out, x1.out1_p, x1.out1_n]
+    engine: ngspice
 equations:
   vd_tr: outp-outn
 transient_equations:

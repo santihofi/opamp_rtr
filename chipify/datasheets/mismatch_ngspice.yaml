@@ -1,6 +1,6 @@
 parameters:
   temp: [-40, 27, 100]
-  seed: range(1)
+  seed: range(100)
   vdd: [3.3]
   vincm: [1.65, 0.2, 3.1]
   sigma: [1]

@@ -6,9 +6,10 @@ parameters:
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['1u']
-  c_load: ['500f', 0, '100f']
+  c_load: ['500f', '20p', '100f']
   corner_cap: ['typ', 'wcs', 'bcs']
   corner_res: ['typ', 'wcs', 'bcs']
+  mm_ok_stg1: [1]
 tests:
   tb_opamp_rtr_dc:
     engine: ngspice

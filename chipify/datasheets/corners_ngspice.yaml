@@ -9,6 +9,7 @@ parameters:
   c_load: ['50f', '500f', '20p']
   corner_cap: ['typ', 'wcs', 'bcs']
   corner_res: ['typ', 'wcs', 'bcs']
+  mm_ok_stg1: [1]
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
