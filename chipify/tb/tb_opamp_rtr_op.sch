@@ -65,4 +65,4 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
-C {opamp_rtr/chipify/sch/opamp_rtr.sym} 480 -50 0 0 {name=x1}
+C {../sch/opamp_rtr.sym} 480 -50 0 0 {name=x1}
