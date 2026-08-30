@@ -784,10 +784,10 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 "}
 C {sg13g2_pr/cap_cmomi.sym} 710 -80 0 0 {name=C4
 model=cap_cmomi
-w=20e-6
-l=20e-6
+w=22e-6
+l=22e-6
 mmin=1
-mmax=5
+mmax=4
 feed=double
 subblock=0
 m=1
@@ -796,10 +796,10 @@ spiceprefix=X
 }
 C {sg13g2_pr/cap_cmomi.sym} 830 -80 0 0 {name=C2
 model=cap_cmomi
-w=20e-6
-l=20e-6
+w=22e-6
+l=22e-6
 mmin=1
-mmax=5
+mmax=4
 feed=double
 subblock=0
 m=1
