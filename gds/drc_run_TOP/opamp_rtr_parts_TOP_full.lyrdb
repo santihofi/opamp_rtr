@@ -3299,28 +3299,6 @@
    </references>
   </cell>
   <cell>
-   <name>PMOS_MIRROR_4u</name>
-   <variant />
-   <layout-name>PMOS_MIRROR_4u</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r0 *1 15.07,-17.13</trans>
-    </ref>
-   </references>
-  </cell>
-  <cell>
-   <name>PMOS_DIFF_PAIR</name>
-   <variant />
-   <layout-name>PMOS_DIFF_PAIR</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r0 *1 0,-17.41</trans>
-    </ref>
-   </references>
-  </cell>
-  <cell>
    <name>nmosHV$10</name>
    <variant />
    <layout-name>nmosHV$10</layout-name>
@@ -3333,23 +3311,12 @@
   </cell>
   <cell>
    <name>nmosHV$8</name>
-   <variant />
+   <variant>r0</variant>
    <layout-name>nmosHV$8</layout-name>
    <references>
     <ref>
      <parent>TOP</parent>
      <trans>r0 *1 63.055,-40.1</trans>
-    </ref>
-   </references>
-  </cell>
-  <cell>
-   <name>nmosHV$6</name>
-   <variant>r0</variant>
-   <layout-name>nmosHV$6$VAR1</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r0 *1 33.77,-28.325</trans>
     </ref>
    </references>
   </cell>
@@ -3377,7 +3344,7 @@
   </cell>
   <cell>
    <name>nmosHV$6</name>
-   <variant>m90</variant>
+   <variant />
    <layout-name>nmosHV$6</layout-name>
    <references>
     <ref>
@@ -3387,6 +3354,17 @@
    </references>
   </cell>
  <cell>
+   <name>via_stack$8</name>
+   <variant>r90</variant>
+   <layout-name>via_stack$8$VAR2</layout-name>
+   <references>
+    <ref>
+     <parent>TOP</parent>
+     <trans>r90 *1 13.9,-4.635</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
    <name>pmosHV$7</name>
    <variant />
    <layout-name>pmosHV$7</layout-name>
@@ -3431,13 +3409,24 @@
    </references>
   </cell>
   <cell>
+   <name>PMOS_MIRROR_4u</name>
+   <variant />
+   <layout-name>PMOS_MIRROR_4u</layout-name>
+   <references>
+    <ref>
+     <parent>TOP</parent>
+     <trans>r0 *1 0,-17.285</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
    <name>pmosHV$1</name>
    <variant />
    <layout-name>pmosHV$1</layout-name>
    <references>
     <ref>
      <parent>TOP</parent>
-     <trans>r0 *1 16.47,-15.435</trans>
+     <trans>r0 *1 1.4,-15.59</trans>
     </ref>
    </references>
   </cell>
@@ -3448,7 +3437,7 @@
    <references>
     <ref>
      <parent>TOP</parent>
-     <trans>r0 *1 16.53,-11.265</trans>
+     <trans>r0 *1 1.46,-11.42</trans>
     </ref>
    </references>
   </cell>
@@ -3478,30 +3467,6 @@
  <items>
   <item>
    <tags />
-   <category>'NW.b1'</category>
-   <cell>PMOS_MIRROR_4u</cell>
-   <visited>false</visited>
-   <multiplicity>1</multiplicity>
-   <comment />
-   <image />
-   <values>
-    <value>polygon: (-0.59,-0.28;-0.59,11.2;0,11.355;0,1.075)</value>
-   </values>
-  </item>
-  <item>
-   <tags />
-   <category>'NW.b1'</category>
-   <cell>PMOS_DIFF_PAIR</cell>
-   <visited>false</visited>
-   <multiplicity>1</multiplicity>
-   <comment />
-   <image />
-   <values>
-    <value>polygon: (14.48,0;14.48,11.48;15.07,11.635;15.07,1.355)</value>
-   </values>
-  </item>
-  <item>
-   <tags />
    <category>'LU.b'</category>
    <cell>nmosHV$10</cell>
    <visited>false</visited>
@@ -3515,25 +3480,13 @@
   <item>
    <tags />
    <category>'LU.b'</category>
-   <cell>nmosHV$8</cell>
+   <cell>nmosHV$8:r0</cell>
    <visited>false</visited>
    <multiplicity>1</multiplicity>
    <comment />
    <image />
    <values>
     <value>polygon: (0,0;0,2.5;1.13,2.5;1.13,0)</value>
-   </values>
-  </item>
-  <item>
-   <tags />
-   <category>'LU.b'</category>
-   <cell>nmosHV$6:r0</cell>
-   <visited>false</visited>
-   <multiplicity>1</multiplicity>
-   <comment />
-   <image />
-   <values>
-    <value>polygon: (0,0;0,2.5;5.82,2.5;5.82,0)</value>
    </values>
   </item>
   <item>
@@ -3563,7 +3516,7 @@
   <item>
    <tags />
    <category>'LU.b'</category>
-   <cell>nmosHV$6:m90</cell>
+   <cell>nmosHV$6</cell>
    <visited>false</visited>
    <multiplicity>1</multiplicity>
    <comment />
@@ -3581,7 +3534,19 @@
    <comment />
    <image />
    <values>
-    <value>polygon: (15.07,-5.775;14.284,-5.425;36.476,-5.425;35.69,-5.775)</value>
+    <value>polygon: (21.229,-5.93;21.925,-5.425;39.616,-5.425;38.92,-5.93)</value>
+   </values>
+  </item>
+  <item>
+   <tags />
+   <category>'TGO.e'</category>
+   <cell>TOP</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>polygon: (12.983,-5.93;13.71,-5.47;17.25,-5.47;17.977,-5.93)</value>
    </values>
   </item>
   <item>
@@ -3593,7 +3558,43 @@
    <comment />
    <image />
    <values>
-    <value>edge-pair: (33.09,-3.25;33.09,-2.41)|(32.8,-2.41;32.8,-3.25)</value>
+    <value>edge-pair: (19.52,-11.44;19.52,-10.7)|(19.4,-10.7;19.4,-11.44)</value>
+   </values>
+  </item>
+  <item>
+   <tags />
+   <category>'pSD.b'</category>
+   <cell>TOP</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>edge-pair: (41.255,-3.25;41.255,-2.41)|(40.965,-2.41;40.965,-3.25)</value>
+   </values>
+  </item>
+  <item>
+   <tags />
+   <category>'pSD.l'</category>
+   <cell>TOP</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>polygon: (19.4,-11.44;19.4,-10.7;19.52,-10.7;19.52,-11.44)</value>
+   </values>
+  </item>
+  <item>
+   <tags />
+   <category>'M1.d'</category>
+   <cell>via_stack$8:r90</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>polygon: (-0.13,-0.08;-0.13,0.08;0.13,0.08;0.13,-0.08)</value>
    </values>
   </item>
   <item>
