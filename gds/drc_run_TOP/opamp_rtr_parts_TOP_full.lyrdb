@@ -3298,17 +3298,6 @@
    <references>
    </references>
   </cell>
-  <cell>
-   <name>nmosHV$12</name>
-   <variant />
-   <layout-name>nmosHV$12</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r0 *1 70.11,5.745</trans>
-    </ref>
-   </references>
-  </cell>
  <cell>
    <name>pmosHV$6</name>
    <variant>r180</variant>
@@ -3322,18 +3311,6 @@
   </cell>
  </cells>
  <items>
-  <item>
-   <tags />
-   <category>'LU.b'</category>
-   <cell>nmosHV$12</cell>
-   <visited>false</visited>
-   <multiplicity>1</multiplicity>
-   <comment />
-   <image />
-   <values>
-    <value>polygon: (8.58,0.259;5.509,3.33;8.58,3.33)</value>
-   </values>
-  </item>
  <item>
    <tags />
    <category>'LU.a'</category>
