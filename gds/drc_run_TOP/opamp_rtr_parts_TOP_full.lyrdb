@@ -3298,30 +3298,7 @@
    <references>
    </references>
   </cell>
- <cell>
-   <name>pmosHV$6</name>
-   <variant>r180</variant>
-   <layout-name>pmosHV$6</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r180 *1 61.67,-20.675</trans>
-    </ref>
-   </references>
-  </cell>
  </cells>
  <items>
- <item>
-   <tags />
-   <category>'LU.a'</category>
-   <cell>pmosHV$6:r180</cell>
-   <visited>false</visited>
-   <multiplicity>1</multiplicity>
-   <comment />
-   <image />
-   <values>
-    <value>polygon: (0,0;0,7.5;4.055,7.5;4.055,0)</value>
-   </values>
-  </item>
  </items>
 </report-database>
