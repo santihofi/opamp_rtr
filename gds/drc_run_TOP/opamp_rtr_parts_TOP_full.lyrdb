@@ -3300,5 +3300,17 @@
   </cell>
  </cells>
  <items>
+ <item>
+   <tags />
+   <category>'NW.d1'</category>
+   <cell>TOP</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>edge-pair: (73.75,-25.127;73.75,-28.723)/(74.04,-28.175;74.04,-25.675)</value>
+   </values>
+  </item>
  </items>
 </report-database>
