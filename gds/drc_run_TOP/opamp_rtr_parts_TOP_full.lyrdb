@@ -3298,17 +3298,6 @@
    <references>
    </references>
   </cell>
-  <cell>
-   <name>PMOS_DIFF_PAIR</name>
-   <variant />
-   <layout-name>PMOS_DIFF_PAIR</layout-name>
-   <references>
-    <ref>
-     <parent>TOP</parent>
-     <trans>r0 *1 46.2,-17.53</trans>
-    </ref>
-   </references>
-  </cell>
  </cells>
  <items>
   <item>
@@ -3325,26 +3314,38 @@
   </item>
   <item>
    <tags />
-   <category>'M4.b'</category>
+   <category>'TM1.b'</category>
    <cell>TOP</cell>
    <visited>false</visited>
    <multiplicity>1</multiplicity>
    <comment />
    <image />
    <values>
-    <value>edge-pair: (51.285,-7.135;51.435,-7.135)|(51.435,-6.97;51.155,-6.97)</value>
+    <value>edge-pair: (74.465,-25.875;74.465,-22.599)|(73.02,-23.375;73.02,-25.475)</value>
    </values>
   </item>
   <item>
    <tags />
-   <category>'M4.b'</category>
-   <cell>PMOS_DIFF_PAIR</cell>
+   <category>'TM1.b'</category>
+   <cell>TOP</cell>
    <visited>false</visited>
    <multiplicity>1</multiplicity>
    <comment />
    <image />
    <values>
-    <value>edge-pair: (5.085,10.395;5.235,10.395)|(5.235,10.56;4.955,10.56)</value>
+    <value>edge-pair: (74.465,-26.251;74.465,-25.875)|(73.02,-25.099;73.02,-25.475)</value>
+   </values>
+  </item>
+  <item>
+   <tags />
+   <category>'TM1.b'</category>
+   <cell>TOP</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment />
+   <image />
+   <values>
+    <value>edge-pair: (74.465,-26.251;74.465,-22.599)|(73.02,-23.375;73.02,-25.475)</value>
    </values>
   </item>
  </items>
