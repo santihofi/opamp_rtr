@@ -6,9 +6,10 @@ parameters:
   sigma: [1]
   corner_mos: ['tt_mismatch', 'ss_mismatch', 'ff_mismatch', 'sf_mismatch', 'fs_mismatch']
   ibias: ['1u']
-  c_load: ['20p', '50f', '100f']
-  corner_cap: ['typ', 'wcs', 'bcs']
-  corner_res: ['typ', 'wcs', 'bcs']
+  c_load: ['15p', '100f']
+  corner_cap: ['typ_mismatch']
+  corner_res: ['stat_mismatch']
+  mm_ok_stg1: [1]
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
@@ -17,8 +18,9 @@ tests:
       max: 0.01
       typ: 0.0
       unit: 'V'
-    op1.@n.x1.xxm1.nsg13_hv_pmos[gm]: {}
-    op1.@n.x1.xxm6.nsg13_hv_nmos[gm]: {}
+    op1.gm_pmos: {}
+    op1.gm_nmos: {}
+    noise2.onoise_total: {}
   tb_opamp_rtr_gain:
     gain:
       unit: 'dB'
@@ -29,7 +31,26 @@ tests:
     phase_margin:
       unit: "\xB0"
       min: 50.0
+    engine: ngspice
+  tb_opamp_rtr_tran_psr:
+    transient_signals: [out_psr]
+    engine: ngspice
+  tb_opamp_rtr_tran_rect:
+    transient_signals: [in_rect, out_rect]
+  tb_opamp_rtr_dc:
+    dc_signals: [in_dc, out_dc]
 equations:
   vd_tr: outp-outn
 transient_equations:
   out_d: outp-outn
+reports:
+  formats: [png]
+  pdf: true
+  plots: [{type: histogram, param: op1.vos, fit: Gauss (Normal), bins: Auto, formats: [
+        png]}, {type: histogram, param: gain, fit: Gauss (Normal), bins: Auto, group: vincm,
+      formats: [png]}, {type: histogram, param: UGF, fit: Gauss (Normal), bins: Auto,
+      formats: [png]}, {type: histogram, param: phase_margin, fit: Gauss (Normal),
+      bins: Auto, group: vincm, formats: [png]}, {type: scatter, x: op1.gm_pmos, y: op1.gm_nmos,
+      formats: [png]}, {type: transient, runs: all_valid, signals: [out_psr], formats: [
+        png]}, {type: transient, runs: all_valid, signals: [in_rect, out_rect], formats: [
+        png]}, {type: dc, runs: all_valid, signals: [in_dc, out_dc], formats: [png]}]

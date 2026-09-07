@@ -38,6 +38,8 @@ save @n.x1.xxm6.nsg13_hv_nmos[gm]
 op  
 let vos = v(out)-v(in)
 let idd = i(V3)
+let gm_pmos = @n.x1.xxm1.nsg13_hv_pmos[gm]
+let gm_nmos = @n.x1.xxm6.nsg13_hv_nmos[gm]
 noise v(out) VIN dec 10 1 1MEG
 quit
 .endc

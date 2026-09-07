@@ -782,49 +782,47 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param c_null=500f
 
 "}
-C {sg13g2_pr/cap_cmomi.sym} 710 -80 0 0 {name=C4
-model=cap_cmomi
-w=22e-6
-l=22e-6
+C {sg13g2_pr/cap_cmomf.sym} 710 -80 0 0 {name=C3
+model=cap_cmomf
+w=13.5e-6
+l=30e-6
 mmin=1
 mmax=4
-feed=double
 subblock=0
 m=1
 mm_ok=1
 spiceprefix=X
 }
-C {sg13g2_pr/cap_cmomi.sym} 830 -80 0 0 {name=C2
-model=cap_cmomi
-w=22e-6
-l=22e-6
+C {sg13g2_pr/cap_cmomf.sym} 830 -80 0 0 {name=C2
+model=cap_cmomf
+w=13.5e-6
+l=30e-6
 mmin=1
 mmax=4
-feed=double
 subblock=0
 m=1
 mm_ok=1
 spiceprefix=X
 }
-C {sg13g2_pr/rppd.sym} 710 -180 0 0 {name=R3
-w=0.5e-6
-l=100e-6
-model=rppd
+C {sg13g2_pr/rhigh.sym} 710 -180 0 0 {name=R4
+w=1e-6
+l=36e-6
+model=rhigh
 body=vss
 spiceprefix=X
 b=0
  m=1
   mm_ok=1
-value="expr_eng(  ( 70.0e-6 / @w + 260.0 * ( (@b + 1)* @l + ( 1.081*( @w + 6.0e-9 ) + 0.18e-6 )*@b ) / ( @w + 6.0e-9 ) ) / @m  )"
+value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e-6 ) + 0.18e-6 )*@b ) / ( @w - 0.04e-6 ) ) / @m  )"
 }
-C {sg13g2_pr/rppd.sym} 830 -180 0 0 {name=R2
-w=0.5e-6
-l=100e-6
-model=rppd
+C {sg13g2_pr/rhigh.sym} 830 -180 0 0 {name=R2
+w=1e-6
+l=36e-6
+model=rhigh
 body=vss
 spiceprefix=X
 b=0
  m=1
   mm_ok=1
-value="expr_eng(  ( 70.0e-6 / @w + 260.0 * ( (@b + 1)* @l + ( 1.081*( @w + 6.0e-9 ) + 0.18e-6 )*@b ) / ( @w + 6.0e-9 ) ) / @m  )"
+value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e-6 ) + 0.18e-6 )*@b ) / ( @w - 0.04e-6 ) ) / @m  )"
 }
