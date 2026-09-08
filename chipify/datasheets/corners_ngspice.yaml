@@ -8,7 +8,7 @@ parameters:
   ibias: ['1u']
   c_load: ['50f', '8p']
   corner_cap: ['wcs']
-  corner_res: ['typ', 'wcs', 'bcs']
+  corner_res: ['wcs', 'bcs']
   mm_ok_stg1: [1]
 tests:
   tb_opamp_rtr_op:

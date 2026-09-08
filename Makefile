@@ -255,9 +255,9 @@ magic-drc: ## Run Magic DRC of the CELL cell (usage: make magic-drc [CELL=<celln
 
 
 # LVS Targets
-klayout-lvs-netlist: ## Export CDL schematic netlist from Xschem for KLayout LVS (usage: make klayout-lvs-netlist [CELL=<cellname>] [EV_PRECISION=<digits>])
+klayout-lvs-netlist: ## Export CDL schematic netlist from Xschem for KLayout LVS
 	mkdir -p $(NET_SCH_DIR)
-	xschem -s -r -x -q --rcfile $(XSCHEM_SCH_DIR)/xschemrc --command ' \
+	xschem -s -r -x -q --rcfile xschemrc --command ' \
 		set spiceprefix 1; \
 		set lvs_netlist 1; \
 		set top_is_subckt 1; \
@@ -267,6 +267,14 @@ klayout-lvs-netlist: ## Export CDL schematic netlist from Xschem for KLayout LVS
 		xschem set netlist_name [file tail [file rootname [xschem get current_name]]]_klayout.cdl; \
 		xschem netlist \
 	' $(XSCHEM_SCH_DIR)/$(CELL).sch
+	@echo "Flattening SPICE parameters for KLayout LVS..."
+	@python3 -c 'import sys, re; \
+	f_in = "$(NET_SCH_DIR)/$(CELL)_klayout.cdl"; \
+	text = open(f_in).read(); \
+	params = dict(re.findall(r"(?im)^\s*\.param\s+([a-zA-Z0-9_]+)\s*=\s*(.*)", text)); \
+	text = re.sub(r"(?im)^\s*\.param\s+[^\n]*\n?", "", text); \
+	text = re.sub(r"\{([a-zA-Z0-9_]+)\}", lambda m: params.get(m.group(1), m.group(0)).strip(), text); \
+	open(f_in, "w").write(text)'
 .PHONY: klayout-lvs-netlist
 
 klayout-lvs: ## Run KLayout LVS of the CELL cell (usage: make klayout-lvs [CELL=<cellname>])

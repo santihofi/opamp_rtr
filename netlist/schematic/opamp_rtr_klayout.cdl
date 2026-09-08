@@ -1,0 +1,68 @@
+** sch_path: /foss/designs/heichip/opamp_rtr/schematic/xschem/opamp_rtr.sch
+.subckt opamp_rtr vdd inp vss inn ibias out
+*.PININFO inp:I out:O vdd:B inn:I ibias:I vss:B
+MXM6 out1_n inp ncmdiff_n vss sg13_hv_nmos w=5u l=2u ng=4
+MXM1 net1 inn ncmdiff_p vdd sg13_hv_pmos w=15u l=2u ng=4
+MXM2 ncmdiff_p inp out1_p vdd sg13_hv_pmos w=15u l=2u ng=4
+MXM3 ncmdiff_p vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM4 vss net1 net1 vss sg13_hv_nmos w=5u l=4u ng=4
+MXM5 out1_p net1 vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM7 ncmdiff_n inn net2 vss sg13_hv_nmos w=5u l=2u ng=4
+MXM8 ncmdiff_n ibias vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM9 vdd net2 out1_n vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM10 net2 net2 vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM25 nswa vref_p ncmdiff_p ncmdiff_p sg13_hv_pmos w=15u l=1u ng=4
+MXM26 nswa nswa vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM27 ncmdiff_n nswa vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM28 ncmdiff_n vref_n nswb vss sg13_hv_nmos w=5u l=1u ng=4
+MXM29 nswb nswb vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM30 ncmdiff_p nswb vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM13 out1_n nabn out1_p vss sg13_hv_nmos w=5u l=1u ng=4
+MXM14 out1_p nabp out1_n vdd sg13_hv_pmos w=15u l=1u ng=4
+MXM15 out1_n vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM16 out1_p nab_ref vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM23 nab_ref vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM24 nab_ref nab_ref vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM17 nabn vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXM18 nabn nabn net3 vss sg13_hv_nmos w=5u l=1u ng=4
+MXM19 net3 net3 vss vss sg13_hv_nmos w=5u l=1u ng=4
+MXM20 nabp nab_ref vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXM21 nabp nabp net4 vdd sg13_hv_pmos w=15u l=1u ng=4
+MXM22 net4 net4 vdd vdd sg13_hv_pmos w=15u l=1u ng=4
+MXM11 out out1_n vdd vdd sg13_hv_pmos w=60u l=1u ng=4
+MXM12 out out1_p vss vss sg13_hv_nmos w=20u l=1u ng=4
+MXB1 ibias ibias vss vss sg13_hv_nmos w=5u l=4u ng=5
+MXB2 vbias_p ibias vss vss sg13_hv_nmos w=5u l=4u ng=5
+MXB5 vref_n vref_n vss vss sg13_hv_nmos w=5u l=4u ng=4
+MXB6 vref_p ibias vss vss sg13_hv_nmos w=5u l=4u ng=5
+MXB3 vbias_p vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXB4 vref_n vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+MXB7 vref_p vref_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
+CC3 out net5 cap_cmomf w=13.5e-6 l=21e-6
+CC2 out net6 cap_cmomf w=13.5e-6 l=21e-6
+RR4 net5 out1_n 51.16k $SUB=vss $[rhigh] w=1e-6 l=36e-6 b=0
+RR2 net6 out1_p 51.16k $SUB=vss $[rhigh] w=1e-6 l=36e-6 b=0
+MDUMMY1 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=4
+MDUMMY2 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=2
+MDUMMY3 vss vss vss vss sg13_hv_nmos w=7.5u l=0.45u ng=6
+MDUMMY4 vss vss vss vss sg13_hv_nmos w=10u l=0.45u ng=4
+MDUMMY5 out1_p out1_p out1_p vss sg13_hv_nmos w=5u l=1u ng=2
+MDUMMY6 vdd vdd vdd vdd sg13_hv_pmos w=22.5u l=0.4u ng=6
+MDUMMY7 nswa nswa nswa vdd sg13_hv_pmos w=15u l=0.4u ng=2
+MDUMMY8 vdd vdd vdd vdd sg13_hv_pmos w=15u l=0.4u ng=4
+MDUMMY9 vdd vdd vdd vdd sg13_hv_pmos w=37.5u l=0.4u ng=5
+MDUMMY10 out1_n out1_n out1_n vdd sg13_hv_pmos w=15u l=0.4u ng=2
+MDUMMY11 vss vss vss vss sg13_hv_nmos w=5u l=0.45u ng=2
+RR3 vss vss 25.66k $SUB=vss $[rhigh] w=1e-6 l=18e-6 b=0
+**** begin user architecture code
+
+
+*bias network
+*first stage
+
+*output control circuit
+
+
+
+**** end user architecture code
+.ends

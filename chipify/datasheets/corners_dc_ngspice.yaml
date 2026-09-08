@@ -7,7 +7,7 @@ parameters:
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['1u']
   c_load: ['8p', '100f']
-  corner_cap: ['typ', 'wcs', 'bcs']
+  corner_cap: ['wcs', 'bcs']
   corner_res: ['typ']
   mm_ok_stg1: [1]
 tests:

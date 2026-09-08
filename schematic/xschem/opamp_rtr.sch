@@ -818,9 +818,9 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 *bias network
 .param l_bias=4u
 .param w_bias_p=15u
-.param n_bias_p=4
+.param n_bias_p=2
 .param w_bias_n=5u
-.param n_bias_n=5
+.param n_bias_n=2
 .param w_ref_n=5u
 .param n_ref_n=4
 .param w_ref_p=15u
@@ -842,17 +842,17 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param n_load_p=4
 
 .param w_tail_n=5u
-.param n_tail_n=4
+.param n_tail_n=2
 
 .param w_tail_p=15u
-.param n_tail_p=4
+.param n_tail_p=2
 
 .param l_sw=1u
 .param w_sw_p=15u
-.param n_sw_p=4
+.param n_sw_p=2
 
 .param w_sw_n=5u
-.param n_sw_n=4
+.param n_sw_n=2
 
 .param w_gmn=5u
 .param n_gmn=4
@@ -862,21 +862,21 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 
 *output control circuit
 .param w_ab_src=15u
-.param n_ab_src=4
+.param n_ab_src=2
 .param w_ab_snk=5u
-.param n_ab_snk=4
+.param n_ab_snk=2
 
 .param w_ab_n=5u
-.param n_ab_n=4
+.param n_ab_n=2
 .param w_ab_p=15u
-.param n_ab_p=4
+.param n_ab_p=2
 
 .param l_ab=1u
 
 .param w_out_p=60u
-.param n_out_p=4
+.param n_out_p=8
 .param w_out_n=20u
-.param n_out_n=4
+.param n_out_n=8
 .param l_out=1u
 
 .param r_null=50k
