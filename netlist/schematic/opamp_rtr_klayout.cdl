@@ -40,16 +40,8 @@ RR4 net5 out1_n 51.16k $SUB=vss $[rhigh] w=1e-6 l=36e-6 b=0
 RR2 net6 out1_p 51.16k $SUB=vss $[rhigh] w=1e-6 l=36e-6 b=0
 MDUMMY1 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=4
 MDUMMY2 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=2
-MDUMMY3 vss vss vss vss sg13_hv_nmos w=7.5u l=0.45u ng=6
-MDUMMY4 vss vss vss vss sg13_hv_nmos w=10u l=0.45u ng=4
-MDUMMY5 out1_p out1_p out1_p vss sg13_hv_nmos w=5u l=1u ng=2
-MDUMMY6 vdd vdd vdd vdd sg13_hv_pmos w=22.5u l=0.4u ng=3
-MDUMMY7 nswa nswa nswa vdd sg13_hv_pmos w=15u l=0.4u ng=2
-MDUMMY8 vdd vdd vdd vdd sg13_hv_pmos w=15u l=0.4u ng=4
-MDUMMY9 vdd vdd vdd vdd sg13_hv_pmos w=37.5u l=0.4u ng=5
-MDUMMY10 out1_n out1_n out1_n vdd sg13_hv_pmos w=15u l=0.4u ng=2
-MDUMMY11 vss vss vss vss sg13_hv_nmos w=5u l=0.45u ng=2
-RR3 vss vss 25.66k $SUB=vss $[rhigh] w=1e-6 l=18e-6 b=0
+MDUMMY10 out1_n out1_n out1_n vdd sg13_hv_pmos w=15u l=1u ng=2
+MDUMMY11 out1_p out1_p out1_p vss sg13_hv_nmos w=5u l=1u ng=2
 **** begin user architecture code
 
 
