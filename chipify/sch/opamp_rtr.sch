@@ -396,12 +396,14 @@ N -1510 420 -1490 420 {lab=vss}
 N -1510 370 -1510 420 {lab=vss}
 N -1450 420 -1430 420 {lab=vss}
 N -1530 420 -1510 420 {lab=vss}
+N -1780 400 -1780 420 {lab=vss}
+N -1780 480 -1780 500 {lab=vss}
 C {sg13g2_pr/sg13_hv_nmos.sym} -1140 -210 0 0 {name=XM6
 l=\{l_diff\}
 w=\{w_diff_n\}
  ng=\{n_diff_n\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -410,7 +412,7 @@ l=\{l_diff\}
 w=\{w_diff_p\}
  ng=\{n_diff_p\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -419,7 +421,7 @@ l=\{l_diff\}
 w=\{w_diff_p\}
  ng=\{n_diff_p\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -438,7 +440,7 @@ l=\{l_load\}
 w=\{w_load_n\}
  ng=\{n_load_n\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -447,7 +449,7 @@ l=\{l_load\}
 w=\{w_load_n\}
  ng=\{n_load_n\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -462,7 +464,7 @@ l=\{l_diff\}
 w=\{w_diff_n\}
  ng=\{n_diff_n\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -481,7 +483,7 @@ l=\{l_load\}
 w=\{w_load_p\}
  ng=\{n_load_p\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -490,7 +492,7 @@ l=\{l_load\}
 w=\{w_load_p\}
  ng=\{n_load_p\}
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_pmos
 spiceprefix=X
 }
@@ -710,13 +712,13 @@ C {lab_pin.sym} 520 0 3 0 {name=p41 sig_type=std_logic lab=vss}
 C {lab_pin.sym} 560 -120 2 0 {name=p42 sig_type=std_logic lab=out}
 C {lab_pin.sym} 460 -170 0 0 {name=p43 sig_type=std_logic lab=out1_n}
 C {lab_pin.sym} 460 -70 0 0 {name=p44 sig_type=std_logic lab=out1_p}
-C {res.sym} 1240 -70 0 0 {name=R1
+C {res.sym} 550 120 0 0 {name=R1
 value=\{r_null\}
 footprint=1206
 device=resistor
 m=1
 spice_ignore=true}
-C {capa.sym} 1160 10 0 0 {name=C1
+C {capa.sym} 470 200 0 0 {name=C1
 m=1
 value=\{c_null\}
 footprint=1206
@@ -881,7 +883,7 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 .param c_null=500f
 
 "}
-C {sg13g2_pr/cap_cmomf.sym} 710 -80 0 0 {name=C3
+C {sg13g2_pr/cap_cmomf.sym} 710 -180 0 0 {name=C3
 model=cap_cmomf
 w=13.5e-6
 l=21e-6
@@ -892,7 +894,7 @@ m=1
 mm_ok=1
 spiceprefix=X
 }
-C {sg13g2_pr/cap_cmomf.sym} 830 -80 0 0 {name=C2
+C {sg13g2_pr/cap_cmomf.sym} 830 -180 0 0 {name=C2
 model=cap_cmomf
 w=13.5e-6
 l=21e-6
@@ -903,7 +905,7 @@ m=1
 mm_ok=1
 spiceprefix=X
 }
-C {sg13g2_pr/rhigh.sym} 710 -180 0 0 {name=R4
+C {sg13g2_pr/rhigh.sym} 710 -80 0 0 {name=R4
 w=1e-6
 l=36e-6
 model=rhigh
@@ -914,7 +916,7 @@ b=0
   mm_ok=1
 value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e-6 ) + 0.18e-6 )*@b ) / ( @w - 0.04e-6 ) ) / @m  )"
 }
-C {sg13g2_pr/rhigh.sym} 830 -180 0 0 {name=R2
+C {sg13g2_pr/rhigh.sym} 830 -80 0 0 {name=R2
 w=1e-6
 l=36e-6
 model=rhigh
@@ -930,7 +932,7 @@ l=0.45u
 w=5u
  ng=4
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -941,7 +943,7 @@ l=0.45u
 w=5u
  ng=2
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -952,7 +954,7 @@ l=0.45u
 w=7.5u
  ng=6
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -963,7 +965,7 @@ l=0.45u
 w=10u
  ng=4
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -975,7 +977,7 @@ l=1u
 w=5u
  ng=2
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
@@ -1040,9 +1042,22 @@ l=0.45u
 w=5u
  ng=2
  m=1
-  mm_ok=\{\{mm_ok_stg1\}\}
+  mm_ok=1
  model=sg13_hv_nmos
 spiceprefix=X
 }
 C {lab_pin.sym} -1430 420 2 0 {name=p91 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -1530 420 0 0 {name=p92 sig_type=std_logic lab=vss}
+C {sg13g2_pr/rhigh.sym} -1780 450 0 0 {name=R3
+w=1e-6
+l=18e-6
+model=rhigh
+body=vss
+spiceprefix=X
+b=0
+ m=1
+  mm_ok=1
+value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e-6 ) + 0.18e-6 )*@b ) / ( @w - 0.04e-6 ) ) / @m  )"
+}
+C {lab_pin.sym} -1780 400 1 0 {name=p93 sig_type=std_logic lab=vss}
+C {lab_pin.sym} -1780 500 3 0 {name=p94 sig_type=std_logic lab=vss}
