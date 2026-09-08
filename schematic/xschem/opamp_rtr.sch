@@ -909,7 +909,7 @@ C {lab_pin.sym} -1430 290 2 0 {name=p80 sig_type=std_logic lab=vss}
 C {sg13g2_pr/sg13_hv_pmos.sym} -1760 -230 2 1 {name=DUMMY6
 l=0.4u
 w=22.5u
- ng=6
+ ng=3
  m=1
   mm_ok=1
  model=sg13_hv_pmos

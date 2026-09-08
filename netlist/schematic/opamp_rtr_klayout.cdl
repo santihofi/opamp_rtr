@@ -2,8 +2,8 @@
 .subckt opamp_rtr vdd inp vss inn ibias out
 *.PININFO inp:I out:O vdd:B inn:I ibias:I vss:B
 MXM6 out1_n inp ncmdiff_n vss sg13_hv_nmos w=5u l=2u ng=4
-MXM1 net1 inn ncmdiff_p vdd sg13_hv_pmos w=15u l=2u ng=4
-MXM2 ncmdiff_p inp out1_p vdd sg13_hv_pmos w=15u l=2u ng=4
+MXM1 net1 inn ncmdiff_p ncmdiff_p sg13_hv_pmos w=15u l=2u ng=4
+MXM2 ncmdiff_p inp out1_p ncmdiff_p sg13_hv_pmos w=15u l=2u ng=4
 MXM3 ncmdiff_p vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=2
 MXM4 vss net1 net1 vss sg13_hv_nmos w=5u l=4u ng=4
 MXM5 out1_p net1 vss vss sg13_hv_nmos w=5u l=4u ng=4
@@ -43,7 +43,7 @@ MDUMMY2 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=2
 MDUMMY3 vss vss vss vss sg13_hv_nmos w=7.5u l=0.45u ng=6
 MDUMMY4 vss vss vss vss sg13_hv_nmos w=10u l=0.45u ng=4
 MDUMMY5 out1_p out1_p out1_p vss sg13_hv_nmos w=5u l=1u ng=2
-MDUMMY6 vdd vdd vdd vdd sg13_hv_pmos w=22.5u l=0.4u ng=6
+MDUMMY6 vdd vdd vdd vdd sg13_hv_pmos w=22.5u l=0.4u ng=3
 MDUMMY7 nswa nswa nswa vdd sg13_hv_pmos w=15u l=0.4u ng=2
 MDUMMY8 vdd vdd vdd vdd sg13_hv_pmos w=15u l=0.4u ng=4
 MDUMMY9 vdd vdd vdd vdd sg13_hv_pmos w=37.5u l=0.4u ng=5
