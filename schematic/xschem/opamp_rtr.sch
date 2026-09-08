@@ -52,7 +52,7 @@ N -800 -210 -780 -210 {lab=inn}
 N -1180 -280 -1120 -280 {lab=out1_n}
 N -1120 -320 -1120 -280 {lab=out1_n}
 N -240 -120 -240 -100 {lab=nswa}
-N -300 -210 -280 -210 {lab=vref_p}
+N -300 -210 -280 -210 {lab=vbias_p}
 N -220 -280 0 -280 {lab=ncmdiff_p}
 N -240 -280 -240 -240 {lab=ncmdiff_p}
 N -240 -210 -220 -210 {lab=ncmdiff_p}
@@ -258,7 +258,7 @@ N -980 -70 -960 -70 {lab=vss}
 N -960 -70 -960 -20 {lab=vss}
 N -980 -20 -960 -20 {lab=vss}
 N -980 -40 -980 -20 {lab=vss}
-N -0 -210 240 -210 {lab=vdd}
+N 120 -210 240 -210 {lab=ncmdiff_p}
 N 120 -350 140 -350 {lab=vdd}
 N 140 -400 140 -350 {lab=vdd}
 N 120 -400 140 -400 {lab=vdd}
@@ -366,6 +366,8 @@ N -1450 420 -1430 420 {lab=vss}
 N -1530 420 -1510 420 {lab=vss}
 N -1780 400 -1780 420 {lab=vss}
 N -1780 480 -1780 500 {lab=vss}
+N 120 -280 120 -210 {lab=ncmdiff_p}
+N -0 -210 120 -210 {lab=ncmdiff_p}
 C {sg13g2_pr/sg13_hv_nmos.sym} -1140 -210 0 0 {name=XM6
 l=\{l_diff\}
 w=\{w_diff_n\}
@@ -733,7 +735,6 @@ C {ipin.sym} 530 320 0 0 {name=p64 lab=inn}
 C {ipin.sym} 530 350 0 0 {name=p65 lab=ibias}
 C {iopin.sym} 590 320 0 0 {name=p66 lab=vss}
 C {lab_pin.sym} -980 -190 3 0 {name=p67 sig_type=std_logic lab=vss}
-C {lab_pin.sym} 120 -210 1 0 {name=p68 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} 60 -350 0 0 {name=p69 sig_type=std_logic lab=vbias_p}
 C {lab_pin.sym} -1040 -70 0 0 {name=p70 sig_type=std_logic lab=ibias}
 C {netlist_not_shown.sym} 710 250 0 0 {name=params value=

@@ -11,10 +11,10 @@ MXM7 ncmdiff_n inn net2 vss sg13_hv_nmos w=5u l=2u ng=4
 MXM8 ncmdiff_n ibias vss vss sg13_hv_nmos w=5u l=4u ng=2
 MXM9 vdd net2 out1_n vdd sg13_hv_pmos w=15u l=4u ng=4
 MXM10 net2 net2 vdd vdd sg13_hv_pmos w=15u l=4u ng=4
-MXM25 nswa vref_p ncmdiff_p ncmdiff_p sg13_hv_pmos w=15u l=1u ng=2
+MXM25 nswa vbias_p ncmdiff_p ncmdiff_p sg13_hv_pmos w=15u l=1u ng=2
 MXM26 nswa nswa vss vss sg13_hv_nmos w=5u l=4u ng=4
 MXM27 ncmdiff_n nswa vss vss sg13_hv_nmos w=5u l=4u ng=4
-MXM28 ncmdiff_n vref_n nswb vss sg13_hv_nmos w=5u l=1u ng=2
+MXM28 ncmdiff_n vbias_p nswb vss sg13_hv_nmos w=5u l=1u ng=2
 MXM29 nswb nswb vdd vdd sg13_hv_pmos w=15u l=4u ng=4
 MXM30 ncmdiff_p nswb vdd vdd sg13_hv_pmos w=15u l=4u ng=4
 MXM13 out1_n nabn out1_p vss sg13_hv_nmos w=5u l=1u ng=2
@@ -33,11 +33,7 @@ MXM11 out out1_n vdd vdd sg13_hv_pmos w=60u l=1u ng=8
 MXM12 out out1_p vss vss sg13_hv_nmos w=20u l=1u ng=8
 MXB1 ibias ibias vss vss sg13_hv_nmos w=5u l=4u ng=2
 MXB2 vbias_p ibias vss vss sg13_hv_nmos w=5u l=4u ng=2
-MXB5 vref_n vref_n vss vss sg13_hv_nmos w=5u l=4u ng=4
-MXB6 vref_p ibias vss vss sg13_hv_nmos w=5u l=4u ng=2
 MXB3 vbias_p vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=2
-MXB4 vref_n vbias_p vdd vdd sg13_hv_pmos w=15u l=4u ng=2
-MXB7 vref_p vref_p vdd vdd sg13_hv_pmos w=15u l=4u ng=4
 CC3 out net5 cap_cmomf w=13.5e-6 l=21e-6
 CC2 out net6 cap_cmomf w=13.5e-6 l=21e-6
 RR4 net5 out1_n 51.16k $SUB=vss $[rhigh] w=1e-6 l=36e-6 b=0
