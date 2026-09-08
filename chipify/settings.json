@@ -122,5 +122,5 @@
   "in_dir": "",
   "out_dir": "",
   "work_dir": "",
-  "tb_dir": ""
+  "tb_dir": "../testbenches/xschem"
 }

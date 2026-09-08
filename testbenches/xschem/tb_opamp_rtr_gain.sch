@@ -100,7 +100,6 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
-C {heichip/opamp_rtr/chipify/sch/opamp_rtr.sym} 90 -80 0 0 {name=x2}
 C {sg13g2_pr/sg13_hv_nmos.sym} 390 -180 3 0 {name=M3
 l=10u
 w=15u
@@ -119,3 +118,4 @@ w=15u
  model=sg13_hv_nmos
 spiceprefix=X
 }
+C {heichip/opamp_rtr/schematic/xschem/opamp_rtr.sym} 90 -80 0 0 {name=x1}
