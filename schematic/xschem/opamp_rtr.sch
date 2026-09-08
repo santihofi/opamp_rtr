@@ -92,7 +92,7 @@ N -620 -400 -620 -350 {lab=vdd}
 N -620 -400 -600 -400 {lab=vdd}
 N -600 -420 -600 -400 {lab=vdd}
 N -840 -140 -600 -140 {lab=ncmdiff_n}
-N -560 -210 -540 -210 {lab=vref_n}
+N -560 -210 -540 -210 {lab=vbias_p}
 N -400 -140 -400 -100 {lab=ncmdiff_n}
 N -440 -320 -440 -280 {lab=ncmdiff_p}
 N -600 -140 -400 -140 {lab=ncmdiff_n}
@@ -243,38 +243,6 @@ N -20 280 0 280 {lab=vbias_p}
 N 0 280 0 330 {lab=vbias_p}
 N -60 330 0 330 {lab=vbias_p}
 N -60 310 -60 330 {lab=vbias_p}
-N 0 280 90 280 {lab=vbias_p}
-N 130 230 130 250 {lab=vdd}
-N 130 370 130 390 {lab=vref_n}
-N 130 280 150 280 {lab=vdd}
-N 150 230 150 280 {lab=vdd}
-N 130 230 150 230 {lab=vdd}
-N 130 210 130 230 {lab=vdd}
-N 130 470 130 490 {lab=vss}
-N 110 420 130 420 {lab=vss}
-N 110 420 110 470 {lab=vss}
-N 110 470 130 470 {lab=vss}
-N 130 450 130 470 {lab=vss}
-N 170 420 190 420 {lab=vref_n}
-N 190 370 190 420 {lab=vref_n}
-N 130 370 190 370 {lab=vref_n}
-N 130 310 130 370 {lab=vref_n}
-N 340 470 340 490 {lab=vss}
-N 340 420 360 420 {lab=vss}
-N 360 420 360 470 {lab=vss}
-N 340 470 360 470 {lab=vss}
-N 340 450 340 470 {lab=vss}
-N 280 420 300 420 {lab=ibias}
-N 340 330 400 330 {lab=vref_p}
-N 340 310 340 330 {lab=vref_p}
-N 400 280 400 330 {lab=vref_p}
-N 380 280 400 280 {lab=vref_p}
-N 340 330 340 390 {lab=vref_p}
-N 340 230 340 250 {lab=vdd}
-N 320 280 340 280 {lab=vdd}
-N 320 230 320 280 {lab=vdd}
-N 320 230 340 230 {lab=vdd}
-N 340 210 340 230 {lab=vdd}
 N -1140 -350 -1120 -350 {lab=vdd}
 N -1140 -400 -1140 -350 {lab=vdd}
 N -1140 -400 -1120 -400 {lab=vdd}
@@ -512,7 +480,6 @@ w=\{w_sw_p\}
 spiceprefix=X
 }
 C {lab_pin.sym} -240 -140 0 0 {name=p15 sig_type=std_logic lab=nswa}
-C {lab_pin.sym} -300 -210 0 0 {name=p16 sig_type=std_logic lab=vref_p}
 C {sg13g2_pr/sg13_hv_nmos.sym} -260 -70 0 0 {name=XM26
 l=\{l_bias\}
 w=\{w_gmn\}
@@ -564,7 +531,6 @@ spiceprefix=X
 C {lab_pin.sym} -600 -420 1 0 {name=p20 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} -440 -420 1 0 {name=p21 sig_type=std_logic lab=vdd}
 C {lab_pin.sym} -620 -210 0 0 {name=p22 sig_type=std_logic lab=vss}
-C {lab_pin.sym} -540 -210 2 0 {name=p23 sig_type=std_logic lab=vref_n}
 C {sg13g2_pr/sg13_hv_nmos.sym} -950 360 0 0 {name=XM13
 l=\{l_ab\}
 w=\{w_ab_n\}
@@ -746,46 +712,10 @@ w=\{w_bias_n\}
  model=sg13_hv_nmos
 spiceprefix=X
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 150 420 0 1 {name=XB5
-l=\{l_bias\}
-w=\{w_ref_n\}
- ng=\{n_ref_n\}
- m=1
-  mm_ok=1
- model=sg13_hv_nmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_nmos.sym} 320 420 0 0 {name=XB6
-l=\{l_bias\}
-w=\{w_bias_n\}
- ng=\{n_bias_n\}
- m=1
-  mm_ok=1
- model=sg13_hv_nmos
-spiceprefix=X
-}
 C {sg13g2_pr/sg13_hv_pmos.sym} -40 280 0 1 {name=XB3
 l=\{l_bias\}
 w=\{w_bias_p\}
  ng=\{n_bias_p\}
- m=1
-  mm_ok=1
- model=sg13_hv_pmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_pmos.sym} 110 280 0 0 {name=XB4
-l=\{l_bias\}
-w=\{w_bias_p\}
- ng=\{n_bias_p\}
- m=1
-  mm_ok=1
- model=sg13_hv_pmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_pmos.sym} 360 280 0 1 {name=XB7
-l=\{l_bias\}
-w=\{w_ref_p\}
- ng=\{n_ref_p\}
  m=1
   mm_ok=1
  model=sg13_hv_pmos
@@ -796,13 +726,6 @@ C {lab_pin.sym} -180 490 3 0 {name=p50 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -60 490 3 0 {name=p51 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -60 350 2 0 {name=p52 sig_type=std_logic lab=vbias_p}
 C {lab_pin.sym} -60 210 1 0 {name=p53 sig_type=std_logic lab=vdd}
-C {lab_pin.sym} 130 210 1 0 {name=p54 sig_type=std_logic lab=vdd}
-C {lab_pin.sym} 130 340 2 0 {name=p55 sig_type=std_logic lab=vref_n}
-C {lab_pin.sym} 130 490 3 0 {name=p56 sig_type=std_logic lab=vss}
-C {lab_pin.sym} 340 490 3 0 {name=p57 sig_type=std_logic lab=vss}
-C {lab_pin.sym} 340 370 2 0 {name=p58 sig_type=std_logic lab=vref_p}
-C {lab_pin.sym} 280 420 0 0 {name=p59 sig_type=std_logic lab=ibias}
-C {lab_pin.sym} 340 210 1 0 {name=p60 sig_type=std_logic lab=vdd}
 C {ipin.sym} 530 290 0 0 {name=p61 lab=inp}
 C {opin.sym} 590 350 0 0 {name=p62 lab=out}
 C {iopin.sym} 590 290 0 0 {name=p63 lab=vdd}
@@ -1061,3 +984,5 @@ value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e
 }
 C {lab_pin.sym} -1780 400 1 0 {name=p93 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -1780 500 3 0 {name=p94 sig_type=std_logic lab=vss}
+C {lab_pin.sym} -540 -210 2 0 {name=p95 sig_type=std_logic lab=vbias_p}
+C {lab_pin.sym} -300 -210 0 0 {name=p16 sig_type=std_logic lab=vbias_p}
