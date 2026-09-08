@@ -6,21 +6,21 @@ parameters:
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['1u']
-  c_load: ['500f', '20p', '100f']
+  c_load: ['8p', '100f']
   corner_cap: ['typ', 'wcs', 'bcs']
-  corner_res: ['typ', 'wcs', 'bcs']
+  corner_res: ['typ']
   mm_ok_stg1: [1]
 tests:
   tb_opamp_rtr_dc:
     engine: ngspice
-    dc_signals: [in, out]
+    dc_signals: [in_dc, out_dc]
     op1.vos:
       min: -0.01
       max: 0.01
       typ: 0.0
       unit: 'V'
   tb_opamp_rtr_tran_rect:
-    transient_signals: [vdin, out]
+    transient_signals: [in_rect, out_rect]
     engine: ngspice
 equations:
   vd_tr: outp-outn

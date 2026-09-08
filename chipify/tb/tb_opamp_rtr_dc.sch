@@ -14,7 +14,7 @@ N 510 -40 510 -20 {lab=GND}
 N 510 -160 510 -140 {lab=vdd}
 N 530 -280 530 -260 {lab=vdd}
 N 530 -200 530 -140 {lab=#net1}
-N 330 -70 330 -50 {lab=in}
+N 330 -70 330 -50 {lab=in_dc}
 N 440 -70 440 20 {lab=out_dc}
 N 440 20 590 20 {lab=out_dc}
 N 590 -90 590 20 {lab=out_dc}
@@ -31,7 +31,7 @@ value="
 .control
 save all
 op  
-let vos = v(out)-v(in)
+let vos = v(out_dc)-v(in_dc)
 dc V1 0 \{\{vdd\}\} 10m
 quit
 .endc

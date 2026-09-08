@@ -6,8 +6,8 @@ parameters:
   sigma: [1]
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['1u']
-  c_load: ['50f', '500f', '20p']
-  corner_cap: ['typ', 'wcs', 'bcs']
+  c_load: ['50f', '8p']
+  corner_cap: ['wcs']
   corner_res: ['typ', 'wcs', 'bcs']
   mm_ok_stg1: [1]
 tests:

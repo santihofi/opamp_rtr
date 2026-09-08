@@ -884,7 +884,7 @@ C {netlist_not_shown.sym} 710 250 0 0 {name=params value=
 C {sg13g2_pr/cap_cmomf.sym} 710 -80 0 0 {name=C3
 model=cap_cmomf
 w=13.5e-6
-l=30e-6
+l=21e-6
 mmin=1
 mmax=4
 subblock=0
@@ -895,7 +895,7 @@ spiceprefix=X
 C {sg13g2_pr/cap_cmomf.sym} 830 -80 0 0 {name=C2
 model=cap_cmomf
 w=13.5e-6
-l=30e-6
+l=21e-6
 mmin=1
 mmax=4
 subblock=0

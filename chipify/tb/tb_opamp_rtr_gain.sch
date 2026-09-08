@@ -88,24 +88,6 @@ footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 50 100 0 0 {name=l6 lab=GND}
 C {isource.sym} 140 -260 0 0 {name=I0 value=\{\{ibias\}\}}
-C {sg13g2_pr/sg13_hv_pmos.sym} 390 -180 3 0 {name=M1
-l=10u
-w=50u
- ng=6
- m=2
-  mm_ok=1
- model=sg13_hv_pmos
-spiceprefix=X
-}
-C {sg13g2_pr/sg13_hv_pmos.sym} 300 -180 3 0 {name=M2
-l=10u
-w=50u
- ng=6
- m=2
-  mm_ok=1
- model=sg13_hv_pmos
-spiceprefix=X
-}
 C {lab_pin.sym} 340 -260 3 1 {name=p3 sig_type=std_logic lab=vdd}
 C {simulator_commands_shown.sym} -410 70 0 0 {
 name=Libs_Ngspice
@@ -119,3 +101,21 @@ value="
 "
       }
 C {heichip/opamp_rtr/chipify/sch/opamp_rtr.sym} 90 -80 0 0 {name=x2}
+C {sg13g2_pr/sg13_hv_nmos.sym} 390 -180 3 0 {name=M3
+l=10u
+w=15u
+ ng=4
+ m=1
+  mm_ok=1
+ model=sg13_hv_nmos
+spiceprefix=X
+}
+C {sg13g2_pr/sg13_hv_nmos.sym} 300 -180 3 0 {name=M1
+l=10u
+w=15u
+ ng=4
+ m=1
+  mm_ok=1
+ model=sg13_hv_nmos
+spiceprefix=X
+}
