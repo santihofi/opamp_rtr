@@ -58,6 +58,7 @@ NET_PEX_DIR     := netlist/pex
 CACE_DIR        := verification/cace
 LVS_RPT_DIR     := verification/lvs
 DRC_RPT_DIR     := verification/drc
+CHIPIFY_DIR		:= chipify
 
 
 # Help Target
@@ -120,12 +121,18 @@ sim-cace: ## Run CACE simulations and collect result plots
 	rm -rf _runs _docs netlist
 .PHONY: sim-cace
 
+sim-chipify: ## Run chipify simulations
+	cd $(CHIPIFY_DIR) && \
+	chipify-cli --batch ./datasheets
+.PHONY: sim-chipify
+
 sim-all: ## Simulate the macro
 	$(MAKE) sim-xschem TB=inverter_tb_ac_ol
 	$(MAKE) sim-xschem TB=inverter_tb_tran
 	$(MAKE) sim-xschem TB=inverter_tb_dc_vout
 	$(MAKE) sim-xschem TB=inverter_top_tb_tran
 	$(MAKE) sim-cace
+	$(MAKE) sim-chipify
 .PHONY: sim-all
 # ================================================================================================
 
