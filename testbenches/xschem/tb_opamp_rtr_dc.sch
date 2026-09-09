@@ -19,6 +19,8 @@ N 440 -70 440 20 {lab=out_dc}
 N 440 20 590 20 {lab=out_dc}
 N 590 -90 590 20 {lab=out_dc}
 N 580 -90 590 -90 {lab=out_dc}
+N 590 20 590 40 {lab=out_dc}
+N 590 100 590 120 {lab=#net2}
 C {vsource.sym} 330 -20 0 0 {name=V1 value=\{\{vincm\}\} savecurrent=true}
 C {gnd.sym} 330 10 0 0 {name=l19 lab=GND}
 C {devices/code_shown.sym} 680 -200 0 0 {name=NGSPICE only_toplevel=true 
@@ -64,3 +66,9 @@ C {devices/code_shown.sym} 0 220 0 0 {name=inc only_toplevel=true
 value="
 .include /foss/designs/heichip/opamp_rtr/netlist/pex/opamp_rtr_magic_pex_3.spice
 "}
+C {res.sym} 590 70 0 0 {name=R1
+value=10k
+footprint=1206
+device=resistor
+m=1}
+C {gnd.sym} 590 120 0 0 {name=l2 lab=GND}

@@ -45,6 +45,10 @@ Reading "via_stack$6".
 Reading "guard_ring$1".
 Reading "via_stack$31".
 Reading "via_stack$20".
+Reading "cap_cmomf$1".
+Error while reading cell "cap_cmomf$1" (byte position 124562): Unknown layer/datatype in boundary, layer=99 type=40
+Reading "cap_cmomf".
+Error while reading cell "cap_cmomf" (byte position 166482): Unknown layer/datatype in boundary, layer=99 type=40
 Reading "rhigh$2".
 Reading "rhigh".
 Reading "via_stack$30".
@@ -90,35 +94,35 @@ Reading "via_stack$47".
 Reading "NMOS_MIRROR_4u".
 Reading "PMOS_MIRROR_4u".
 Reading "NMOS_DIFF_PAIR".
-Error while reading cell "NMOS_DIFF_PAIR" (byte position 326498): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "NMOS_DIFF_PAIR" (byte position 326932): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "NMOS_DIFF_PAIR" (byte position 327000): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "NMOS_DIFF_PAIR" (byte position 327034): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "NMOS_DIFF_PAIR" (byte position 327068): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "NMOS_DIFF_PAIR" (byte position 411226): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "NMOS_DIFF_PAIR" (byte position 411660): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "NMOS_DIFF_PAIR" (byte position 411728): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "NMOS_DIFF_PAIR" (byte position 411762): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "NMOS_DIFF_PAIR" (byte position 411796): Warning: cell "via_stack" placed on top of itself.  Ignoring the extra one.
 Reading "PMOS_DIFF_PAIR".
 Reading "opamp_rtr".
-Error while reading cell "opamp_rtr" (byte position 332662): Warning: cell "nmosHV$10" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 332698): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 332886): Warning: cell "guard_ring$3" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 333668): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 333776): Warning: cell "via_stack$2" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 333884): Warning: cell "via_stack$2" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 333918): Warning: cell "nmosHV$16" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335168): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335240): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335312): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335524): Warning: cell "nmosHV$8" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335560): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 335876): Warning: cell "nmosHV$10" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336092): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336164): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336236): Warning: cell "via_stack$8" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336524): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336556): Warning: cell "nmosHV$8" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336592): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336628): Warning: cell "via_stack$8" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336664): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
-Error while reading cell "opamp_rtr" (byte position 336700): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 417390): Warning: cell "nmosHV$10" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 417426): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 417614): Warning: cell "guard_ring$3" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 418384): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 418492): Warning: cell "via_stack$2" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 418600): Warning: cell "via_stack$2" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 418634): Warning: cell "nmosHV$16" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420056): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420268): Warning: cell "nmosHV$8" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420304): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420620): Warning: cell "nmosHV$10" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420836): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420908): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 420980): Warning: cell "via_stack$8" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421268): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421300): Warning: cell "nmosHV$8" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421336): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421372): Warning: cell "via_stack$8" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421408): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421444): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421624): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
+Error while reading cell "opamp_rtr" (byte position 421660): Warning: cell "via_stack$9" placed on top of itself.  Ignoring the extra one.
 Extracting opamp_rtr_pex into /foss/designs/heichip/opamp_rtr/netlist/pex/opamp_rtr_pex.ext:
 Processing opamp_rtr_pex
 opamp_rtr_pex: 41 warnings
@@ -126,10 +130,11 @@ Processing cell opamp_rtr_pex for resistance extraction.
 Extracting w_8388_2366#
 Extracting a_1076_5541#
 Extracting vss
-Warning:  Orphaned node "vss" arbitrarily attached to "vss.n0"
+Warning:  Orphaned node "vss" arbitrarily attached to "vss.t42"
 Extracting vdd
+Extracting out
 Total Nets: 38
-Nets extracted: 4 (0.105263)
-Nets output: 1 (0.026316)
+Nets extracted: 5 (0.131579)
+Nets output: 2 (0.052632)
 Total of 41 warnings.
 exttospice finished.

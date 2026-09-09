@@ -22,6 +22,9 @@ N 280 0 280 60 {lab=GND}
 N 280 -100 280 -60 {lab=in_rect}
 N 520 20 520 40 {lab=out_rect}
 N 520 100 520 120 {lab=GND}
+N 570 20 570 40 {lab=out_rect}
+N 570 100 570 120 {lab=GND}
+N 520 20 570 20 {lab=out_rect}
 C {lab_pin.sym} 310 -100 1 0 {name=p5 sig_type=std_logic lab=in_rect}
 C {gnd.sym} 280 60 0 0 {name=l2 lab=GND}
 C {devices/code_shown.sym} 710 -120 0 0 {name=NGSPICE only_toplevel=true 
@@ -54,7 +57,7 @@ footprint=1206
 device="ceramic capacitor"
 }
 C {gnd.sym} 520 120 0 0 {name=l3 lab=GND}
-C {simulator_commands_shown.sym} 80 190 0 0 {
+C {simulator_commands_shown.sym} 90 180 0 0 {
 name=Libs_Ngspice
 simulator=ngspice
 only_toplevel=false
@@ -72,3 +75,9 @@ C {devices/code_shown.sym} 550 260 0 0 {name=inc only_toplevel=true
 value="
 .include /foss/designs/heichip/opamp_rtr/netlist/pex/opamp_rtr_magic_pex_3.spice
 "}
+C {res.sym} 570 70 0 0 {name=R1
+value=10k
+footprint=1206
+device=resistor
+m=1}
+C {gnd.sym} 570 120 0 0 {name=l5 lab=GND}

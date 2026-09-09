@@ -25,6 +25,10 @@ tests:
       unit: 'dB'
       min: 40.0
     ac_signals: [out]
+    UGF:
+      unit: 'Hz'
+    phase_margin:
+      unit: "\xB0"
 equations:
   vd_tr: outp-outn
 transient_equations:

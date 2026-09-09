@@ -27,7 +27,7 @@ C {devices/code_shown.sym} 570 -300 0 0 {name=NGSPICE only_toplevel=true
 value="
 .temp \{\{ temp \}\}
 .param mc_ok = \{\{ sigma \}\}
-.option SEED= \{\{ seed \}\}
+.option SEED= \{\{ seed \}\} rshunt=1e15
 .control
 save all
 ac dec 10 1 1000000000k
