@@ -42,6 +42,8 @@ MDUMMY1 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=4
 MDUMMY2 ncmdiff_n ncmdiff_n ncmdiff_n vss sg13_hv_nmos w=5u l=0.45u ng=2
 MDUMMY10 out1_n out1_n out1_n vdd sg13_hv_pmos w=15u l=1u ng=2
 MDUMMY11 out1_p out1_p out1_p vss sg13_hv_nmos w=5u l=1u ng=2
+RRDUMMY vss vss 6.455k $SUB=vss $[rhigh] w=1e-6 l=9e-6 b=0 m=2
+MDUMMY3 ncmdiff_p ncmdiff_p ncmdiff_p ncmdiff_p sg13_hv_pmos w=15u l=0.4u ng=4
 **** begin user architecture code
 
 

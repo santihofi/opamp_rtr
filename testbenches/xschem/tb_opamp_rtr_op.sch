@@ -67,4 +67,10 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
-C {heichip/opamp_rtr/schematic/xschem/opamp_rtr.sym} 480 -50 0 0 {name=x1}
+C {heichip/opamp_rtr/schematic/xschem/opamp_rtr.sym} 90 -190 0 0 {name=x1
+spice_ignore=true}
+C {heichip/opamp_rtr/schematic/xschem/opamp_rtr_pex.sym} 480 -50 0 0 {name=x2}
+C {devices/code_shown.sym} 10 230 0 0 {name=inc only_toplevel=true 
+value="
+.include /foss/designs/heichip/opamp_rtr/netlist/pex/opamp_rtr_magic_pex_3.spice
+"}

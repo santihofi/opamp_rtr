@@ -1,0 +1,166 @@
+* PEX produced on Wed Sep  9 10:47:51 AM CEST 2026 using /foss/tools/sak/sak-pex.sh with m=1 and s=1
+* NGSPICE file created from opamp_rtr_pex.ext - technology: ihp-sg13cmos5l
+
+.subckt opamp_rtr_pex vdd inp vss inn ibias out
+X0 out a_9288_5041# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X1 vdd a_592_286# a_1392_382# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X2 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=62.7835p ps=0.25869m w=3.75u l=0.4u
+X3 vss ibias a_442_5111# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X4 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=13.7666p ps=96.82u w=1.25u l=0.45u
+X5 out a_1076_5541# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X6 vss vss vss vss sg13_hv_nmos ad=0.85p pd=5.68u as=0.18235n ps=0.8465m w=2.5u l=0.45u
+X7 ibias ibias vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X8 vdd vdd vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.18065n ps=0.47106m w=3.75u l=0.4u
+X9 w_8388_2366# a_592_286# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X10 a_9288_5041# inp w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X11 a_9288_5041# a_8488_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X12 a_592_2733# a_592_2733# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X13 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=0.45u
+X14 w_8388_2366# inn a_8488_4945# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X15 w_8388_2366# a_3520_5051# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X16 out a_9288_5041# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X17 a_592_2733# inn a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X18 a_12881_4979# a_14767_4615# vss rhigh l=9u w=1u
+X19 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=2.55p pd=15.68u as=0 ps=0 w=7.5u l=0.4u
+X20 a_11355_6131# a_1392_382# a_1392_382# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X21 a_442_5111# a_4818_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X22 a_8488_4945# inn w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X23 vss vss vss vss sg13_hv_nmos ad=0.425p pd=3.18u as=0 ps=0 w=1.25u l=0.45u
+X24 vss vss vss rhigh l=9u w=1u
+X25 a_1076_5541# a_592_2733# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X26 vss vss vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=0.45u
+X27 a_12881_4251# a_1076_5541# vss rhigh l=9u w=1u
+X28 vdd vdd vdd vdd sg13_hv_pmos ad=1.275p pd=8.18u as=0 ps=0 w=3.75u l=0.4u
+X29 a_9288_5041# a_8488_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X30 a_442_5111# a_592_286# a_3520_5051# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X31 vss a_9288_5041# out vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X32 a_1076_5541# a_1076_5541# a_1076_5541# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=34.7735p ps=0.10686m w=7.5u l=1u
+X33 vdd a_592_286# a_5933_6071# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X34 a_12881_2795# a_14767_3159# vss rhigh l=9u w=1u
+X35 a_442_5111# inn a_592_2733# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X36 vdd a_1076_5541# out vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X37 vss vss vss rhigh l=9u w=1u
+X38 vss vss vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=0.45u
+X39 vss ibias a_592_286# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X40 vdd vdd vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0 ps=0 w=3.75u l=0.4u
+X41 vss a_5933_6071# a_5933_6071# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X42 vdd a_592_2733# a_1076_5541# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X43 a_3520_5051# a_592_286# a_442_5111# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X44 vdd a_592_2733# a_1076_5541# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X45 a_9508_346# a_9508_346# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X46 vdd a_3520_5051# a_3520_5051# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X47 a_4818_4945# a_4818_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X48 a_442_5111# inp a_1076_5541# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X49 vdd a_3520_5051# a_3520_5051# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X50 vdd vdd vdd vdd sg13_hv_pmos ad=2.55p pd=15.68u as=0 ps=0 w=7.5u l=0.4u
+X51 vss a_4818_4945# a_4818_4945# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X52 a_442_5111# ibias vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X53 w_8388_2366# a_3520_5051# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X54 a_5933_6071# a_592_286# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X55 a_1076_5541# a_592_286# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X56 a_4818_4945# a_4818_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X57 a_442_5111# inp a_1076_5541# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X58 vss vss vss vss sg13_hv_nmos ad=0.425p pd=3.18u as=0 ps=0 w=1.25u l=0.45u
+X59 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0 ps=0 w=3.75u l=0.4u
+X60 vss a_5933_6071# a_9288_5041# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X61 vss vss vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0 ps=0 w=1.25u l=0.45u
+X62 vdd a_1076_5541# out vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X63 vss vss vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0 ps=0 w=1.25u l=0.45u
+X64 a_9288_5041# a_9288_5041# a_9288_5041# vss sg13_hv_nmos ad=0.85p pd=5.68u as=17.3283p ps=85.93999u w=2.5u l=1u
+X65 vdd vdd vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=0 ps=0 w=7.5u l=0.4u
+X66 a_9288_5041# a_9288_5041# a_9288_5041# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=1u
+X67 a_8488_4945# inn w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X68 a_8488_4945# a_8488_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X69 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=1.275p pd=8.18u as=0 ps=0 w=3.75u l=0.4u
+X70 vss vss vss vss sg13_hv_nmos ad=0.85p pd=5.68u as=0 ps=0 w=2.5u l=0.45u
+X71 a_12881_3523# a_9288_5041# vss rhigh l=9u w=1u
+X72 vdd a_592_286# a_1076_5541# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X73 a_592_2733# inn a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X74 a_442_5111# inn a_592_2733# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X75 a_1392_382# a_1392_382# a_11355_6131# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X76 a_9288_5041# inp w_8388_2366# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X77 vss a_5933_6071# a_6733_6167# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X78 out a_9288_5041# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X79 a_1076_5541# a_6733_6167# a_9288_5041# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X80 vdd a_9508_346# a_9508_346# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X81 a_12881_4251# a_14767_4615# vss rhigh l=9u w=1u
+X82 a_5933_6071# a_5933_6071# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X83 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.425p pd=3.18u as=0 ps=0 w=1.25u l=0.45u
+X84 a_1076_5541# a_592_2733# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X85 vss vss vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=0.45u
+X86 vdd vdd vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=0 ps=0 w=7.5u l=0.4u
+X87 a_442_5111# a_4818_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X88 a_9508_346# a_6733_6167# a_6733_6167# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X89 vss ibias ibias vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X90 vss a_9288_5041# out vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X91 out a_1076_5541# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X92 vss a_4818_4945# a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X93 a_4818_4945# a_592_286# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X94 a_11355_6131# a_11355_6131# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X95 a_592_2733# a_592_2733# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X96 vss a_11355_6131# a_11355_6131# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X97 vss a_8488_4945# a_8488_4945# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X98 a_9288_5041# a_6733_6167# a_1076_5541# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X99 vdd vdd vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0 ps=0 w=3.75u l=0.4u
+X100 vdd vdd vdd vdd sg13_hv_pmos ad=1.275p pd=8.18u as=0 ps=0 w=3.75u l=0.4u
+X101 w_8388_2366# inn a_8488_4945# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X102 vss a_4818_4945# a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X103 a_1076_5541# inp a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X104 vss vss vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0 ps=0 w=1.25u l=0.45u
+X105 a_1076_5541# a_1392_382# a_9288_5041# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X106 a_3520_5051# a_3520_5051# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X107 vss vss vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0 ps=0 w=1.25u l=0.45u
+X108 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.425p pd=3.18u as=0 ps=0 w=1.25u l=0.45u
+X109 out a_9288_5041# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X110 vdd a_592_286# w_8388_2366# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X111 vss a_8488_4945# a_9288_5041# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X112 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=1.425p pd=7.88u as=0 ps=0 w=7.5u l=0.4u
+X113 vdd a_592_286# a_592_286# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X114 w_8388_2366# inp a_9288_5041# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X115 vss a_9288_5041# out vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X116 vdd a_592_2733# a_592_2733# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X117 out a_1076_5541# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X118 vdd a_3520_5051# w_8388_2366# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X119 a_9288_5041# a_1392_382# a_1076_5541# vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X120 a_1392_382# a_592_286# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X121 w_8388_2366# w_8388_2366# w_8388_2366# w_8388_2366# sg13_hv_pmos ad=1.275p pd=8.18u as=0 ps=0 w=3.75u l=0.4u
+X122 a_3520_5051# a_3520_5051# vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X123 a_12881_4979# a_14767_5343# vss rhigh l=9u w=1u
+X124 a_9288_5041# a_5933_6071# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X125 vdd a_1076_5541# out vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X126 vss vss vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0 ps=0 w=2.5u l=0.45u
+X127 a_12881_2795# a_14767_2795# vss rhigh l=9u w=1u
+X128 w_8388_2366# a_592_286# a_4818_4945# w_8388_2366# sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X129 a_8488_4945# a_8488_4945# vss vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X130 vdd vdd vdd vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0 ps=0 w=3.75u l=0.4u
+X131 vdd a_592_2733# a_592_2733# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X132 vss a_8488_4945# a_9288_5041# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X133 a_12881_3523# a_14767_3159# vss rhigh l=9u w=1u
+X134 vdd a_3520_5051# w_8388_2366# vdd sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=4u
+X135 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.85p pd=5.68u as=0 ps=0 w=2.5u l=0.45u
+X136 vdd vdd vdd vdd sg13_hv_pmos ad=2.55p pd=15.68u as=0 ps=0 w=7.5u l=0.4u
+X137 a_592_286# a_592_286# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=4u
+X138 vss a_4818_4945# a_4818_4945# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X139 a_442_5111# a_442_5111# a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0 ps=0 w=1.25u l=0.45u
+X140 vdd vdd vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=0 ps=0 w=7.5u l=0.4u
+X141 a_592_286# ibias vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X142 vss a_9288_5041# out vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=1u
+X143 out a_1076_5541# vdd vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X144 a_1076_5541# a_1076_5541# a_1076_5541# vdd sg13_hv_pmos ad=2.55p pd=15.68u as=0 ps=0 w=7.5u l=1u
+X145 vss a_8488_4945# a_8488_4945# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=4u
+X146 a_1076_5541# inp a_442_5111# vss sg13_hv_nmos ad=0.2375p pd=1.63u as=0.2375p ps=1.63u w=1.25u l=2u
+X147 a_6733_6167# a_6733_6167# a_9508_346# vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+X148 w_8388_2366# inp a_9288_5041# w_8388_2366# sg13_hv_pmos ad=0.7125p pd=4.13u as=0.7125p ps=4.13u w=3.75u l=2u
+X149 a_6733_6167# a_5933_6071# vss vss sg13_hv_nmos ad=0.475p pd=2.88u as=0.475p ps=2.88u w=2.5u l=4u
+X150 vdd a_1076_5541# out vdd sg13_hv_pmos ad=1.425p pd=7.88u as=1.425p ps=7.88u w=7.5u l=1u
+C0 out vss 0.25645p
+C1 a_14767_2795# vss 0.10536p
+C2 a_12881_2795# vss 2.09483f
+C3 a_14767_3159# vss 2.09483f
+C4 a_12881_3523# vss 2.09483f
+C5 a_12881_4251# vss 2.09483f
+C6 a_14767_4615# vss 2.09483f
+C7 a_14767_5343# vss 0.1062p
+C8 a_12881_4979# vss 2.09483f
+.ends
+

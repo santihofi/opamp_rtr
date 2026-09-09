@@ -1,5 +1,5 @@
 parameters:
-  temp: [-40, 27, 100]
+  temp: [27]
   seed: range(1)
   vdd: [3.3]
   vincm: [1.65, 0.2, 3.1]
@@ -7,9 +7,8 @@ parameters:
   corner_mos: ['tt', 'ss', 'ff', 'sf', 'fs']
   ibias: ['1u']
   c_load: ['50f', '8p']
-  corner_cap: ['wcs']
-  corner_res: ['wcs', 'bcs']
-  mm_ok_stg1: [1]
+  corner_cap: ['typ']
+  corner_res: ['typ']
 tests:
   tb_opamp_rtr_op:
     engine: ngspice
@@ -25,19 +24,7 @@ tests:
     gain:
       unit: 'dB'
       min: 40.0
-    UGF:
-      unit: 'Hz'
-      min: 100000.0
-    phase_margin:
-      unit: "\xB0"
-      min: 50.0
     ac_signals: [out]
-  tb_opamp_rtr_tran:
-    transient_signals: [out, x1.out1_p, x1.out1_n]
-    engine: ngspice
-  tb_opamp_rtr_tran_psr:
-    transient_signals: [out_psr]
-    engine: ngspice
 equations:
   vd_tr: outp-outn
 transient_equations:

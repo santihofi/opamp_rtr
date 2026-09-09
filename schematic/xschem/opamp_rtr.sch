@@ -303,6 +303,19 @@ N -1450 180 -1430 180 {lab=vss}
 N -1530 180 -1510 180 {lab=out1_p}
 N 120 -280 120 -210 {lab=ncmdiff_p}
 N -0 -210 120 -210 {lab=ncmdiff_p}
+N -1480 300 -1480 320 {lab=vss}
+N -1480 380 -1480 400 {lab=vss}
+N -1160 30 -1140 30 {lab=ncmdiff_p}
+N -1160 -20 -1160 0 {lab=ncmdiff_p}
+N -1220 -20 -1160 -20 {lab=ncmdiff_p}
+N -1220 30 -1220 80 {lab=ncmdiff_p}
+N -1220 80 -1160 80 {lab=ncmdiff_p}
+N -1160 60 -1160 80 {lab=ncmdiff_p}
+N -1220 30 -1200 30 {lab=ncmdiff_p}
+N -1220 -20 -1220 30 {lab=ncmdiff_p}
+N -1240 30 -1220 30 {lab=ncmdiff_p}
+N -1140 -20 -1140 30 {lab=ncmdiff_p}
+N -1160 -20 -1140 -20 {lab=ncmdiff_p}
 C {sg13g2_pr/sg13_hv_nmos.sym} -1140 -210 0 0 {name=XM6
 l=\{l_diff\}
 w=\{w_diff_n\}
@@ -832,3 +845,26 @@ spiceprefix=X
 C {lab_pin.sym} -1430 180 2 0 {name=p91 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -540 -210 2 0 {name=p95 sig_type=std_logic lab=vbias_p}
 C {lab_pin.sym} -300 -210 0 0 {name=p16 sig_type=std_logic lab=vbias_p}
+C {sg13g2_pr/rhigh.sym} -1480 350 0 0 {name=RDUMMY
+w=1e-6
+l=9e-6
+model=rhigh
+body=vss
+spiceprefix=X
+b=0
+ m=2
+  mm_ok=1
+value="expr_eng(  ( 1.6e-4 / @w + 1360.0 * ( (@b + 1)* @l + ( 1.081*( @w - 0.04e-6 ) + 0.18e-6 )*@b ) / ( @w - 0.04e-6 ) ) / @m  )"
+}
+C {lab_pin.sym} -1480 400 3 0 {name=p23 sig_type=std_logic lab=vss}
+C {lab_pin.sym} -1480 300 1 0 {name=p54 sig_type=std_logic lab=vss}
+C {sg13g2_pr/sg13_hv_pmos.sym} -1180 30 2 1 {name=DUMMY3
+l=0.4u
+w=15u
+ ng=4
+ m=1
+  mm_ok=1
+ model=sg13_hv_pmos
+spiceprefix=X
+}
+C {lab_pin.sym} -1240 30 0 0 {name=p55 sig_type=std_logic lab=ncmdiff_p}

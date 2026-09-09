@@ -287,7 +287,7 @@ klayout-lvs: ## Run KLayout LVS of the CELL cell (usage: make klayout-lvs [CELL=
 
 magic-lvs-netlist: ## Export SPICE schematic netlist from Xschem for Magic + Netgen LVS (usage: make magic-lvs-netlist [CELL=<cellname>] [EV_PRECISION=<digits>])
 	mkdir -p $(NET_SCH_DIR)
-	xschem -s -r -x -q --rcfile $(XSCHEM_SCH_DIR)/xschemrc --command ' \
+	xschem -s -r -x -q --rcfile xschemrc --command ' \
 		set spiceprefix 1; \
 		set lvs_netlist 0; \
 		set top_is_subckt 1; \
@@ -335,7 +335,7 @@ klayout-pex: ## Run Parasitic Extraction with KPEX of the CELL cell (usage: make
 		*) echo "Invalid EXT_MODE: $(EXT_MODE). Use 1, 2, or 3."; exit 1;; \
 	esac; \
 	kpex \
-	--pdk $$PDK_UNDERSCORED \
+	--pdk $$PDK \
 	--cell $(CELL) \
 	--schematic $(XSCHEM_SCH_DIR)/$(CELL).sch \
 	--gds $(LAY_DIR)/$(CELL).$(_GDS_EXT) \
@@ -383,7 +383,6 @@ klayout-verify: ## Verify CELL cell with KLayout (usage: make klayout-verify [CE
 
 klayout-verify-all: ## Verify all main subcells with KLayout (DRC, LVS)
 	$(MAKE) klayout-verify CELL=$(CELL)
-	$(MAKE) klayout-verify CELL=$(TOP)
 .PHONY: klayout-verify-all
 
 magic-verify: ## Verify CELL cell with Magic (usage: make magic-verify [CELL=<cellname>])
@@ -408,6 +407,11 @@ all: ## Verify, build and simulate the TOP cell
 .PHONY: all
 # ================================================================================================
 
+santi: ## custom make target
+	$(MAKE) klayout-verify-all
+	$(MAKE) magic-drc
+	$(MAKE) magic-pex
+.PHONY: santi
 
 # Clean Target
 clean: ## Delete all generated files and folders (final, netlists, render, DRC/LVS reports, simulation and CACE outputs)

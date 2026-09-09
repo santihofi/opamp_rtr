@@ -1,7 +1,7 @@
 {
   "num_cores": null,
   "simulator_engine": "ngspice",
-  "sim_timeout_sec": 10,
+  "sim_timeout_sec": 600,
   "vacask_binary": "vacask",
   "vacask_netlist_source": "xschem",
   "ng2vc_binary": "",

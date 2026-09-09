@@ -17,27 +17,11 @@ N 190 -120 210 -120 {lab=out}
 N 160 0 210 0 {lab=out}
 N 50 0 100 -0 {lab=#net1}
 N 50 -100 50 0 {lab=#net1}
-N 300 -120 320 -120 {lab=out}
 N -60 -140 70 -140 {lab=#net3}
 N -60 -140 -60 -120 {lab=#net3}
 N 50 0 50 20 {lab=#net1}
 N 50 80 50 100 {lab=GND}
-N 300 -160 300 -120 {lab=out}
-N 210 -120 300 -120 {lab=out}
-N 300 -160 390 -160 {lab=out}
-N 270 -230 270 -200 {lab=vdd}
-N 390 -230 420 -230 {lab=vdd}
-N 420 -230 420 -200 {lab=vdd}
-N 390 -230 390 -200 {lab=vdd}
-N 360 -230 390 -230 {lab=vdd}
-N 360 -230 360 -200 {lab=vdd}
-N 340 -230 360 -230 {lab=vdd}
-N 330 -230 330 -200 {lab=vdd}
-N 300 -230 330 -230 {lab=vdd}
-N 300 -230 300 -200 {lab=vdd}
-N 270 -230 300 -230 {lab=vdd}
-N 340 -260 340 -230 {lab=vdd}
-N 330 -230 340 -230 {lab=vdd}
+N 210 -120 320 -120 {lab=out}
 C {vsource.sym} -60 -30 0 0 {name=V1 value=\{\{vincm\}\} savecurrent=true}
 C {devices/code_shown.sym} 570 -300 0 0 {name=NGSPICE only_toplevel=true 
 value="
@@ -88,7 +72,6 @@ footprint=1206
 device="ceramic capacitor"}
 C {gnd.sym} 50 100 0 0 {name=l6 lab=GND}
 C {isource.sym} 140 -260 0 0 {name=I0 value=\{\{ibias\}\}}
-C {lab_pin.sym} 340 -260 3 1 {name=p3 sig_type=std_logic lab=vdd}
 C {simulator_commands_shown.sym} -410 70 0 0 {
 name=Libs_Ngspice
 simulator=ngspice
@@ -100,22 +83,17 @@ value="
 .lib cornerCAP.lib cap_\{\{ corner_cap \}\}
 "
       }
-C {sg13g2_pr/sg13_hv_nmos.sym} 390 -180 3 0 {name=M3
-l=10u
-w=15u
- ng=4
- m=1
-  mm_ok=1
- model=sg13_hv_nmos
-spiceprefix=X
+C {heichip/opamp_rtr/schematic/xschem/opamp_rtr.sym} -260 -260 0 0 {name=x1
+spice_ignore=true}
+C {heichip/opamp_rtr/schematic/xschem/opamp_rtr_pex.sym} 90 -80 0 0 {name=x2}
+C {devices/code_shown.sym} -690 210 0 0 {name=inc only_toplevel=true 
+value="
+.include /foss/designs/heichip/opamp_rtr/netlist/pex/opamp_rtr_magic_pex_3.spice
+"}
+C {capa.sym} 300 -90 2 0 {name=C3
+m=1
+value=\{\{c_load\}\}
+footprint=1206
+device="ceramic capacitor"
 }
-C {sg13g2_pr/sg13_hv_nmos.sym} 300 -180 3 0 {name=M1
-l=10u
-w=15u
- ng=4
- m=1
-  mm_ok=1
- model=sg13_hv_nmos
-spiceprefix=X
-}
-C {heichip/opamp_rtr/schematic/xschem/opamp_rtr.sym} 90 -80 0 0 {name=x1}
+C {gnd.sym} 300 -60 0 0 {name=l5 lab=GND}
