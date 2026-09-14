@@ -102,7 +102,7 @@ SCRIPT ?= plot_$(CELL)
 sim-xschem: ## Run TB simulation with Xschem in batch mode (usage: make sim-xschem [TB=<testbenchname>])
 	mkdir -p $(XSCHEM_TB_DIR)/simulations
 	mkdir -p $(SIM_PLOT_DIR)/data
-	cd $(XSCHEM_TB_DIR) && xschem -r -x -q --rcfile xschemrc --command ' \
+	cd $(XSCHEM_TB_DIR) && xschem -r -x -q --rcfile $(MAKEFILE_DIR)/xschemrc --command ' \
 		xschem set netlist_type spice; \
 		set netlist_dir $(abspath $(XSCHEM_TB_DIR)/simulations); \
 		xschem save; \
@@ -297,6 +297,14 @@ magic-lvs-netlist: ## Export SPICE schematic netlist from Xschem for Magic + Net
 		xschem set netlist_name [file tail [file rootname [xschem get current_name]]]_magic.spice; \
 		xschem netlist \
 	' $(XSCHEM_SCH_DIR)/$(CELL).sch
+	@echo "Flattening SPICE parameters for Magic LVS..."
+	@python3 -c 'import sys, re; \
+	f_in = "$(NET_SCH_DIR)/$(CELL)_magic.spice"; \
+	text = open(f_in).read(); \
+	params = dict(re.findall(r"(?im)^\s*\.param\s+([a-zA-Z0-9_]+)\s*=\s*(.*)", text)); \
+	text = re.sub(r"(?im)^\s*\.param\s+[^\n]*\n?", "", text); \
+	text = re.sub(r"\{([a-zA-Z0-9_]+)\}", lambda m: params.get(m.group(1), m.group(0)).strip(), text); \
+	open(f_in, "w").write(text)'
 .PHONY: magic-lvs-netlist
 
 magic-lvs: ## Run Magic + Netgen LVS of the CELL cell (usage: make magic-lvs [CELL=<cellname>])

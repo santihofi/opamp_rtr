@@ -130,7 +130,7 @@ Processing cell opamp_rtr_pex for resistance extraction.
 Extracting w_8388_2366#
 Extracting a_1076_5541#
 Extracting vss
-Warning:  Orphaned node "vss" arbitrarily attached to "vss.t42"
+Warning:  Orphaned node "vss" arbitrarily attached to "vss.n0"
 Extracting vdd
 Extracting out
 Total Nets: 38

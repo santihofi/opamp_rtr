@@ -21,7 +21,10 @@ N -60 -140 70 -140 {lab=#net3}
 N -60 -140 -60 -120 {lab=#net3}
 N 50 0 50 20 {lab=#net1}
 N 50 80 50 100 {lab=GND}
-N 210 -120 320 -120 {lab=out}
+N 360 -120 380 -120 {lab=out}
+N 360 -120 360 -100 {lab=out}
+N 210 -120 360 -120 {lab=out}
+N 360 -40 360 -20 {lab=GND}
 C {vsource.sym} -60 -30 0 0 {name=V1 value=\{\{vincm\}\} savecurrent=true}
 C {devices/code_shown.sym} 570 -300 0 0 {name=NGSPICE only_toplevel=true 
 value="
@@ -47,7 +50,7 @@ quit
 "}
 C {lab_pin.sym} 120 -190 1 0 {name=p1 sig_type=std_logic lab=vdd}
 C {gnd.sym} 120 -50 0 0 {name=l4 lab=GND}
-C {lab_pin.sym} 320 -120 2 0 {name=p25 sig_type=std_logic lab=out}
+C {lab_pin.sym} 380 -120 2 0 {name=p25 sig_type=std_logic lab=out}
 C {vsource.sym} -290 -110 0 0 {name=V2 value=\{\{vdd\}\} savecurrent=false}
 C {gnd.sym} -290 -60 0 0 {name=l1 lab=GND}
 C {lab_pin.sym} -290 -160 3 1 {name=p6 sig_type=std_logic lab=vdd}
@@ -97,3 +100,9 @@ footprint=1206
 device="ceramic capacitor"
 }
 C {gnd.sym} 300 -60 0 0 {name=l5 lab=GND}
+C {res.sym} 360 -70 0 0 {name=R1
+value=100k
+footprint=1206
+device=resistor
+m=1}
+C {gnd.sym} 360 -20 0 0 {name=l7 lab=GND}
