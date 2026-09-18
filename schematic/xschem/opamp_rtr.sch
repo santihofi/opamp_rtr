@@ -316,6 +316,30 @@ N -1220 -20 -1220 30 {lab=ncmdiff_p}
 N -1240 30 -1220 30 {lab=ncmdiff_p}
 N -1140 -20 -1140 30 {lab=ncmdiff_p}
 N -1160 -20 -1140 -20 {lab=ncmdiff_p}
+N -1730 -230 -1710 -230 {lab=vss}
+N -1790 -230 -1770 -230 {lab=vss}
+N -1790 -280 -1790 -230 {lab=vss}
+N -1730 -280 -1710 -280 {lab=vss}
+N -1710 -280 -1710 -230 {lab=vss}
+N -1730 -280 -1730 -260 {lab=vss}
+N -1790 -280 -1730 -280 {lab=vss}
+N -1710 -230 -1710 -180 {lab=vss}
+N -1730 -180 -1710 -180 {lab=vss}
+N -1790 -230 -1790 -180 {lab=vss}
+N -1730 -200 -1730 -180 {lab=vss}
+N -1790 -180 -1730 -180 {lab=vss}
+N -1730 -100 -1710 -100 {lab=vdd}
+N -1730 -150 -1730 -130 {lab=vdd}
+N -1730 -150 -1710 -150 {lab=vdd}
+N -1710 -150 -1710 -100 {lab=vdd}
+N -1710 -100 -1710 -50 {lab=vdd}
+N -1730 -50 -1710 -50 {lab=vdd}
+N -1730 -70 -1730 -50 {lab=vdd}
+N -1790 -50 -1730 -50 {lab=vdd}
+N -1790 -100 -1790 -50 {lab=vdd}
+N -1790 -100 -1770 -100 {lab=vdd}
+N -1790 -150 -1790 -100 {lab=vdd}
+N -1790 -150 -1730 -150 {lab=vdd}
 C {sg13g2_pr/sg13_hv_nmos.sym} -1140 -210 0 0 {name=XM6
 l=\{l_diff\}
 w=\{w_diff_n\}
@@ -860,11 +884,31 @@ C {lab_pin.sym} -1480 400 3 0 {name=p23 sig_type=std_logic lab=vss}
 C {lab_pin.sym} -1480 300 1 0 {name=p54 sig_type=std_logic lab=vss}
 C {sg13g2_pr/sg13_hv_pmos.sym} -1180 30 2 1 {name=DUMMY3
 l=0.4u
-w=15u
- ng=4
+w=30u
+ ng=6
  m=1
   mm_ok=1
  model=sg13_hv_pmos
 spiceprefix=X
 }
 C {lab_pin.sym} -1240 30 0 0 {name=p55 sig_type=std_logic lab=ncmdiff_p}
+C {sg13g2_pr/sg13_hv_nmos.sym} -1750 -230 0 0 {name=DUMMY4
+l=0.45u
+w=22.5u
+ ng=12
+ m=1
+  mm_ok=1
+ model=sg13_hv_nmos
+spiceprefix=X
+}
+C {lab_pin.sym} -1710 -230 2 0 {name=p56 sig_type=std_logic lab=vss}
+C {sg13g2_pr/sg13_hv_pmos.sym} -1750 -100 2 1 {name=DUMMY5
+l=0.4u
+w=60u
+ ng=11
+ m=1
+  mm_ok=1
+ model=sg13_hv_pmos
+spiceprefix=X
+}
+C {lab_pin.sym} -1710 -100 2 0 {name=p57 sig_type=std_logic lab=vdd}
