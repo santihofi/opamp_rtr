@@ -16,3 +16,6 @@
 /verification
 /layout/backups
 /netlist
+*.log
+*.lyrdb
+*.cdl
